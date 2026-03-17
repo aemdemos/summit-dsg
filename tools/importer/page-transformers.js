@@ -17,9 +17,7 @@
  * @returns {Element | null}
  */
 export function getMainRoot(document, mainSelectors = 'main, [role="main"], .main-content') {
-  const selectors = Array.isArray(mainSelectors)
-    ? mainSelectors.join(', ')
-    : mainSelectors;
+  const selectors = Array.isArray(mainSelectors) ? mainSelectors.join(', ') : mainSelectors;
   return document.querySelector(selectors) || document.body;
 }
 
@@ -73,7 +71,6 @@ export function findHero(root, heroSelectors = ['.hero', '[class*="hero"]', '.ba
       // skip invalid selector
     }
   }
-
   // Fallback: first section with picture + heading
   const section = root.querySelector('section, [class*="section"]');
   if (section) {
@@ -88,7 +85,6 @@ export function findHero(root, heroSelectors = ['.hero', '[class*="hero"]', '.ba
       };
     }
   }
-
   return { heading: null, image: null, container: null };
 }
 
@@ -101,12 +97,9 @@ export function extractMetadata(document) {
   const meta = {};
   const titleEl = document.querySelector('title');
   if (titleEl) meta.Title = titleEl.textContent.replace(/[\n\t]/g, '').trim();
-
   const desc = document.querySelector('meta[name="description"], meta[property="og:description"]');
   if (desc && desc.getAttribute('content')) meta.Description = desc.getAttribute('content');
-
   const ogImage = document.querySelector('meta[property="og:image"]');
   if (ogImage && ogImage.getAttribute('content')) meta.Image = ogImage.getAttribute('content');
-
   return meta;
 }

@@ -11,11 +11,11 @@
  *
  * Block shapes (align with blocks/ in this repo):
  *
- * - Hero:      [ ['Hero'], [heading, picture] ]
- * - Cards:     [ ['Cards'], [...row1 cells...], [...row2 cells...], ... ]
- * - Accordion: [ ['Accordion'], [label1, body1], [label2, body2], ... ]
- * - Columns:   [ ['Columns'], [col1, col2, ...] ]
- * - Metadata:  use WebImporter.Blocks.getMetadataBlock(document, meta) in import.js
+ * - Hero:     [ ['Hero'], [heading, picture] ]
+ * - Cards:    [ ['Cards'], [...row1 cells...], [...row2 cells...], ... ]
+ * - Accordion:[ ['Accordion'], [label1, body1], [label2, body2], ... ]
+ * - Columns:  [ ['Columns'], [col1, col2, ...] ]
+ * - Metadata: use WebImporter.Blocks.getMetadataBlock(document, meta) in import.js
  */
 
 /**

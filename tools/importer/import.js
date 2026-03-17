@@ -12,17 +12,23 @@
 /* global WebImporter */
 
 // --- Config (canonical selectors in tools/importer/config.js) ---
-
 const MAIN_SELECTOR = 'main, [role="main"], .main-content, #main-content, .content-area';
-
 const REMOVE_SELECTORS = [
-  'header', 'footer', 'nav',
-  '.header', '.footer', '.navigation', '.nav',
-  '[class*="cookie"]', '[class*="banner"]',
+  'header',
+  'footer',
+  'nav',
+  '.header',
+  '.footer',
+  '.navigation',
+  '.nav',
+  '[class*="cookie"]',
+  '[class*="banner"]',
   '.skip-link',
-  'script', 'style', 'noscript', 'iframe',
+  'script',
+  'style',
+  'noscript',
+  'iframe',
 ];
-
 const HERO_SELECTORS = ['.hero', '[class*="hero"]', '.banner', '.homepage-hero'];
 
 /**
@@ -32,9 +38,7 @@ const HERO_SELECTORS = ['.hero', '[class*="hero"]', '.banner', '.homepage-hero']
  * @returns {string}
  */
 function sanitizePath(path) {
-  if (typeof WebImporter !== 'undefined'
-    && WebImporter.FileUtils
-    && WebImporter.FileUtils.sanitizePath) {
+  if (typeof WebImporter !== 'undefined' && WebImporter.FileUtils && WebImporter.FileUtils.sanitizePath) {
     return WebImporter.FileUtils.sanitizePath(path);
   }
   return path
@@ -43,8 +47,7 @@ function sanitizePath(path) {
     .toLowerCase()
     .replace(/[^a-z0-9/-]/g, '-')
     .replace(/-+/g, '-')
-    .replace(/^-|-$/g, '')
-    || '/';
+    .replace(/^-|-$/g, '') || '/';
 }
 
 /**
@@ -82,20 +85,15 @@ function createMetadataBlock(main, document) {
   const meta = {};
   const titleEl = document.querySelector('title');
   if (titleEl) meta.Title = titleEl.textContent.replace(/[\n\t]/g, '').trim();
-
   const desc = document.querySelector('meta[name="description"], meta[property="og:description"]');
   if (desc && desc.getAttribute('content')) meta.Description = desc.getAttribute('content');
-
   const ogImage = document.querySelector('meta[property="og:image"]');
   if (ogImage && ogImage.getAttribute('content')) {
     const img = document.createElement('img');
     img.src = ogImage.getAttribute('content');
     meta.Image = img;
   }
-
-  if (typeof WebImporter !== 'undefined'
-    && WebImporter.Blocks
-    && WebImporter.Blocks.getMetadataBlock) {
+  if (typeof WebImporter !== 'undefined' && WebImporter.Blocks && WebImporter.Blocks.getMetadataBlock) {
     const block = WebImporter.Blocks.getMetadataBlock(document, meta);
     if (block) main.prepend(block);
   }
@@ -110,7 +108,6 @@ function ensureHeroBlock(main, document) {
   let container = null;
   let heading = null;
   let image = null;
-
   for (const sel of HERO_SELECTORS) {
     try {
       const el = main.querySelector(sel);
@@ -124,12 +121,8 @@ function ensureHeroBlock(main, document) {
       // skip
     }
   }
-
   if (!container || !heading || !image) return;
-
-  if (typeof WebImporter !== 'undefined'
-    && WebImporter.DOMUtils
-    && WebImporter.DOMUtils.createTable) {
+  if (typeof WebImporter !== 'undefined' && WebImporter.DOMUtils && WebImporter.DOMUtils.createTable) {
     const cells = [
       ['Hero'],
       [heading, image],
@@ -158,9 +151,7 @@ function ensureFirstH1(main) {
  * @param {Document} document
  */
 function replaceBackgroundImages(main, document) {
-  if (typeof WebImporter !== 'undefined'
-    && WebImporter.DOMUtils
-    && WebImporter.DOMUtils.replaceBackgroundByImg) {
+  if (typeof WebImporter !== 'undefined' && WebImporter.DOMUtils && WebImporter.DOMUtils.replaceBackgroundByImg) {
     main.querySelectorAll('[style*="background-image"]').forEach((el) => {
       try {
         WebImporter.DOMUtils.replaceBackgroundByImg(el, document);
@@ -181,9 +172,7 @@ function transformOne(opts) {
   const main = getMain(document);
 
   // Strip unwanted nodes (header, footer, nav, etc.)
-  if (typeof WebImporter !== 'undefined'
-    && WebImporter.DOMUtils
-    && WebImporter.DOMUtils.remove) {
+  if (typeof WebImporter !== 'undefined' && WebImporter.DOMUtils && WebImporter.DOMUtils.remove) {
     WebImporter.DOMUtils.remove(main, REMOVE_SELECTORS);
   } else {
     REMOVE_SELECTORS.forEach((sel) => {
@@ -201,6 +190,7 @@ function transformOne(opts) {
   ensureFirstH1(main);
 
   const path = generateDocumentPath({ params, url: opts.url });
+
   const report = {
     title: document.title || '',
   };

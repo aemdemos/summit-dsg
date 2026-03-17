@@ -10,35 +10,47 @@
 export const DSG_SELECTORS = {
   // Main content container (prefer main, fallback to content wrapper)
   main: 'main, [role="main"], .main-content, #main-content, .content-area',
-
   // Strip from document before extracting main
   remove: [
-    'header', 'footer', 'nav',
-    '.header', '.footer', '.navigation', '.nav',
-    '[class*="cookie"]', '[class*="banner"]',
+    'header',
+    'footer',
+    'nav',
+    '.header',
+    '.footer',
+    '.navigation',
+    '.nav',
+    '[class*="cookie"]',
+    '[class*="banner"]',
     '.skip-link',
-    'script', 'style', 'noscript', 'iframe',
+    'script',
+    'style',
+    'noscript',
+    'iframe',
   ],
-
   // Hero: first large visual block (image + heading)
   hero: [
-    '.hero', '[class*="hero"]', '.banner', '.homepage-hero',
+    '.hero',
+    '[class*="hero"]',
+    '.banner',
+    '.homepage-hero',
     'section:first-of-type picture',
   ],
-
   // Product or promo cards (for Cards block)
   cardGrid: [
-    '.product-grid', '.product-list',
-    '[class*="product-grid"]', '[class*="card-grid"]',
-    '.cards', '.promo-cards',
+    '.product-grid',
+    '.product-list',
+    '[class*="product-grid"]',
+    '[class*="card-grid"]',
+    '.cards',
+    '.promo-cards',
   ],
-
   // FAQ / expandable (for Accordion block)
   accordion: [
-    '.faq', '[class*="accordion"]',
-    '.expandable', '[class*="collapse"]',
+    '.faq',
+    '[class*="accordion"]',
+    '.expandable',
+    '[class*="collapse"]',
   ],
-
   // Multi-column layout
   columns: ['.columns', '[class*="column-"]', '.multi-column'],
 };
