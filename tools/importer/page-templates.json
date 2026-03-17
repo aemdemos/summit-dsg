@@ -1,0 +1,90 @@
+{
+  "templates": [
+    {
+      "name": "homepage",
+      "urls": [
+        "https://www.dickssportinggoods.com/"
+      ],
+      "description": "DICK'S Sporting Goods homepage with hero carousel, trending cards, latest launches, expert advice pro tips, and social/Instagram sections",
+      "blocks": [
+        {
+          "name": "cards",
+          "instances": [
+            "#FootwearBubbles .trending-card",
+            "#TopTrending_container .trending-card",
+            "#latestlaunches .trending-card",
+            "#protips_container .trending-card"
+          ]
+        },
+        {
+          "name": "carousel",
+          "instances": [
+            "#Carousel"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "section-shoe-bar",
+          "name": "Shoe Bar",
+          "selector": "#footwearbubbles_container",
+          "style": null,
+          "blocks": [
+            "cards"
+          ],
+          "defaultContent": [
+            ".title-scrolling__title",
+            ".title-scrolling__cta"
+          ]
+        },
+        {
+          "id": "section-hero-carousel",
+          "name": "Hero Carousel",
+          "selector": "#Carousel",
+          "style": null,
+          "blocks": [
+            "carousel"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "section-trending-spotlight",
+          "name": "Trending Spotlight",
+          "selector": "#TopTrending_container",
+          "style": null,
+          "blocks": [
+            "cards"
+          ],
+          "defaultContent": [
+            "#title-294168ac00"
+          ]
+        },
+        {
+          "id": "section-latest-launches",
+          "name": "Latest Launches",
+          "selector": "#latestlaunches",
+          "style": null,
+          "blocks": [
+            "cards"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "section-expert-advice",
+          "name": "Expert Advice",
+          "selector": [
+            "#protips_container",
+            ".global-title"
+          ],
+          "style": null,
+          "blocks": [
+            "cards"
+          ],
+          "defaultContent": [
+            ".global-title h1"
+          ]
+        }
+      ]
+    }
+  ]
+}
