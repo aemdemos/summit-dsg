@@ -11,31 +11,33 @@
  */
 
 :root {
-  /* colors */
+  /* colors — Abercrombie palette */
   --background-color: white;
-  --light-color: #f8f8f8;
-  --dark-color: #505050;
-  --text-color: #131313;
-  --link-color: #3b63fb;
-  --link-hover-color: #1d3ecf;
-  --overlay-background-color:lightgrey;
+  --light-color: #f7f5f2;
+  --dark-color: #253746;
+  --text-color: #253746;
+  --body-text-color: #5e5e5e;
+  --link-color: #253746;
+  --link-hover-color: #253746;
+  --overlay-background-color: #f6f6f6;
+  --brand-red: #b81e26;
 
   /* fonts */
-  --body-font-family: roboto, roboto-fallback, sans-serif;
-  --heading-font-family: roboto-condensed, roboto-condensed-fallback, sans-serif;
+  --body-font-family: 'Helvetica Neue', helvetica, arial, sans-serif;
+  --heading-font-family: 'Helvetica Neue', helvetica, arial, sans-serif;
 
   /* body sizes */
-  --body-font-size-m: 22px;
-  --body-font-size-s: 19px;
-  --body-font-size-xs: 17px;
+  --body-font-size-m: 14px;
+  --body-font-size-s: 13px;
+  --body-font-size-xs: 12px;
 
   /* heading sizes */
-  --heading-font-size-xxl: 55px;
-  --heading-font-size-xl: 44px;
-  --heading-font-size-l: 34px;
-  --heading-font-size-m: 27px;
-  --heading-font-size-s: 24px;
-  --heading-font-size-xs: 22px;
+  --heading-font-size-xxl: 40px;
+  --heading-font-size-xl: 32px;
+  --heading-font-size-l: 26px;
+  --heading-font-size-m: 22px;
+  --heading-font-size-s: 18px;
+  --heading-font-size-xs: 16px;
 
   /* layout */
   --max-width-site: 1200px;
@@ -65,17 +67,17 @@
 @media (width >= 900px) {
   :root {
     /* body sizes */
-    --body-font-size-m: 18px;
-    --body-font-size-s: 16px;
-    --body-font-size-xs: 14px;
+    --body-font-size-m: 14px;
+    --body-font-size-s: 13px;
+    --body-font-size-xs: 12px;
 
     /* heading sizes */
-    --heading-font-size-xxl: 45px;
+    --heading-font-size-xxl: 48px;
     --heading-font-size-xl: 36px;
     --heading-font-size-l: 28px;
     --heading-font-size-m: 22px;
-    --heading-font-size-s: 20px;
-    --heading-font-size-xs: 18px;
+    --heading-font-size-s: 18px;
+    --heading-font-size-xs: 16px;
   }
 }
 
@@ -83,10 +85,11 @@ body {
   display: none;
   margin: 0;
   background-color: var(--background-color);
-  color: var(--text-color);
+  color: var(--body-text-color);
   font-family: var(--body-font-family);
   font-size: var(--body-font-size-m);
   line-height: 1.6;
+  letter-spacing: 0.3px;
 }
 
 body.appear {
@@ -122,9 +125,12 @@ h6 {
   margin-top: 0.8em;
   margin-bottom: 0.25em;
   font-family: var(--heading-font-family);
-  font-weight: 600;
-  line-height: 1.25;
+  font-weight: 700;
+  line-height: 1.2;
   scroll-margin: 40px;
+  color: var(--text-color);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 h1 { font-size: var(--heading-font-size-xxl); }
@@ -159,7 +165,7 @@ pre {
 }
 
 main > div {
-  margin: 40px 16px;
+  margin: 0 16px;
 }
 
 input,
@@ -172,13 +178,13 @@ button {
 /* links */
 a {
   color: var(--link-color);
-  text-decoration: none;
+  text-decoration: underline;
   overflow-wrap: break-word;
 }
 
 a:hover {
   color: var(--link-hover-color);
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 /* buttons */
@@ -187,17 +193,20 @@ button {
   box-sizing: border-box;
   display: inline-block;
   max-width: 100%;
-  margin: 12px 0;
-  border: 2px solid transparent;
-  border-radius: 2.4em;
-  padding: 0.5em 1.2em;
+  margin: 8px 0;
+  border: 1px solid var(--text-color);
+  border-radius: 0;
+  padding: 10px 30px;
   font-family: var(--body-font-family);
   font-style: normal;
-  font-weight: 500;
+  font-weight: 700;
+  font-size: 13px;
   line-height: 1.25;
   text-align: center;
   text-decoration: none;
-  background-color: var(--link-color);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  background-color: var(--text-color);
   color: var(--background-color);
   cursor: pointer;
   overflow: hidden;
@@ -209,7 +218,7 @@ a.button:hover,
 a.button:focus,
 button:hover,
 button:focus {
-  background-color: var(--link-hover-color);
+  background-color: var(--dark-color);
   cursor: pointer;
 }
 
@@ -221,9 +230,15 @@ button:disabled:hover {
 
 a.button.secondary,
 button.secondary {
-  background-color: unset;
-  border: 2px solid currentcolor;
+  background-color: transparent;
+  border: 1px solid var(--text-color);
   color: var(--text-color);
+}
+
+a.button.secondary:hover,
+button.secondary:hover {
+  background-color: var(--text-color);
+  color: var(--background-color);
 }
 
 main img {
@@ -245,13 +260,13 @@ main img {
 
 /* sections */
 main > .section {
-  margin: 40px 0;
+  margin: 0;
 }
 
 main > .section > div {
   max-width: var(--max-width-site);
   margin: auto;
-  padding: 0 24px;
+  padding: 24px;
 }
 
 main > .section:first-of-type {
@@ -271,3 +286,15 @@ main .section.highlight {
   margin: 0;
   padding: 40px 0;
 }
+
+main .section.brand-red {
+  background-color: var(--brand-red);
+  margin: 0;
+  padding: 0;
+}
+
+main .section.brand-red > div {
+  max-width: unset;
+  padding: 0;
+}
+
