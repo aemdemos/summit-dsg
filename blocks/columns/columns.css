@@ -3,10 +3,12 @@
 .columns > div {
   display: flex;
   flex-direction: column;
+  gap: 24px;
 }
 
 .columns img {
   width: 100%;
+  display: block;
 }
 
 .columns > div > div {
@@ -21,15 +23,51 @@
   display: block;
 }
 
-@media (width >= 900px) {
+/* Text styling in columns */
+.columns h3 {
+  font-size: var(--heading-font-size-m);
+  margin-top: 0.4em;
+}
+
+.columns p {
+  font-size: var(--body-font-size-s);
+  margin: 0.3em 0;
+}
+
+.columns p a {
+  display: inline-block;
+  padding: 10px 30px;
+  border: 1px solid var(--text-color);
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 0.6px;
+  margin-top: 8px;
+}
+
+.columns p a:hover {
+  background-color: var(--text-color);
+  color: var(--background-color);
+  text-decoration: none;
+}
+
+@media (width >= 600px) {
   .columns > div {
-    align-items: center;
-    flex-direction: unset;
+    flex-direction: row;
     gap: var(--columns-gap);
   }
 
   .columns > div > div {
     flex: 1;
     order: unset;
+  }
+}
+
+@media (width >= 900px) {
+  .columns > div {
+    align-items: flex-start;
+    gap: var(--columns-gap);
   }
 }
