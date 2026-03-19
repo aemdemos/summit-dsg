@@ -3,6 +3,25 @@ import { createSliderControls, initSlider, showSlide } from '../../scripts/slide
 
 export { showSlide };
 
+const SLIDER_OPTIONS = {
+  slidesContainer: '.carousel-spotlight-slides',
+  slideSelector: '.carousel-spotlight-slide',
+  indicatorsContainer: '.carousel-spotlight-slide-indicators',
+  indicatorItemSelector: '.carousel-spotlight-slide-indicator',
+  prevSelector: '.slide-prev',
+  nextSelector: '.slide-next',
+};
+
+/* eslint-disable secure-coding/no-hardcoded-credentials */
+const CONTROL_OPTIONS = {
+  listClass: 'carousel-spotlight-slide-indicators',
+  indicatorItemClass: 'carousel-spotlight-slide-indicator',
+  navButtonsWrapperClass: 'carousel-spotlight-navigation-buttons',
+  prevClass: 'slide-prev',
+  nextClass: 'slide-next',
+};
+/* eslint-enable secure-coding/no-hardcoded-credentials */
+
 function createSlide(row, slideIndex, carouselId) {
   const slide = document.createElement('li');
   slide.dataset.slideIndex = slideIndex;
@@ -43,7 +62,10 @@ export default async function decorate(block) {
   block.prepend(slidesWrapper);
 
   if (!isSingleSlide) {
-    const { indicatorsNav, buttonsContainer } = createSliderControls(rows.length);
+    const { indicatorsNav, buttonsContainer } = createSliderControls(
+      rows.length,
+      CONTROL_OPTIONS,
+    );
     block.append(indicatorsNav);
     container.append(buttonsContainer);
   }
@@ -59,13 +81,13 @@ export default async function decorate(block) {
   block.prepend(container);
 
   if (!isSingleSlide) {
-    initSlider(block);
+    initSlider(block, SLIDER_OPTIONS);
     slidesWrapper.addEventListener('keydown', (e) => {
       if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
       const current = parseInt(block.dataset.activeSlide, 10) || 0;
       const next = e.key === 'ArrowLeft' ? current - 1 : current + 1;
       e.preventDefault();
-      showSlide(block, next, 'smooth');
+      showSlide(block, next, 'smooth', SLIDER_OPTIONS);
     });
   }
 }

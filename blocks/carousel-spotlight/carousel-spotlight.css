@@ -56,11 +56,28 @@
 .carousel-spotlight .carousel-spotlight-slide .carousel-spotlight-slide-content {
   z-index: 1;
   margin: var(--carousel-content-margin);
-  padding: var(--carousel-content-padding);
-  color: white;
-  background-color: var(--carousel-content-background);
+  padding: 32px;
+  color: var(--text-color);
+  background-color: rgb(255 255 255 / 95%);
   position: relative;
   width: var(--slide-content-width, auto);
+  border-radius: 4px;
+}
+
+.carousel-spotlight .carousel-spotlight-slide .carousel-spotlight-slide-content h3 {
+  color: var(--heading-text-color);
+  font-size: var(--heading-font-size-l);
+  margin-top: 0;
+}
+
+.carousel-spotlight .carousel-spotlight-slide .carousel-spotlight-slide-content p {
+  font-size: var(--body-font-size-s);
+  line-height: 1.6;
+}
+
+.carousel-spotlight .carousel-spotlight-slide .carousel-spotlight-slide-content a {
+  color: var(--brand-color);
+  font-weight: 600;
 }
 
 .carousel-spotlight .carousel-spotlight-slide-indicators {
@@ -69,7 +86,7 @@
   justify-content: center;
   gap: var(--carousel-indicators-gap);
   padding: var(--carousel-indicators-padding);
-  background-color: var(--light-color);
+  background-color: transparent;
   line-height: 0;
 }
 
