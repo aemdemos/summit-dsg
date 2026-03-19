@@ -1,0 +1,39 @@
+@import url('./hero-tokens.css');
+
+.hero-corporate-container .hero-corporate-wrapper {
+  max-width: unset;
+  padding: 0;
+}
+
+.hero-corporate {
+  position: relative;
+  padding: var(--hero-padding);
+  min-height: var(--hero-min-height);
+}
+
+.hero-corporate h1 {
+  max-width: var(--hero-heading-max-width);
+  margin-left: auto;
+  margin-right: auto;
+  color: var(--background-color);
+}
+
+.hero-corporate picture {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  object-fit: cover;
+  box-sizing: border-box;
+}
+
+.hero-corporate img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+@media (width >= 900px) {
+  .hero-corporate {
+    padding: var(--hero-padding-desktop);
+  }
+}

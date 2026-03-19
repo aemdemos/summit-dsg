@@ -1,0 +1,112 @@
+{
+  "templates": [
+    {
+      "name": "homepage",
+      "urls": [
+        "https://www.thomsonreuters.com/en"
+      ],
+      "description": "Thomson Reuters corporate homepage with hero, content bands, carousels, card grids, and global chrome (header/footer)",
+      "blocks": [
+        {
+          "name": "hero-corporate",
+          "instances": [
+            "#hero-module"
+          ]
+        },
+        {
+          "name": "cards-offering",
+          "instances": [
+            ".cmp-cardlist"
+          ]
+        },
+        {
+          "name": "carousel-spotlight",
+          "instances": [
+            "#cmp-rotator-spotlight",
+            "#spotlight-module .cmp-rotator"
+          ]
+        },
+        {
+          "name": "cards-insight",
+          "instances": [
+            "#features-insights-module .card-wrapper"
+          ]
+        },
+        {
+          "name": "columns-support",
+          "instances": [
+            "#customer-support-module .dig-paper__content"
+          ]
+        },
+        {
+          "name": "cards-press",
+          "instances": [
+            "#press-releases-module .card-wrapper"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "section-1-hero",
+          "name": "Hero",
+          "selector": "#hero-module",
+          "style": null,
+          "blocks": [
+            "hero-corporate",
+            "cards-offering"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "section-2-new-noteworthy",
+          "name": "New and Noteworthy",
+          "selector": "#spotlight-module",
+          "style": null,
+          "blocks": [
+            "carousel-spotlight"
+          ],
+          "defaultContent": [
+            "#spotlight-module .rich-text-wrapper h2"
+          ]
+        },
+        {
+          "id": "section-3-featured-insights",
+          "name": "Featured Insights",
+          "selector": "#features-insights-module",
+          "style": null,
+          "blocks": [
+            "cards-insight"
+          ],
+          "defaultContent": [
+            "#features-insights-module .rich-text-wrapper h2"
+          ]
+        },
+        {
+          "id": "section-4-customer-support",
+          "name": "Customer Support",
+          "selector": "#customer-support-module",
+          "style": "grey",
+          "blocks": [
+            "columns-support"
+          ],
+          "defaultContent": [
+            "#customer-support-module .rich-text-wrapper h2"
+          ]
+        },
+        {
+          "id": "section-5-press-releases",
+          "name": "Press Releases",
+          "selector": "#press-releases-module",
+          "style": null,
+          "blocks": [
+            "cards-press"
+          ],
+          "defaultContent": [
+            "#press-releases-module .rich-text-wrapper h2",
+            "#press-releases-module .dig-button"
+          ]
+        }
+      ]
+    }
+  ]
+}

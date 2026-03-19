@@ -1,0 +1,39 @@
+{
+  "variantName": "carousel-spotlight",
+  "baseBlock": "carousel",
+  "version": "1.0.0",
+  "created": "2026-03-19T18:24:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.thomsonreuters.com/en",
+    "originPage": "corporate homepage",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "spacious",
+    "purpose": "content-spotlight",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "image/stat + heading + paragraphs + CTA-link per slide, 6 slides, dots + arrows",
+    "buttonCount": 0,
+    "imageCount": 6
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "content spotlight rotators",
+      "feature highlight carousels with text and stats",
+      "new and noteworthy content sections"
+    ],
+    "notSuitableFor": [
+      "image-only galleries",
+      "hero carousels with full-bleed images",
+      "testimonial quote carousels"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/en"],
+    "reuseCount": 1,
+    "lastUsed": "2026-03-19T18:24:00.000Z"
+  }
+}
