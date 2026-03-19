@@ -280,6 +280,46 @@ export function decorateSections(main) {
 }
 
 /**
+ * Applies Abercrombie /shop/us parity styles when section/block metadata is not set in DA.
+ * 1) First section that looks like a promo strip gets promo-banner.
+ * 2) First carousel gets inverse (white text on image).
+ * 3) Columns with two image columns get split-banner.
+ * 4) CTAs in hero, inverse carousel, split-banner get ghost styling (handled in CSS).
+ * @param {Element} main The main element
+ */
+function applyAbercrombieSectionStyles(main) {
+  const sections = main.querySelectorAll(':scope > .section');
+  const firstSection = sections[0];
+  if (firstSection && !firstSection.classList.contains('promo-banner')) {
+    const hasHero = firstSection.querySelector('.hero');
+    const hasCarousel = firstSection.querySelector('.carousel');
+    if (!hasHero && !hasCarousel) {
+      firstSection.classList.add('promo-banner');
+    }
+  }
+
+  const firstCarousel = main.querySelector('.carousel');
+  if (firstCarousel && !firstCarousel.classList.contains('inverse')) {
+    firstCarousel.classList.add('inverse');
+  }
+
+  main.querySelectorAll('.columns').forEach((block) => {
+    if (block.classList.contains('split-banner')) return;
+    const row = block.querySelector(':scope > div');
+    if (!row || row.children.length !== 2) return;
+    const [col0, col1] = [...row.children];
+    const hasImage = (col) => col.querySelector('picture, img');
+    if (hasImage(col0) && hasImage(col1)) {
+      block.classList.add('split-banner');
+    }
+  });
+
+  main.querySelectorAll('.hero a.button, .carousel.inverse a.button, .columns.split-banner a.button, .section.promo-banner a.button').forEach((a) => {
+    if (!a.classList.contains('ghost')) a.classList.add('ghost');
+  });
+}
+
+/**
  * Decorates the main element.
  * @param {Element} main The main element
  */
@@ -290,6 +330,7 @@ export function decorateMain(main) {
   buildAutoBlocks(main);
   decorateSections(main);
   decorateBlocks(main);
+  applyAbercrombieSectionStyles(main);
   decorateButtons(main);
   a11yLinks(main);
 }
