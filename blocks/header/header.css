@@ -6,6 +6,7 @@ header .nav-wrapper {
   width: 100%;
   z-index: 2;
   position: fixed;
+  border-bottom: 1px solid #e0e0e0;
 }
 
 header nav {
@@ -144,6 +145,8 @@ header .nav-brand {
   font-size: var(--heading-font-size-s);
   font-weight: 700;
   line-height: 1;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 header nav .nav-brand img {
