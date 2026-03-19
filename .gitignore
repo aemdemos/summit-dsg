@@ -12,3 +12,6 @@ localhost-key.pem
 .vscode
 .cursor
 Trace*.json
+
+# Local draft HTML (run with --html-folder drafts); migration structure is in docs/migrations/
+drafts/
