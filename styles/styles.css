@@ -22,9 +22,10 @@
   --overlay-background-color: #f6f6f6;
   --brand-red: #b81e26;
 
-  /* fonts */
+  /* fonts — serif headings for premium/Abercrombie parity */
   --body-font-family: 'Helvetica Neue', helvetica, arial, sans-serif;
-  --heading-font-family: 'Helvetica Neue', helvetica, arial, sans-serif;
+  --heading-font-family: georgia, 'Times New Roman', serif;
+  --heading-font-family-sans: 'Helvetica Neue', helvetica, arial, sans-serif;
 
   /* body sizes */
   --body-font-size-m: 14px;
@@ -241,6 +242,21 @@ button.secondary:hover {
   color: var(--background-color);
 }
 
+/* ghost button — white border + text on dark/image (Abercrombie hero CTAs) */
+a.button.ghost,
+button.ghost {
+  background-color: transparent;
+  border: 2px solid #fff;
+  color: #fff;
+}
+
+a.button.ghost:hover,
+button.ghost:hover {
+  background-color: rgb(255 255 255 / 15%);
+  color: #fff;
+  border-color: #fff;
+}
+
 main img {
   max-width: 100%;
   width: auto;
@@ -296,5 +312,43 @@ main .section.brand-red {
 main .section.brand-red > div {
   max-width: unset;
   padding: 0;
+}
+
+/* promo banner — dark navy strip (e.g. Winter Sale | Free Shipping + CTAs) */
+main .section.promo-banner {
+  background-color: var(--dark-color);
+  color: #fff;
+  margin: 0;
+  padding: 12px 24px;
+}
+
+main .section.promo-banner > div {
+  max-width: var(--max-width-site);
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 16px 24px;
+  text-align: center;
+}
+
+main .section.promo-banner p {
+  margin: 0;
+  color: #fff;
+  font-size: var(--body-font-size-s);
+}
+
+main .section.promo-banner a.button {
+  background-color: transparent;
+  border: 2px solid #fff;
+  color: #fff;
+  margin: 0 4px;
+}
+
+main .section.promo-banner a.button:hover {
+  background-color: rgb(255 255 255 / 15%);
+  color: #fff;
 }
 

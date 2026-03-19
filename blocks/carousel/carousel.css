@@ -175,6 +175,44 @@
   left: calc(50% - 2px);
 }
 
+/* inverse theme — white text on image (Abercrombie hero carousel) */
+main .carousel.inverse .carousel-slide .carousel-slide-content {
+  background-color: transparent;
+  color: #fff;
+}
+
+main .carousel.inverse .carousel-slide .carousel-slide-content h2 {
+  color: #fff;
+}
+
+main .carousel.inverse .carousel-slide .carousel-slide-content p {
+  color: rgb(255 255 255 / 95%);
+}
+
+main .carousel.inverse .carousel-slide .carousel-slide-content p a {
+  border-color: #fff;
+  color: #fff;
+  background-color: transparent;
+}
+
+main .carousel.inverse .carousel-slide .carousel-slide-content p a:hover {
+  background-color: rgb(255 255 255 / 15%);
+  color: #fff;
+}
+
+main .carousel.inverse .carousel-slide-indicators {
+  background-color: transparent;
+}
+
+main .carousel.inverse .carousel-slide-indicator button {
+  background-color: rgb(255 255 255 / 40%);
+}
+
+main .carousel.inverse .carousel-slide-indicator button:disabled,
+main .carousel.inverse .carousel-slide-indicator button:hover {
+  background-color: #fff;
+}
+
 @media (width >= 600px) {
   .carousel .carousel-navigation-buttons {
     left: var(--carousel-nav-inset-desktop);

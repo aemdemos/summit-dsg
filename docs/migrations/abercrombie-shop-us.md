@@ -18,6 +18,26 @@ This document supports migration agents (**aemcoder.adobe.io** / ExMod) and huma
 
 **Localization:** Per AGENTS.md, user-facing strings must be authorable in Universal Editor—not hard-coded in block JS.
 
+### 1.1 Styling parity (why the preview looked “terrible”)
+
+The repo includes styles and **automatic application** (in `scripts/scripts.js` → `applyAbercrombieSectionStyles`) so the preview matches the live site without editing DA:
+
+1. **Promo banner** — The first section that does not contain a hero or carousel gets class `promo-banner` (navy strip, white text).
+2. **Hero carousel** — The first carousel in `main` gets class `inverse` (white text and ghost CTAs on image).
+3. **Split banners** — Any columns block with exactly two columns that both contain an image gets class `split-banner` (overlay text, ghost buttons).
+4. **Ghost CTAs** — Every `a.button` inside hero, inverse carousel, split-banner columns, or promo-banner section gets class `ghost` so they render as white-outline buttons.
+
+Authors can still override by setting section metadata **Style** or block **Class** in Universal Editor; the auto-apply runs after block decoration and only adds classes when they are not already set.
+
+### 1.2 Preview 404 at root
+
+This project uses **Document Authoring (DA)** — content is served from `.migration/project.json` → `contentHostUrl`, not from the repo. The **root URL** (`https://{branch}--summit-dsg--aemdemos.aem.page/`) often returns 404 because no document is mapped to `/` in DA.
+
+- **Use the content path:** Open **`/shop/us`** (the path this migration targets):  
+  `https://{branch}--summit-dsg--aemdemos.aem.page/shop/us`
+- **Branch in URL:** Use lowercase in the preview URL (e.g. `abercrombie-initial-pr` even if the Git branch is `abercrombie-initial-PR`).
+- **Root page:** To have `/` work, create and publish a document in [Document Authoring](https://content.da.live) (aemdemos/summit-dsg) that maps to the root path.
+
 ---
 
 ## 2. Prerequisites (order of work)
