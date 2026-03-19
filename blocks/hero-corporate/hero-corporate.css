@@ -19,16 +19,25 @@
   color: #fff;
 }
 
+.hero-corporate h1 {
+  font-weight: 300;
+  line-height: 1.1;
+  margin-bottom: 16px;
+}
+
 .hero-corporate h2 {
-  font-size: var(--body-font-size-m);
+  font-size: var(--body-font-size-s);
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
+  margin-bottom: 8px;
 }
 
 .hero-corporate p {
   color: #fff;
   max-width: 600px;
+  font-size: var(--body-font-size-m);
+  line-height: 1.6;
 }
 
 .hero-corporate a {

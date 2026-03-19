@@ -56,6 +56,12 @@ header nav p {
 
 header nav a {
   color: currentcolor;
+  text-decoration: none;
+}
+
+header nav a:hover {
+  color: currentcolor;
+  text-decoration: underline;
 }
 
 /* hamburger */
@@ -228,6 +234,7 @@ header nav .nav-sections ul > li > ul > li {
     display: flex;
     gap: var(--header-nav-gap);
     margin: 0;
+    align-items: center;
   }
 
   header nav .nav-sections .default-content-wrapper > ul > li {
@@ -272,6 +279,7 @@ header nav .nav-sections ul > li > ul > li {
 /* tools */
 header nav .nav-tools {
   grid-area: tools;
+  font-size: var(--body-font-size-s);
 }
 
 header nav .nav-tools .button {
