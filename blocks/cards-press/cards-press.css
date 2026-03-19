@@ -1,0 +1,29 @@
+@import url('../cards/cards-tokens.css');
+
+.cards-press > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(var(--cards-grid-min-width), 1fr));
+  gap: var(--cards-grid-gap);
+}
+
+.cards-press > ul > li {
+  border: var(--cards-card-border-width) solid var(--cards-card-border-color);
+  background-color: var(--background-color);
+}
+
+.cards-press .cards-press-card-body {
+  margin: var(--cards-card-body-margin);
+}
+
+.cards-press .cards-press-card-image {
+  line-height: 0;
+}
+
+.cards-press > ul > li img {
+  width: 100%;
+  aspect-ratio: var(--cards-image-aspect-ratio);
+  object-fit: var(--cards-image-object-fit);
+}

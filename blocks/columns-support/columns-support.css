@@ -1,0 +1,35 @@
+@import url('../columns/columns-tokens.css');
+
+.columns-support > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.columns-support img {
+  width: 100%;
+}
+
+.columns-support > div > div {
+  order: 1;
+}
+
+.columns-support > div > .columns-support-img-col {
+  order: 0;
+}
+
+.columns-support > div > .columns-support-img-col img {
+  display: block;
+}
+
+@media (width >= 900px) {
+  .columns-support > div {
+    align-items: center;
+    flex-direction: unset;
+    gap: var(--columns-gap);
+  }
+
+  .columns-support > div > div {
+    flex: 1;
+    order: unset;
+  }
+}

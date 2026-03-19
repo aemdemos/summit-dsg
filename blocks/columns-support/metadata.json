@@ -1,0 +1,39 @@
+{
+  "variantName": "columns-support",
+  "baseBlock": "columns",
+  "version": "1.0.0",
+  "created": "2026-03-19T18:24:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.thomsonreuters.com/en",
+    "originPage": "corporate homepage",
+    "blockPosition": "bottom"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "grey",
+    "density": "spacious",
+    "purpose": "customer-support",
+    "imagePattern": "icon"
+  },
+  "contentPattern": {
+    "structure": "icon + heading + paragraph + link per column, 3 columns in elevated card",
+    "buttonCount": 0,
+    "imageCount": 3
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "customer support/help sections",
+      "3-column icon + text layouts on grey background",
+      "contact/action card layouts"
+    ],
+    "notSuitableFor": [
+      "image-heavy side-by-side layouts",
+      "2-column text content sections",
+      "product comparison columns"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/en"],
+    "reuseCount": 1,
+    "lastUsed": "2026-03-19T18:24:00.000Z"
+  }
+}

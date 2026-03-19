@@ -1,0 +1,39 @@
+{
+  "variantName": "cards-offering",
+  "baseBlock": "cards",
+  "version": "1.0.0",
+  "created": "2026-03-19T18:24:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.thomsonreuters.com/en",
+    "originPage": "corporate homepage",
+    "blockPosition": "top"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "dark",
+    "density": "compact",
+    "purpose": "offering-navigation",
+    "imagePattern": "icon"
+  },
+  "contentPattern": {
+    "structure": "icon + label + arrow-link per card, horizontal row",
+    "buttonCount": 0,
+    "imageCount": 5
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "category navigation cards with icons",
+      "product/service offering grids",
+      "icon-based navigation strips"
+    ],
+    "notSuitableFor": [
+      "content cards with images and descriptions",
+      "press release or article card grids",
+      "image-heavy card layouts"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/en"],
+    "reuseCount": 1,
+    "lastUsed": "2026-03-19T18:24:00.000Z"
+  }
+}

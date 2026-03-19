@@ -1,0 +1,39 @@
+{
+  "variantName": "cards-press",
+  "baseBlock": "cards",
+  "version": "1.0.0",
+  "created": "2026-03-19T18:24:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.thomsonreuters.com/en",
+    "originPage": "corporate homepage",
+    "blockPosition": "bottom"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "spacious",
+    "purpose": "press-releases",
+    "imagePattern": "noimg"
+  },
+  "contentPattern": {
+    "structure": "heading + divider + paragraph + date + CTA-link per card, 3-column grid, no images",
+    "buttonCount": 0,
+    "imageCount": 0
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "press release card grids",
+      "news/announcement cards without images",
+      "text-only content card layouts"
+    ],
+    "notSuitableFor": [
+      "cards with images or icons",
+      "product cards with visual media",
+      "featured content grids"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/en"],
+    "reuseCount": 1,
+    "lastUsed": "2026-03-19T18:24:00.000Z"
+  }
+}

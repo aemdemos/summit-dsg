@@ -1,0 +1,39 @@
+{
+  "variantName": "cards-insight",
+  "baseBlock": "cards",
+  "version": "1.0.0",
+  "created": "2026-03-19T18:24:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.thomsonreuters.com/en",
+    "originPage": "corporate homepage",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "spacious",
+    "purpose": "featured-content",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "image + heading + divider + paragraph + CTA-link per card, 3-column grid",
+    "buttonCount": 0,
+    "imageCount": 3
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "featured insights or articles with portrait images",
+      "report/whitepaper card grids",
+      "blog post card layouts with images"
+    ],
+    "notSuitableFor": [
+      "icon-based navigation cards",
+      "text-only press release cards",
+      "product feature cards without images"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/en"],
+    "reuseCount": 1,
+    "lastUsed": "2026-03-19T18:24:00.000Z"
+  }
+}

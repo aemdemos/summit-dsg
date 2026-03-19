@@ -11,32 +11,32 @@
  */
 
 :root {
-  /* colors — Abercrombie palette */
+  /* colors — Thomson Reuters palette */
   --background-color: white;
-  --light-color: #f7f5f2;
-  --dark-color: #253746;
-  --text-color: #253746;
-  --body-text-color: #5e5e5e;
-  --link-color: #253746;
-  --link-hover-color: #253746;
-  --overlay-background-color: #f6f6f6;
-  --brand-red: #b81e26;
+  --light-color: #fcf2da;
+  --dark-color: #123021;
+  --text-color: #404040;
+  --body-text-color: #404040;
+  --heading-text-color: #1f1f1f;
+  --link-color: #005da2;
+  --link-hover-color: #004a82;
+  --overlay-background-color: #f5f5f5;
+  --brand-color: #d64000;
 
-  /* fonts — serif headings for premium/Abercrombie parity */
-  --body-font-family: 'Helvetica Neue', helvetica, arial, sans-serif;
-  --heading-font-family: georgia, 'Times New Roman', serif;
-  --heading-font-family-sans: 'Helvetica Neue', helvetica, arial, sans-serif;
+  /* fonts — Thomson Reuters: Clario headings, Source Sans 3 body */
+  --body-font-family: 'Source Sans 3', system-ui, -apple-system, 'Segoe UI', roboto, helvetica, arial, sans-serif;
+  --heading-font-family: clario, 'Helvetica Neue', arial, sans-serif;
 
   /* body sizes */
-  --body-font-size-m: 14px;
-  --body-font-size-s: 13px;
+  --body-font-size-m: 16px;
+  --body-font-size-s: 14px;
   --body-font-size-xs: 12px;
 
-  /* heading sizes */
-  --heading-font-size-xxl: 40px;
-  --heading-font-size-xl: 32px;
-  --heading-font-size-l: 26px;
-  --heading-font-size-m: 22px;
+  /* heading sizes — mobile */
+  --heading-font-size-xxl: 36px;
+  --heading-font-size-xl: 28px;
+  --heading-font-size-l: 24px;
+  --heading-font-size-m: 21px;
   --heading-font-size-s: 18px;
   --heading-font-size-xs: 16px;
 
@@ -54,29 +54,24 @@
 
 /* fallback fonts */
 @font-face {
-  font-family: roboto-condensed-fallback;
-  size-adjust: 88.82%;
-  src: local('Arial');
+  font-family: clario-fallback;
+  size-adjust: 100%;
+  src: local('Helvetica Neue'), local('Arial');
 }
 
 @font-face {
-  font-family: roboto-fallback;
-  size-adjust: 99.529%;
+  font-family: source-sans-fallback;
+  size-adjust: 100%;
   src: local('Arial');
 }
 
 @media (width >= 900px) {
   :root {
-    /* body sizes */
-    --body-font-size-m: 14px;
-    --body-font-size-s: 13px;
-    --body-font-size-xs: 12px;
-
-    /* heading sizes */
-    --heading-font-size-xxl: 48px;
-    --heading-font-size-xl: 36px;
-    --heading-font-size-l: 28px;
-    --heading-font-size-m: 22px;
+    /* heading sizes — desktop */
+    --heading-font-size-xxl: 56px;
+    --heading-font-size-xl: 40px;
+    --heading-font-size-l: 32px;
+    --heading-font-size-m: 21px;
     --heading-font-size-s: 18px;
     --heading-font-size-xs: 16px;
   }
@@ -89,8 +84,7 @@ body {
   color: var(--body-text-color);
   font-family: var(--body-font-family);
   font-size: var(--body-font-size-m);
-  line-height: 1.6;
-  letter-spacing: 0.3px;
+  line-height: 1.5;
 }
 
 body.appear {
@@ -126,12 +120,17 @@ h6 {
   margin-top: 0.8em;
   margin-bottom: 0.25em;
   font-family: var(--heading-font-family);
-  font-weight: 700;
+  font-weight: 300;
   line-height: 1.2;
   scroll-margin: 40px;
   color: var(--text-color);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+}
+
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 500;
 }
 
 h1 { font-size: var(--heading-font-size-xxl); }
@@ -179,13 +178,13 @@ button {
 /* links */
 a {
   color: var(--link-color);
-  text-decoration: underline;
+  text-decoration: none;
   overflow-wrap: break-word;
 }
 
 a:hover {
   color: var(--link-hover-color);
-  text-decoration: none;
+  text-decoration: underline;
 }
 
 /* buttons */
@@ -195,19 +194,17 @@ button {
   display: inline-block;
   max-width: 100%;
   margin: 8px 0;
-  border: 1px solid var(--text-color);
-  border-radius: 0;
-  padding: 10px 30px;
+  border: 1px solid var(--brand-color);
+  border-radius: 4px;
+  padding: 8px 16px;
   font-family: var(--body-font-family);
   font-style: normal;
-  font-weight: 700;
-  font-size: 13px;
-  line-height: 1.25;
+  font-weight: 600;
+  font-size: var(--body-font-size-m);
+  line-height: 1.5;
   text-align: center;
   text-decoration: none;
-  text-transform: uppercase;
-  letter-spacing: 0.6px;
-  background-color: var(--text-color);
+  background-color: var(--brand-color);
   color: var(--background-color);
   cursor: pointer;
   overflow: hidden;
@@ -219,42 +216,28 @@ a.button:hover,
 a.button:focus,
 button:hover,
 button:focus {
-  background-color: var(--dark-color);
+  background-color: #b53600;
+  border-color: #b53600;
   cursor: pointer;
 }
 
 button:disabled,
 button:disabled:hover {
-  background-color: var(--light-color);
+  background-color: var(--overlay-background-color);
   cursor: unset;
 }
 
 a.button.secondary,
 button.secondary {
   background-color: transparent;
-  border: 1px solid var(--text-color);
-  color: var(--text-color);
+  border: 1px solid var(--link-color);
+  color: var(--link-color);
 }
 
 a.button.secondary:hover,
 button.secondary:hover {
-  background-color: var(--text-color);
+  background-color: var(--link-color);
   color: var(--background-color);
-}
-
-/* ghost button — white border + text on dark/image (Abercrombie hero CTAs) */
-a.button.ghost,
-button.ghost {
-  background-color: transparent;
-  border: 2px solid #fff;
-  color: #fff;
-}
-
-a.button.ghost:hover,
-button.ghost:hover {
-  background-color: rgb(255 255 255 / 15%);
-  color: #fff;
-  border-color: #fff;
 }
 
 main img {
@@ -303,52 +286,16 @@ main .section.highlight {
   padding: 40px 0;
 }
 
-main .section.brand-red {
-  background-color: var(--brand-red);
-  margin: 0;
-  padding: 0;
-}
-
-main .section.brand-red > div {
-  max-width: unset;
-  padding: 0;
-}
-
-/* promo banner — dark navy strip (e.g. Winter Sale | Free Shipping + CTAs) */
-main .section.promo-banner {
+main .section.dark {
   background-color: var(--dark-color);
   color: #fff;
   margin: 0;
-  padding: 12px 24px;
+  padding: 40px 0;
 }
 
-main .section.promo-banner > div {
-  max-width: var(--max-width-site);
-  margin: 0 auto;
-  padding: 0 24px;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 16px 24px;
-  text-align: center;
-}
-
-main .section.promo-banner p {
-  margin: 0;
-  color: #fff;
-  font-size: var(--body-font-size-s);
-}
-
-main .section.promo-banner a.button {
-  background-color: transparent;
-  border: 2px solid #fff;
-  color: #fff;
-  margin: 0 4px;
-}
-
-main .section.promo-banner a.button:hover {
-  background-color: rgb(255 255 255 / 15%);
+main .section.dark h1,
+main .section.dark h2,
+main .section.dark h3 {
   color: #fff;
 }
 
