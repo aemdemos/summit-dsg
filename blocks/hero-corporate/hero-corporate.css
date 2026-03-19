@@ -9,13 +9,45 @@
   position: relative;
   padding: var(--hero-padding);
   min-height: var(--hero-min-height);
+  background-color: var(--dark-color);
+  color: #fff;
 }
 
-.hero-corporate h1 {
+.hero-corporate h1,
+.hero-corporate h2 {
   max-width: var(--hero-heading-max-width);
-  margin-left: auto;
-  margin-right: auto;
-  color: var(--background-color);
+  color: #fff;
+}
+
+.hero-corporate h2 {
+  font-size: var(--body-font-size-m);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.hero-corporate p {
+  color: #fff;
+  max-width: 600px;
+}
+
+.hero-corporate a {
+  color: #fff;
+  display: inline-block;
+  margin-top: 16px;
+  padding: 12px 24px;
+  border: 2px solid var(--brand-color);
+  border-radius: 4px;
+  background-color: var(--brand-color);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.hero-corporate a:hover {
+  background-color: #b53600;
+  border-color: #b53600;
+  color: #fff;
+  text-decoration: none;
 }
 
 .hero-corporate picture {
@@ -35,5 +67,6 @@
 @media (width >= 900px) {
   .hero-corporate {
     padding: var(--hero-padding-desktop);
+    min-height: var(--hero-min-height-desktop);
   }
 }

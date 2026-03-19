@@ -175,6 +175,48 @@ async function buildBreadcrumbs() {
 }
 
 /**
+ * Splits a single-section nav into brand, sections, and tools divs.
+ * When .plain.html returns all nav content in one wrapper, this distributes
+ * children: first <p> → brand, <ul> → sections, remaining → tools.
+ */
+function splitNavSections(nav) {
+  if (nav.children.length >= 3) return;
+  const wrapper = nav.children[0];
+  if (!wrapper) return;
+
+  const contentHost = wrapper.querySelector('.default-content-wrapper') || wrapper;
+  const brandDiv = document.createElement('div');
+  const sectionsDiv = document.createElement('div');
+  const toolsDiv = document.createElement('div');
+
+  [...contentHost.children].forEach((el) => {
+    if (el.tagName === 'UL') {
+      sectionsDiv.append(el);
+    } else if (!brandDiv.hasChildNodes()) {
+      brandDiv.append(el);
+    } else {
+      toolsDiv.append(el);
+    }
+  });
+  wrapper.remove();
+  nav.append(brandDiv, sectionsDiv, toolsDiv);
+}
+
+/**
+ * Strips button decoration from the brand link.
+ */
+function decorateNavBrand(nav) {
+  const navBrand = nav.querySelector('.nav-brand');
+  if (!navBrand) return;
+  const brandLink = navBrand.querySelector('.button');
+  if (!brandLink) return;
+  brandLink.className = '';
+  const btnContainer = brandLink.closest('.button-container')
+    || brandLink.closest('.button-wrapper');
+  if (btnContainer) btnContainer.className = '';
+}
+
+/**
  * loads and decorates the header, mainly the nav
  * @param {Element} block The header block element
  */
@@ -190,22 +232,15 @@ export default async function decorate(block) {
   nav.id = 'nav';
   while (fragment.firstElementChild) nav.append(fragment.firstElementChild);
 
+  splitNavSections(nav);
+
   const classes = ['brand', 'sections', 'tools'];
   classes.forEach((c, i) => {
     const section = nav.children[i];
     if (section) section.classList.add(`nav-${c}`);
   });
 
-  const navBrand = nav.querySelector('.nav-brand');
-  if (navBrand) {
-    const brandLink = navBrand.querySelector('.button');
-    if (brandLink) {
-      brandLink.className = '';
-      const btnContainer = brandLink.closest('.button-container')
-        || brandLink.closest('.button-wrapper');
-      if (btnContainer) btnContainer.className = '';
-    }
-  }
+  decorateNavBrand(nav);
 
   const navSections = nav.querySelector('.nav-sections');
   if (navSections) {

@@ -6,7 +6,8 @@
 }
 
 .columns-support img {
-  width: 100%;
+  max-width: 64px;
+  height: auto;
 }
 
 .columns-support > div > div {
@@ -21,9 +22,18 @@
   display: block;
 }
 
+.columns-support a {
+  color: var(--brand-color);
+  font-weight: 600;
+}
+
+.columns-support a:hover {
+  color: #b53600;
+}
+
 @media (width >= 900px) {
   .columns-support > div {
-    align-items: center;
+    align-items: flex-start;
     flex-direction: unset;
     gap: var(--columns-gap);
   }
