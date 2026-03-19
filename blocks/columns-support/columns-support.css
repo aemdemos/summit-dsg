@@ -1,4 +1,4 @@
-@import url('./columns-tokens.css');
+@import url('../columns/columns-tokens.css');
 
 .columns-support > div {
   display: flex;

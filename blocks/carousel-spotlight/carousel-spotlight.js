@@ -33,6 +33,7 @@ export default async function decorate(block) {
   const isSingleSlide = rows.length < 2;
 
   const container = document.createElement('div');
+  // eslint-disable-next-line secure-coding/no-hardcoded-credentials
   container.classList.add('carousel-spotlight-slides-container');
 
   const slidesWrapper = document.createElement('ul');
