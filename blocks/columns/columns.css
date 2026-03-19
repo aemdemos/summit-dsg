@@ -71,3 +71,83 @@
     gap: var(--columns-gap);
   }
 }
+
+/* promo-banner variant — dark navy strip, white text, inline CTAs */
+main .columns.promo-banner {
+  background-color: var(--dark-color);
+  color: #fff;
+  margin: 0;
+}
+
+main .columns.promo-banner > div {
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 12px 24px;
+  padding: 12px 24px;
+  max-width: var(--max-width-site);
+  margin: 0 auto;
+}
+
+main .columns.promo-banner p {
+  margin: 0;
+  color: #fff;
+}
+
+main .columns.promo-banner a.button {
+  background-color: transparent;
+  border: 2px solid #fff;
+  color: #fff;
+}
+
+main .columns.promo-banner a.button:hover {
+  background-color: rgb(255 255 255 / 15%);
+  color: #fff;
+}
+
+/* split-banner — two equal image columns, overlay text (Swim & Tees, Activewear) */
+main .columns.split-banner > div {
+  gap: 0;
+}
+
+main .columns.split-banner > div > div {
+  position: relative;
+  min-height: 320px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 24px;
+}
+
+main .columns.split-banner picture,
+main .columns.split-banner .columns-img-col {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+main .columns.split-banner .columns-img-col img,
+main .columns.split-banner picture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+main .columns.split-banner h3,
+main .columns.split-banner p {
+  position: relative;
+  z-index: 1;
+  color: #fff;
+  text-shadow: 0 1px 2px rgb(0 0 0 / 50%);
+}
+
+main .columns.split-banner p a {
+  border: 2px solid #fff;
+  color: #fff;
+  background-color: transparent;
+}
+
+main .columns.split-banner p a:hover {
+  background-color: rgb(255 255 255 / 15%);
+  color: #fff;
+}
