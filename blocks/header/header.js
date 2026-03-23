@@ -273,14 +273,14 @@ function createSvgIcon(size, children) {
 }
 
 function iconSearch() {
-  return createSvgIcon(20, [
+  return createSvgIcon(24, [
     ['circle', { cx: '11', cy: '11', r: '8' }],
     ['path', { d: 'm21 21-4.3-4.3' }],
   ]);
 }
 
 function iconHelp() {
-  return createSvgIcon(20, [
+  return createSvgIcon(24, [
     ['circle', { cx: '12', cy: '12', r: '10' }],
     ['path', { d: 'M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3' }],
     ['path', { d: 'M12 17h.01' }],
@@ -288,7 +288,7 @@ function iconHelp() {
 }
 
 function iconUser() {
-  return createSvgIcon(20, [
+  return createSvgIcon(24, [
     ['circle', { cx: '12', cy: '8', r: '4' }],
     ['path', { d: 'M20 21a8 8 0 0 0-16 0' }],
   ]);
