@@ -24,15 +24,17 @@
 
 .hero-corporate h1 {
   font-weight: 300;
-  line-height: 1.1;
-  margin-bottom: 16px;
+  line-height: 1.2;
+  margin-bottom: 24px;
   color: #fff;
 }
 
 main .section.dark .hero-corporate h2 {
   font-size: var(--body-font-size-m);
-  font-weight: 400;
+  font-weight: 700;
   color: var(--brand-color);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
   margin-bottom: 8px;
 }
 
