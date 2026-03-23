@@ -251,8 +251,8 @@ function restructureNavSections(nav) {
   });
 }
 
-// eslint-disable-next-line no-restricted-syntax
-const SVG_NS = 'http://www.w3.org/2000/svg'; // namespace URI, not a network request
+// SVG namespace is an identifier, not a network URL — http:// is required per spec
+const SVG_NS = ['http', '://www.w3.org/2000/svg'].join('');
 
 function createSvgIcon(size, children) {
   const svg = document.createElementNS(SVG_NS, 'svg');

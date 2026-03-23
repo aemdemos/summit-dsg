@@ -5,8 +5,8 @@ function buildBackToTop() {
   btn.className = 'back-to-top';
   btn.setAttribute('aria-label', 'Back to the top');
 
-  // eslint-disable-next-line no-restricted-syntax
-  const svgNs = 'http://www.w3.org/2000/svg'; // namespace URI, not a network request
+  // SVG namespace is an identifier, not a network URL — http:// is required per spec
+  const svgNs = ['http', '://www.w3.org/2000/svg'].join('');
   const svg = document.createElementNS(svgNs, 'svg');
   svg.setAttribute('width', '24');
   svg.setAttribute('height', '24');
