@@ -22,6 +22,16 @@
 
 .cards-insight .cards-card-image {
   line-height: 0;
+  background-color: var(--overlay-background-color);
+  min-height: 40px;
+}
+
+/* First child is the image cell (may be .cards-card-body if createCard didn't detect it) */
+.cards-insight > ul > li > .cards-card-body:first-child {
+  line-height: 0;
+  background-color: var(--overlay-background-color);
+  min-height: 40px;
+  margin: 0;
 }
 
 .cards-insight > ul > li img {
@@ -30,11 +40,24 @@
   object-fit: var(--cards-image-object-fit);
 }
 
+.cards-insight .cards-card-body h3 {
+  font-weight: 600;
+  font-size: var(--heading-font-size-s);
+}
+
+.cards-insight .cards-card-body p {
+  font-size: var(--body-font-size-s);
+  line-height: 1.5;
+  color: var(--text-color);
+}
+
 .cards-insight .cards-card-body a {
   color: var(--brand-color);
   font-weight: 600;
+  text-decoration: none;
 }
 
 .cards-insight .cards-card-body a:hover {
   color: #b53600;
+  text-decoration: underline;
 }

@@ -22,13 +22,39 @@
   display: block;
 }
 
+.columns-support h3 {
+  font-weight: 600;
+  color: var(--heading-text-color);
+}
+
 .columns-support a {
   color: var(--brand-color);
   font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.columns-support a::after {
+  content: '\2192';
+  font-size: 1.2em;
+  transition: transform 0.2s;
 }
 
 .columns-support a:hover {
   color: #b53600;
+  text-decoration: none;
+}
+
+.columns-support a:hover::after {
+  transform: translateX(3px);
+}
+
+/* Hide broken icons gracefully */
+.columns-support img[src*="error"],
+.columns-support img:not([src]) {
+  display: none;
 }
 
 @media (width >= 900px) {

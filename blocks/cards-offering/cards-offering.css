@@ -10,16 +10,16 @@
 }
 
 .cards-offering > ul > li {
-  border: 1px solid var(--cards-card-border-color);
+  border: 1px solid rgba(255 255 255 / 20%);
   border-radius: 8px;
-  background-color: var(--background-color);
+  background-color: rgba(255 255 255 / 8%);
   text-align: center;
   padding: 24px 16px;
-  transition: box-shadow 0.2s;
+  transition: background-color 0.2s;
 }
 
 .cards-offering > ul > li:hover {
-  box-shadow: 0 4px 12px rgb(0 0 0 / 10%);
+  background-color: rgba(255 255 255 / 15%);
 }
 
 .cards-offering .cards-card-body {
@@ -32,13 +32,14 @@
 }
 
 .cards-offering > ul > li img {
-  width: 40px;
-  height: 40px;
+  width: 48px;
+  height: 48px;
   object-fit: contain;
+  filter: brightness(0) invert(1);
 }
 
 .cards-offering > ul > li a {
-  color: var(--text-color);
+  color: #fff;
   font-weight: 600;
   text-decoration: none;
   display: inline-flex;

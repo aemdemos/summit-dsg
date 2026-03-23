@@ -2,12 +2,12 @@
 
 /* header and nav layout */
 header .nav-wrapper {
-  background-color: var(--dark-color);
-  color: #fff;
+  background-color: #fff;
+  color: #1f1f1f;
   width: 100%;
   z-index: 2;
   position: fixed;
-  border-bottom: none;
+  border-bottom: 1px solid #e0e0e0;
 }
 
 header nav {
@@ -55,7 +55,13 @@ header nav p {
 }
 
 header nav a {
-  color: currentcolor;
+  color: #1f1f1f;
+  text-decoration: none;
+}
+
+header nav a:hover {
+  color: #1f1f1f;
+  text-decoration: underline;
 }
 
 /* hamburger */
@@ -228,6 +234,7 @@ header nav .nav-sections ul > li > ul > li {
     display: flex;
     gap: var(--header-nav-gap);
     margin: 0;
+    align-items: center;
   }
 
   header nav .nav-sections .default-content-wrapper > ul > li {
@@ -269,9 +276,26 @@ header nav .nav-sections ul > li > ul > li {
   }
 }
 
+/* nav section buttons */
+header nav .nav-section-btn {
+  background: none;
+  border: none;
+  color: #1f1f1f;
+  font-size: 16px;
+  font-weight: 400;
+  font-family: var(--body-font-family);
+  cursor: pointer;
+  padding: 4px 0;
+}
+
+header nav .nav-section-btn:hover {
+  text-decoration: underline;
+}
+
 /* tools */
 header nav .nav-tools {
   grid-area: tools;
+  font-size: var(--body-font-size-s);
 }
 
 header nav .nav-tools .button {
@@ -279,6 +303,37 @@ header nav .nav-tools .button {
   border: none;
   padding: 0.5em;
   background: none;
+  line-height: 0;
+}
+
+header nav .nav-tools-list {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  gap: 8px;
+  align-items: center;
+}
+
+header nav .nav-tool-btn {
+  background: none;
+  border: none;
+  color: #1f1f1f;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+header nav .nav-tool-btn:hover {
+  background-color: #f0f0f0;
+}
+
+header nav .nav-tool-icon {
+  display: flex;
+  align-items: center;
   line-height: 0;
 }
 

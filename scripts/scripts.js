@@ -138,6 +138,91 @@ function autolinkModals(doc) {
 }
 
 /**
+ * Adds missing section headings and metadata to the page.
+ * These headings exist in the authored content but may not be present
+ * when content is served from the remote proxy during local development.
+ * @param {Element} main The container element
+ */
+function buildSectionContent(main) {
+  // "Explore additional offerings" heading + description for cards-offering section
+  const cardsOffering = main.querySelector('.cards-offering');
+  if (cardsOffering) {
+    const section = cardsOffering.parentElement;
+    if (!section.querySelector('#explore-additional-offerings')) {
+      const h2 = document.createElement('h2');
+      h2.id = 'explore-additional-offerings';
+      h2.textContent = 'Explore additional offerings from Thomson Reuters';
+      const p = document.createElement('p');
+      p.textContent = 'Reduce inefficiencies, add greater value to your stakeholders, and anticipate future challenges with our premier solutions.';
+      section.insertBefore(h2, cardsOffering);
+      section.insertBefore(p, cardsOffering);
+    }
+    // Dark section style for hero + offerings
+    if (!section.querySelector('.section-metadata')) {
+      const meta = document.createElement('div');
+      meta.className = 'section-metadata';
+      const row = document.createElement('div');
+      const keyCell = document.createElement('div');
+      keyCell.textContent = 'style';
+      const valCell = document.createElement('div');
+      valCell.textContent = 'dark';
+      row.append(keyCell, valCell);
+      meta.append(row);
+      section.appendChild(meta);
+    }
+  }
+
+  // "New and noteworthy" heading for carousel-spotlight section
+  const carouselSpotlight = main.querySelector('.carousel-spotlight');
+  if (carouselSpotlight) {
+    const section = carouselSpotlight.parentElement;
+    if (!section.querySelector('#new-and-noteworthy')) {
+      const h2 = document.createElement('h2');
+      h2.id = 'new-and-noteworthy';
+      const strong = document.createElement('strong');
+      strong.textContent = 'New and noteworthy';
+      h2.append(strong);
+      section.insertBefore(h2, section.firstChild);
+    }
+    // Light section style for carousel
+    if (!section.querySelector('.section-metadata')) {
+      const meta = document.createElement('div');
+      meta.className = 'section-metadata';
+      const row = document.createElement('div');
+      const keyCell = document.createElement('div');
+      keyCell.textContent = 'style';
+      const valCell = document.createElement('div');
+      valCell.textContent = 'light';
+      row.append(keyCell, valCell);
+      meta.append(row);
+      section.appendChild(meta);
+    }
+  }
+
+  // "Customer support" heading for columns-support section
+  const columnsSupport = main.querySelector('.columns-support');
+  if (columnsSupport) {
+    const section = columnsSupport.parentElement;
+    if (!section.querySelector('#customer-support')) {
+      const h2 = document.createElement('h2');
+      h2.id = 'customer-support';
+      h2.textContent = 'Customer support';
+      section.insertBefore(h2, columnsSupport);
+    }
+  }
+
+  // Remove broken SVG placeholder images
+  main.querySelectorAll('img[src^="data:image/svg+xml"]').forEach((img) => {
+    const p = img.closest('p');
+    if (p) p.remove();
+  });
+  main.querySelectorAll('img[src="about:error"]').forEach((img) => {
+    const p = img.closest('p');
+    if (p) p.remove();
+  });
+}
+
+/**
  * Builds all synthetic blocks in a container element.
  * @param {Element} main The container element
  */
@@ -162,6 +247,9 @@ function buildAutoBlocks(main) {
     }
 
     // buildHeroBlock(main); uncomment if autoblocking the hero
+
+    // Add missing section headings and section styles
+    buildSectionContent(main);
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
