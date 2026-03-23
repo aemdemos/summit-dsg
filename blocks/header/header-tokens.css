@@ -1,12 +1,13 @@
 /* header design tokens (layout only; colors/typography use global tokens) */
 :root {
+  --nav-height: 80px;
   --header-nav-max-width: 100%;
   --header-nav-max-width-desktop: 100%;
   --header-nav-padding: 0 20px;
   --header-nav-padding-desktop: 0 20px;
   --header-nav-gap: 24px;
-  --header-nav-gap-desktop: 32px;
-  --header-brand-width: 216px;
+  --header-nav-gap-desktop: 40px;
+  --header-brand-width: 250px;
   --header-dropdown-width: 200px;
   --header-dropdown-padding: 16px;
   --header-dropdown-left: -24px;
