@@ -30,9 +30,9 @@
 }
 
 main .section.dark .hero-corporate h2 {
-  font-size: var(--body-font-size-m);
+  font-size: var(--body-font-size-s);
   font-weight: 700;
-  color: var(--brand-color);
+  color: #fff;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   margin-bottom: 8px;
@@ -50,9 +50,9 @@ main .section.dark .hero-corporate h2 {
   display: inline-flex;
   align-items: center;
   margin-top: 16px;
-  padding: 8px 16px;
+  padding: 8px 24px;
   border: 1px solid var(--brand-color);
-  border-radius: 4px;
+  border-radius: 24px;
   background-color: var(--brand-color);
   font-weight: 600;
   text-decoration: none;
