@@ -316,4 +316,22 @@ main > .section > .default-content-wrapper > h2 {
   margin-bottom: 24px;
 }
 
+main .section.dark > .default-content-wrapper > h2 {
+  color: #fff;
+  font-size: var(--heading-font-size-xl);
+}
+
+main .section.dark > .default-content-wrapper > p {
+  color: rgba(255 255 255 / 80%);
+  max-width: 600px;
+}
+
+main .section.light > .default-content-wrapper > h2 {
+  color: var(--heading-text-color);
+}
+
+main .section.grey > .default-content-wrapper > h2 {
+  text-align: center;
+}
+
 

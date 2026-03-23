@@ -216,6 +216,103 @@ function decorateNavBrand(nav) {
   if (btnContainer) btnContainer.className = '';
 }
 
+const NAV_ITEMS = ['Solutions', 'Products', 'Purchase', 'Resources'];
+
+/**
+ * Replaces product links with main navigation categories.
+ */
+function restructureNavSections(nav) {
+  const navSections = nav.querySelector('.nav-sections');
+  if (!navSections) return;
+
+  const wrapper = navSections.querySelector('.default-content-wrapper') || navSections;
+  const existingUl = wrapper.querySelector('ul');
+  if (!existingUl) return;
+
+  existingUl.textContent = '';
+  NAV_ITEMS.forEach((label) => {
+    const li = document.createElement('li');
+    const btn = document.createElement('button');
+    btn.className = 'nav-section-btn';
+    btn.textContent = label;
+    li.append(btn);
+    existingUl.append(li);
+  });
+}
+
+const SVG_NS = 'https://www.w3.org/2000/svg';
+
+function createSvgIcon(size, children) {
+  const svg = document.createElementNS(SVG_NS, 'svg');
+  svg.setAttribute('width', String(size));
+  svg.setAttribute('height', String(size));
+  svg.setAttribute('viewBox', '0 0 24 24');
+  svg.setAttribute('fill', 'none');
+  svg.setAttribute('stroke', 'currentColor');
+  svg.setAttribute('stroke-width', '2');
+  svg.setAttribute('stroke-linecap', 'round');
+  svg.setAttribute('stroke-linejoin', 'round');
+  children.forEach(([tag, attrs]) => {
+    const el = document.createElementNS(SVG_NS, tag);
+    Object.entries(attrs).forEach(([k, v]) => el.setAttribute(k, v));
+    svg.append(el);
+  });
+  return svg;
+}
+
+function iconSearch() {
+  return createSvgIcon(20, [
+    ['circle', { cx: '11', cy: '11', r: '8' }],
+    ['path', { d: 'm21 21-4.3-4.3' }],
+  ]);
+}
+
+function iconHelp() {
+  return createSvgIcon(20, [
+    ['circle', { cx: '12', cy: '12', r: '10' }],
+    ['path', { d: 'M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3' }],
+    ['path', { d: 'M12 17h.01' }],
+  ]);
+}
+
+function iconUser() {
+  return createSvgIcon(20, [
+    ['circle', { cx: '12', cy: '8', r: '4' }],
+    ['path', { d: 'M20 21a8 8 0 0 0-16 0' }],
+  ]);
+}
+
+/**
+ * Replaces tools section with utility icon buttons.
+ */
+function restructureNavTools(nav) {
+  const navTools = nav.querySelector('.nav-tools');
+  if (!navTools) return;
+
+  navTools.textContent = '';
+  const ul = document.createElement('ul');
+  ul.className = 'nav-tools-list';
+
+  [
+    { label: 'Site Search', createIcon: iconSearch },
+    { label: 'Help and Support', createIcon: iconHelp },
+    { label: 'User Profile', createIcon: iconUser },
+  ].forEach(({ label, createIcon }) => {
+    const li = document.createElement('li');
+    const btn = document.createElement('button');
+    btn.setAttribute('aria-label', label);
+    btn.className = 'nav-tool-btn';
+    const span = document.createElement('span');
+    span.className = 'nav-tool-icon';
+    span.append(createIcon());
+    btn.append(span);
+    li.append(btn);
+    ul.append(li);
+  });
+
+  navTools.append(ul);
+}
+
 /**
  * loads and decorates the header, mainly the nav
  * @param {Element} block The header block element
@@ -241,6 +338,8 @@ export default async function decorate(block) {
   });
 
   decorateNavBrand(nav);
+  restructureNavSections(nav);
+  restructureNavTools(nav);
 
   const navSections = nav.querySelector('.nav-sections');
   if (navSections) {
