@@ -203,17 +203,28 @@ function splitNavSections(nav) {
 }
 
 /**
- * Strips button decoration from the brand link.
+ * Strips button decoration from the brand link and replaces text with logo.
  */
 function decorateNavBrand(nav) {
   const navBrand = nav.querySelector('.nav-brand');
   if (!navBrand) return;
-  const brandLink = navBrand.querySelector('.button');
+  const brandLink = navBrand.querySelector('.button') || navBrand.querySelector('a');
   if (!brandLink) return;
   brandLink.className = '';
   const btnContainer = brandLink.closest('.button-container')
     || brandLink.closest('.button-wrapper');
   if (btnContainer) btnContainer.className = '';
+
+  // Replace text with logo image
+  const logo = document.createElement('img');
+  logo.src = '/icons/tr-logo.svg';
+  logo.alt = 'Thomson Reuters';
+  logo.className = 'nav-brand-logo';
+  logo.width = 216;
+  logo.height = 52;
+  brandLink.textContent = '';
+  brandLink.append(logo);
+  brandLink.setAttribute('aria-label', 'Thomson Reuters Home');
 }
 
 const NAV_ITEMS = ['Solutions', 'Products', 'Purchase', 'Resources'];
@@ -240,7 +251,8 @@ function restructureNavSections(nav) {
   });
 }
 
-const SVG_NS = 'https://www.w3.org/2000/svg';
+// eslint-disable-next-line no-restricted-syntax
+const SVG_NS = 'http://www.w3.org/2000/svg'; // namespace URI, not a network request
 
 function createSvgIcon(size, children) {
   const svg = document.createElementNS(SVG_NS, 'svg');

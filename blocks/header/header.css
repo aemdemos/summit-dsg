@@ -159,6 +159,12 @@ header .nav-brand {
 header nav .nav-brand img {
   width: var(--header-brand-width);
   height: auto;
+  display: block;
+}
+
+header nav .nav-brand-logo {
+  width: var(--header-brand-width);
+  height: auto;
 }
 
 /* sections */

@@ -5,7 +5,9 @@ function buildBackToTop() {
   btn.className = 'back-to-top';
   btn.setAttribute('aria-label', 'Back to the top');
 
-  const svg = document.createElementNS('https://www.w3.org/2000/svg', 'svg');
+  // eslint-disable-next-line no-restricted-syntax
+  const svgNs = 'http://www.w3.org/2000/svg'; // namespace URI, not a network request
+  const svg = document.createElementNS(svgNs, 'svg');
   svg.setAttribute('width', '24');
   svg.setAttribute('height', '24');
   svg.setAttribute('viewBox', '0 0 24 24');
@@ -15,7 +17,7 @@ function buildBackToTop() {
   svg.setAttribute('stroke-linecap', 'round');
   svg.setAttribute('stroke-linejoin', 'round');
 
-  const path = document.createElementNS('https://www.w3.org/2000/svg', 'path');
+  const path = document.createElementNS(svgNs, 'path');
   path.setAttribute('d', 'M12 19V5M5 12l7-7 7 7');
   svg.append(path);
   btn.append(svg);
