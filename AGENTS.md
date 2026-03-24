@@ -81,6 +81,38 @@ When facing trade-offs, follow this order: *Intuitive* (author-friendly) > *Simp
   - New utilities → `scripts/scripts.js` (not `aem.js`)
 - Check inherited styles from `styles/styles.css` before adding block CSS (use cascade)
 
+## Agent skills
+
+**Navigation orchestrator:** The full skill tree lives at **`.claude/skills/excat-navigation-orchestrator/`** (required for Claude Code). The same tree is mirrored at `.agents/skills/excat-navigation-orchestrator/` for tools that read `.agents/skills/`; keep both copies in sync when you change the skill.
+
+**Other agent skills** (for example footer orchestrator) may live only under `.agents/skills/` unless you add them under `.claude/skills/` as well.
+
+Validation hooks referenced by these skills live under **`.agents/hooks/`** (not `.claude/hooks/`).
+
+**excat-navigation-orchestrator — what is required:** The orchestrator’s programmatic gates are implemented by **`nav-validation-gate.js`** and the **`nav-validation-gates/`** directory (only those import each other; no other hook file is required for nav validation logic). The rest of the files under `.agents/hooks/` come from the same upstream repo ([aemdemos/summit-abn](https://github.com/aemdemos/summit-abn) `.claude/hooks`) as optional tooling: for example `hook-utils.js`, `auto-lint-blocks.js`, `parser-validator-hook.js`, `transformer-validator-hook.js`, `xwalk-build-model-json.js`, and **`import-validator/`** (own `package.json` — run `npm install` there if you register those hooks). They are not wired in the default **`.claude/settings.json`**; add PostToolUse/Stop entries there only if you want that automation.
+
+**Making hooks run:** `.claude/settings.json` runs **`nav-validation-gate.js`** on PostToolUse (Write|Edit) and Stop. That applies to **Claude Code** when it loads project settings. Other assistants that only read `AGENTS.md` do not execute those hooks automatically — follow the skill’s steps and run the documented `node …/scripts/*.js` commands yourself.
+
+**Making skills discoverable:** In **Claude Code**, skills under `.claude/skills/` are used per product docs. In **Cursor**, there is no automatic hook execution from this repo; explicitly apply the navigation skill (for example open `.claude/skills/excat-navigation-orchestrator/SKILL.md` or the mirror under `.agents/skills/`) when working on header/nav so the full phased workflow and validation commands are followed.
+
+### Navigation / header migration
+
+**When a user asks to migrate, import, replicate, or instrument a site header or navigation, use the Navigation Orchestrator skill.** This covers desktop nav bars, mobile menus, megamenus, dropdowns, locale selectors, and search UI in the header.
+
+**How to invoke:** Read and follow the complete workflow in `.claude/skills/excat-navigation-orchestrator/SKILL.md` (mirror: `.agents/skills/excat-navigation-orchestrator/SKILL.md`). Execute every phase in order — desktop first (Phases 1–3, aggregate, implement, validate), then mobile only after stakeholder confirmation. Do not skip validation gates enforced by `.agents/hooks/nav-validation-gate.js` and `.agents/hooks/nav-validation-gates/`.
+
+**Prerequisites:** Page content should already be migrated where applicable; design foundation should not still be raw boilerplate if extraction is required for the project; local dev at `http://localhost:3000` when validating the migrated header; screenshot or URL evidence as required by the skill.
+
+**Do NOT use for:** Simple link lists without evidence, pages not yet migrated when migration is a prerequisite, or **footer-only** work (use Footer Orchestrator below).
+
+### Footer migration
+
+**When a user asks to migrate, replicate, or validate the site footer, use the Footer Orchestrator skill.**
+
+**How to invoke:** Read and follow `.agents/skills/excat-footer-orchestrator/SKILL.md`. Keep user-facing strings in document-driven content; implement layout and behavior in `blocks/footer/`. Hook automation for footers, if added later, must live under `.agents/hooks/` alongside the navigation hooks.
+
+**Do NOT use for:** Header, megamenu, or primary navigation work (use Navigation Orchestrator above).
+
 ## Page architecture
 
 - **Content structure**: Pages are composed of sections → sections contain default content (text, headings, links) and blocks
