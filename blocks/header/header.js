@@ -38,26 +38,6 @@ function closeOnFocusLost(e) {
   }
 }
 
-function openOnKeydown(e) {
-  const focused = document.activeElement;
-  const isNavDrop = focused.className === 'nav-drop';
-  if (isNavDrop && (e.code === 'Enter' || e.code === 'Space')) {
-    const dropExpanded = focused.getAttribute('aria-expanded') === 'true';
-    // eslint-disable-next-line no-use-before-define
-    toggleAllNavSections(focused.closest('.nav-sections'));
-    focused.setAttribute('aria-expanded', dropExpanded ? 'false' : 'true');
-  }
-}
-
-function focusNavSection() {
-  document.activeElement.addEventListener('keydown', openOnKeydown);
-}
-
-/**
- * Toggles all nav sections
- * @param {Element} sections The container element
- * @param {Boolean} expanded Whether the element should be expanded or collapsed
- */
 function toggleAllNavSections(sections, expanded = false) {
   if (!sections) return;
   sections.querySelectorAll('.nav-sections .default-content-wrapper > ul > li').forEach((section) => {
@@ -65,12 +45,6 @@ function toggleAllNavSections(sections, expanded = false) {
   });
 }
 
-/**
- * Toggles the entire nav
- * @param {Element} nav The container element
- * @param {Element} navSections The nav sections within the container element
- * @param {*} forceExpanded Optional param to force nav expand behavior when not null
- */
 function toggleMenu(nav, navSections, forceExpanded = null) {
   const expanded = forceExpanded !== null ? !forceExpanded : nav.getAttribute('aria-expanded') === 'true';
   const button = nav.querySelector('.nav-hamburger button');
@@ -78,23 +52,6 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
   nav.setAttribute('aria-expanded', expanded ? 'false' : 'true');
   toggleAllNavSections(navSections, expanded || isDesktop.matches ? 'false' : 'true');
   button.setAttribute('aria-label', expanded ? 'Open navigation' : 'Close navigation');
-  // enable nav dropdown keyboard accessibility
-  if (navSections) {
-    const navDrops = navSections.querySelectorAll('.nav-drop');
-    if (isDesktop.matches) {
-      navDrops.forEach((drop) => {
-        if (!drop.hasAttribute('tabindex')) {
-          drop.setAttribute('tabindex', 0);
-          drop.addEventListener('focus', focusNavSection);
-        }
-      });
-    } else {
-      navDrops.forEach((drop) => {
-        drop.removeAttribute('tabindex');
-        drop.removeEventListener('focus', focusNavSection);
-      });
-    }
-  }
 
   // enable menu collapse on escape keypress
   if (!expanded || isDesktop.matches) {
@@ -174,11 +131,6 @@ async function buildBreadcrumbs() {
   return breadcrumbs;
 }
 
-/**
- * Splits a single-section nav into brand, sections, and tools divs.
- * When .plain.html returns all nav content in one wrapper, this distributes
- * children: first <p> → brand, <ul> → sections, remaining → tools.
- */
 function splitNavSections(nav) {
   if (nav.children.length >= 3) return;
   const wrapper = nav.children[0];
@@ -202,9 +154,6 @@ function splitNavSections(nav) {
   nav.append(brandDiv, sectionsDiv, toolsDiv);
 }
 
-/**
- * Strips button decoration from the brand link and replaces text with logo.
- */
 function decorateNavBrand(nav) {
   const navBrand = nav.querySelector('.nav-brand');
   if (!navBrand) return;
@@ -229,27 +178,314 @@ function decorateNavBrand(nav) {
 
 const NAV_ITEMS = ['Solutions', 'Products', 'Purchase', 'Resources'];
 
-/**
- * Replaces product links with main navigation categories.
- */
-function restructureNavSections(nav) {
-  const navSections = nav.querySelector('.nav-sections');
-  if (!navSections) return;
+const MEGA_MENUS = {
+  Solutions: {
+    columns: [
+      {
+        groups: [{
+          heading: 'Law firms',
+          links: [
+            ['AI for legal', 'https://legal.thomsonreuters.com/en/legal/legal-ai'],
+            ['Legal research & guidance', 'https://legal.thomsonreuters.com/en/legal/legal-research-guidance'],
+            ['Legal forms', 'https://legal.thomsonreuters.com/en/legal/legal-forms'],
+            ['Business development', 'https://legal.thomsonreuters.com/en/legal/business-development'],
+            ['Legal data & document management', 'https://legal.thomsonreuters.com/en/legal/data-document-management'],
+            ['Business practice & procedure', 'https://legal.thomsonreuters.com/en/legal/corporate-business-organization'],
+            ['Drafting software, service & guidance', 'https://legal.thomsonreuters.com/en/legal/drafting-software-service-guidance'],
+            ['Evidence', 'https://legal.thomsonreuters.com/en/legal/evidence'],
+            ['Trial readiness, process & case guidance', 'https://legal.thomsonreuters.com/en/legal/trial-readiness-process-case-guidance'],
+          ],
+        }],
+      },
+      {
+        groups: [{
+          heading: 'Tax, audit & accounting firms',
+          links: [
+            ['Audit & accounting', 'https://tax.thomsonreuters.com/en/tax-accounting/audit-accounting'],
+            ['Tax planning & preparation', 'https://tax.thomsonreuters.com/en/tax-accounting/tax-planning-preparation'],
+            ['Tax research & guidance', 'https://tax.thomsonreuters.com/en/tax-accounting/tax-research-guidance'],
+            ['Data & document management', 'https://tax.thomsonreuters.com/en/tax-accounting/data-document-management'],
+            ['Financial planning & analysis', 'https://tax.thomsonreuters.com/en/tax-accounting/financial-planning-analysis'],
+            ['Estate planning', 'https://tax.thomsonreuters.com/en/tax-accounting/estate-planning'],
+            ['Practice management & growth', 'https://tax.thomsonreuters.com/en/tax-accounting/practice-management-growth'],
+            ['Professional development & education', 'https://tax.thomsonreuters.com/en/tax-accounting/professional-development-education'],
+          ],
+        }],
+      },
+      {
+        groups: [
+          {
+            heading: 'Corporations',
+            links: [['All corporate solutions', '/en/products-services/corporate-solutions']],
+          },
+          {
+            heading: 'Governments',
+            links: [['All government solutions', '/en/products-services/government']],
+          },
+        ],
+      },
+    ],
+    sidebar: {
+      heading: 'Success stories',
+      cards: [
+        {
+          title: 'A true competitive advantage',
+          text: 'Law firm Zarwin Baum\u2019s embrace of generative AI as the natural next step in the evolution'
+            + ' of legal work and their adoption of CoCounsel Legal has helped them achieve remarkable'
+            + ' efficiency gains and improved client relationships.',
+          url: 'https://legal.thomsonreuters.com/en/insights/case-studies/zarwin-baum-experiences-the-transformative-power-of-genai-in-cocounsel',
+        },
+        {
+          title: 'Workflow transformation drives impact',
+          text: 'Brinks, a global leader in secure logistics and security solutions,'
+            + ' used CoCounsel to reimagine what was possible with AI tools,'
+            + ' turning legal challenges into a competitive advantage.',
+          url: 'https://legal.thomsonreuters.com/en/insights/case-studies/cocounsel-empowers-brinks-to-transform-legal-workflows-and-drive-impact',
+        },
+        {
+          title: 'The forefront of audit tech',
+          text: 'A better auditing workflow solution was the answer to multiple challenges'
+            + ' faced by The Mercadien Group. Find out how they achieved greater efficiency'
+            + ' by embracing Cloud Audit Suite.',
+          url: 'https://tax.thomsonreuters.com/en/insights/case-studies/mercadien-and-thomson-reuters-partnership',
+        },
+      ],
+      extraLinks: [
+        ['Partnership program', '/en/partners'],
+        ['Partner directory', '/en/partners/partner-directory'],
+      ],
+      cta: true,
+    },
+  },
 
-  const wrapper = navSections.querySelector('.default-content-wrapper') || navSections;
-  const existingUl = wrapper.querySelector('ul');
-  if (!existingUl) return;
+  Products: {
+    columns: [
+      {
+        groups: [
+          {
+            heading: 'Legal',
+            links: [
+              ['CoCounsel Legal', 'https://legal.thomsonreuters.com/en/products/cocounsel-legal'],
+              ['HighQ', 'https://legal.thomsonreuters.com/en/products/highq'],
+              ['Legal Tracker', 'https://legal.thomsonreuters.com/en/products/legal-tracker'],
+              ['Practical Law', 'https://legal.thomsonreuters.com/en/products/practical-law'],
+              ['Westlaw Advantage', 'https://legal.thomsonreuters.com/en/products/westlaw-advantage'],
+              ['Westlaw Edge', 'https://legal.thomsonreuters.com/en/products/westlaw-edge'],
+              ['View all', 'https://legal.thomsonreuters.com/en/products#tab=plp-products&cf-tr_plp_disciplinecategorysubcategory=Legal'],
+            ],
+          },
+          {
+            heading: 'Trade & supply',
+            links: [
+              ['ONESOURCE Foreign Trade Zone Management', 'https://tax.thomsonreuters.com/en/products/onesource-foreign-trade-zone-management'],
+              ['ONESOURCE Global Classification AI', 'https://tax.thomsonreuters.com/en/products/onesource-global-classification-ai'],
+              ['View all', 'https://tax.thomsonreuters.com/en/products#tab=plp-products&cf-tr_plp_disciplinecategorysubcategory=International%20trade%20%26%20supply%20chain&sortCriteria=relevancy'],
+            ],
+          },
+        ],
+      },
+      {
+        groups: [
+          {
+            heading: 'Tax, audit & accounting',
+            links: [
+              ['1040SCAN', 'https://tax.thomsonreuters.com/en/products/1040scan'],
+              ['Audit Intelligence Analyze', 'https://tax.thomsonreuters.com/en/products/audit-intelligence-analyze'],
+              ['CoCounsel Audit', 'https://tax.thomsonreuters.com/en/products/cocounsel-audit'],
+              ['CoCounsel Tax', 'https://tax.thomsonreuters.com/en/products/cocounsel-tax'],
+              ['Ready to Advise', 'https://tax.thomsonreuters.com/en/products/ready-to-advise'],
+              ['Ready to Review', 'https://tax.thomsonreuters.com/en/products/ready-to-review'],
+              ['View all', 'https://tax.thomsonreuters.com/en/products#tab=plp-products&cf-tr_plp_disciplinecategorysubcategory=Tax%20%26%20accounting'],
+            ],
+          },
+          {
+            heading: 'Corporate tax',
+            links: [
+              ['CoCounsel Tax', 'https://tax.thomsonreuters.com/en/products/cocounsel-tax'],
+              ['ONESOURCE Determination', 'https://tax.thomsonreuters.com/en/products/onesource-determination'],
+              ['ONESOURCE Income Tax', 'https://tax.thomsonreuters.com/en/products/onesource-income-tax'],
+              ['ONESOURCE Indirect Compliance', 'https://tax.thomsonreuters.com/en/onesource/indirect-tax/compliance'],
+              ['ONESOURCE Pagero', 'https://tax.thomsonreuters.com/en/products/onesource-pagero'],
+              ['ONESOURCE Tax Provision', 'https://tax.thomsonreuters.com/en/onesource/tax-provision'],
+              ['View all', 'https://tax.thomsonreuters.com/en/products#tab=plp-products&cf-tr_plp_disciplinecategorysubcategory=Tax%20%26%20accounting'],
+            ],
+          },
+        ],
+      },
+      {
+        groups: [
+          {
+            heading: 'Risk & fraud',
+            links: [
+              ['CLEAR', 'https://legal.thomsonreuters.com/en/products/clear'],
+              ['CLEAR Adverse Media', 'https://legal.thomsonreuters.com/en/products/clear-adverse-media'],
+              ['CLEAR ID Confirm', 'https://legal.thomsonreuters.com/en/products/clear-id-confirm'],
+              ['CLEAR Investigate', 'https://legal.thomsonreuters.com/en/products/clear-investigate'],
+              ['CLEAR Risk Inform', 'https://legal.thomsonreuters.com/en/products/clear-risk-inform'],
+              ['Fraud Detect', 'https://legal.thomsonreuters.com/en/products/fraud-detect'],
+              ['View all', 'https://legal.thomsonreuters.com/en/products#tab=plp-products&cf-tr_plp_disciplinecategorysubcategory=Risk%2C%20fraud%20%26%20investigations&sortCriteria=relevancy'],
+            ],
+          },
+          {
+            heading: 'Books',
+            links: [
+              ['Legal books', 'https://store.legal.thomsonreuters.com/en-us/home'],
+              ['Tax books', 'https://store.tax.thomsonreuters.com/accounting/'],
+            ],
+          },
+        ],
+      },
+    ],
+    sidebar: {
+      heading: 'Recommended products',
+      cards: [
+        {
+          title: 'CoCounsel Legal',
+          text: 'Transform your work with the only AI legal solution uniting research,'
+            + ' drafting, and document analysis in a single experience.',
+          url: 'https://legal.thomsonreuters.com/en/products/cocounsel-legal',
+        },
+        {
+          title: 'CoCounsel Tax',
+          text: 'Transform your tax practice with CoCounsel Tax, an AI-powered assistant'
+            + ' that combines trustworthy answers, automation, and firm knowledge'
+            + ' into one seamless platform.',
+          url: 'https://tax.thomsonreuters.com/en/products/cocounsel-tax',
+        },
+        {
+          title: 'CLEAR Investigate',
+          text: 'Intelligently surface critical connections and insights in actionable format'
+            + ' through AI-driven research workflows seamlessly integrated with the trusted'
+            + ' and transparent CLEAR platform.',
+          url: 'https://legal.thomsonreuters.com/en/products/clear-investigate',
+        },
+      ],
+      cta: true,
+    },
+  },
 
-  existingUl.textContent = '';
-  NAV_ITEMS.forEach((label) => {
-    const li = document.createElement('li');
-    const btn = document.createElement('button');
-    btn.className = 'nav-section-btn';
-    btn.textContent = label;
-    li.append(btn);
-    existingUl.append(li);
-  });
-}
+  Purchase: {
+    columns: [
+      {
+        groups: [{
+          heading: 'Buy solutions',
+          links: [
+            ['CoCounsel Essentials', 'https://sales.legalsolutions.thomsonreuters.com/en-us/products/cocounsel-essentials/plans-pricing'],
+            ['CoCounsel Legal', 'https://sales.legalsolutions.thomsonreuters.com/en-us/products/cocounsel-legal/700/plans-pricing'],
+            ['Practical Law', 'https://sales.legalsolutions.thomsonreuters.com/en-us/products/practical-law/plans-pricing'],
+            ['Practical Law Dynamic Tool Set with CoCounsel Essentials', 'https://sales.legalsolutions.thomsonreuters.com/en-us/products/cocounsel-legal/500/plans-pricing'],
+            ['Westlaw Advantage', 'https://sales.legalsolutions.thomsonreuters.com/en-us/products/westlaw-advantage/plans-pricing'],
+            ['Westlaw Advantage with CoCounsel Essentials', 'https://sales.legalsolutions.thomsonreuters.com/en-us/products/cocounsel-legal/300/plans-pricing'],
+            ['Westlaw Edge', 'https://sales.legalsolutions.thomsonreuters.com/en-us/products/westlaw-edge/plans-pricing'],
+            ['Westlaw Edge with AI-Assisted Research', 'https://sales.legalsolutions.thomsonreuters.com/en-us/products/westlaw-edgeAAR/plans-pricing'],
+          ],
+        }],
+      },
+      {
+        groups: [
+          {
+            heading: 'Buy books',
+            links: [
+              ['Legal books', 'https://store.legal.thomsonreuters.com/en-us/home'],
+              ['Tax books', 'https://store.tax.thomsonreuters.com/accounting/'],
+            ],
+          },
+          {
+            heading: 'Contact sales',
+            links: [
+              ['For legal products', 'https://legal.thomsonreuters.com/en/contact-sales'],
+              ['For tax products', 'https://tax.thomsonreuters.com/en/contact-sales'],
+            ],
+          },
+        ],
+      },
+    ],
+    sidebar: { heading: 'Questions? We are here to help.', cta: true },
+  },
+
+  Resources: {
+    columns: [
+      {
+        groups: [
+          {
+            heading: 'Insights',
+            links: [
+              ['Thomson Reuters Institute', '/en/institute'],
+              ['Innovation @ Thomson Reuters', 'https://www.thomsonreuters.com/en-us/posts/innovation/'],
+              ['Legal insights', 'https://legal.thomsonreuters.com/en/insights#t=insights&sort=%40tr_wpublishedtime%20descending'],
+              ['Tax insights', 'https://tax.thomsonreuters.com/en/insights#t=insights&sort=%40tr_wpublishedtime%20descending&numberOfResults=12'],
+            ],
+          },
+          {
+            heading: 'Events',
+            links: [
+              ['Upcoming events', 'https://www.thomsonreuters.com/en-us/posts/events/'],
+              ['On-demand webinars', 'https://www.thomsonreuters.com/en-us/posts/on-demand-webinars/'],
+            ],
+          },
+        ],
+      },
+      {
+        groups: [
+          {
+            heading: 'Product training',
+            links: [
+              ['Legal learning hub', 'https://training.legalprofessionals.thomsonreuters.com/learn/signin'],
+              ['Tax & accounting professional services', 'https://tax.thomsonreuters.com/us/en/cs-professional-suite/professional-services'],
+              ['On-demand learning', 'https://training.thomsonreuters.com/'],
+              ['ONESOURCE University', 'https://tax.thomsonreuters.com/en/onesource/services/onesource-university'],
+            ],
+          },
+          {
+            heading: 'Product communities',
+            links: [
+              ['Legal', 'https://community.thomsonreuters.com/legal/'],
+              ['Tax & accounting', 'https://community.thomsonreuters.com/tax-accounting/'],
+              ['All communities', 'https://community.thomsonreuters.com/'],
+            ],
+          },
+        ],
+      },
+      {
+        groups: [{
+          heading: 'Developers',
+          links: [
+            ['Developer portal', 'https://developers.thomsonreuters.com/pages/home'],
+            ['API catalog', 'https://developers.thomsonreuters.com/pages/api-catalog?tab=messages&numberOfResults=10'],
+            ['Use case library', 'https://developers.thomsonreuters.com/pages/use-case-library?tab=messages&numberOfResults=10'],
+            ['Communities', 'https://community.thomsonreuters.com/developers/'],
+          ],
+        }],
+      },
+    ],
+    sidebar: {
+      heading: 'Highlights',
+      cards: [
+        {
+          title: '2026 SKILLS showcase',
+          text: 'Join weekly sessions to experience in-depth demonstrations of the leading'
+            + ' legal AI products while connecting with strategic law firm leaders in knowledge'
+            + ' management, innovation, and AI.',
+          url: 'https://skills.law/',
+        },
+        {
+          title: 'Ghosts on the ledger',
+          text: 'Payroll fraud is a major compliance risk. Learn how payroll analytics'
+            + ' and AI-powered tools can help exorcise phantom employees and employers.',
+          url: 'https://tax.thomsonreuters.com/news/'
+            + 'ghosts-on-the-ledger-how-payroll-analytics-can-help-exorcise-phantom-employees-and-employers/',
+        },
+        {
+          title: 'Future of professionals report 2025',
+          text: 'The Thomson Reuters Future of Professionals Report 2025 reveals how AI'
+            + ' continues to shape professional work \u2014 and what it takes to get ahead.',
+          url: '/content/dam/ewp-m/documents/thomsonreuters/en/pdf/reports/'
+            + 'future-of-professionals-report-2025.pdf',
+        },
+      ],
+    },
+  },
+};
 
 // SVG namespace is an identifier, not a network URL — http:// is required per spec
 const SVG_NS = ['http', '://www.w3.org/2000/svg'].join('');
@@ -270,6 +506,151 @@ function createSvgIcon(size, children) {
     svg.append(el);
   });
   return svg;
+}
+
+function buildMegaMenuColumn(col) {
+  const div = document.createElement('div');
+  div.className = 'mega-col';
+  col.groups.forEach((group) => {
+    const h3 = document.createElement('h3');
+    h3.textContent = group.heading;
+    div.append(h3);
+    const ul = document.createElement('ul');
+    group.links.forEach(([label, href]) => {
+      const li = document.createElement('li');
+      const a = document.createElement('a');
+      a.href = href;
+      a.textContent = label;
+      li.append(a);
+      ul.append(li);
+    });
+    div.append(ul);
+  });
+  return div;
+}
+
+function buildMegaSidebar(sidebar) {
+  const aside = document.createElement('aside');
+  aside.className = 'mega-sidebar';
+
+  if (sidebar.heading) {
+    const h3 = document.createElement('h3');
+    h3.textContent = sidebar.heading;
+    aside.append(h3);
+  }
+
+  if (sidebar.cards) {
+    sidebar.cards.forEach((card) => {
+      const a = document.createElement('a');
+      a.href = card.url;
+      a.className = 'mega-card';
+      const strong = document.createElement('strong');
+      strong.textContent = card.title;
+      a.append(strong);
+      const p = document.createElement('p');
+      p.textContent = card.text;
+      a.append(p);
+      aside.append(a);
+    });
+  }
+
+  if (sidebar.extraLinks) {
+    const ul = document.createElement('ul');
+    ul.className = 'mega-extra-links';
+    sidebar.extraLinks.forEach(([label, href]) => {
+      const li = document.createElement('li');
+      const a = document.createElement('a');
+      a.href = href;
+      a.textContent = label;
+      li.append(a);
+      ul.append(li);
+    });
+    aside.append(ul);
+  }
+
+  if (sidebar.cta) {
+    const ctaWrap = document.createElement('div');
+    ctaWrap.className = 'mega-cta';
+    // Only show CTA label when sidebar heading doesn't already say it
+    if (!sidebar.heading || !sidebar.heading.toLowerCase().includes('questions')) {
+      const label = document.createElement('p');
+      label.textContent = 'Questions? We are here to help.';
+      ctaWrap.append(label);
+    }
+    const a = document.createElement('a');
+    a.href = '/en/contact-us';
+    a.className = 'mega-cta-btn';
+    a.textContent = 'Contact us';
+    ctaWrap.append(a);
+    aside.append(ctaWrap);
+  }
+
+  return aside;
+}
+
+function buildMegaMenu(label, data) {
+  const panel = document.createElement('div');
+  panel.className = 'nav-mega-menu';
+  panel.setAttribute('data-menu', label.toLowerCase());
+  panel.setAttribute('role', 'region');
+  panel.setAttribute('aria-label', label);
+
+  const header = document.createElement('div');
+  header.className = 'mega-header';
+  const h2 = document.createElement('h2');
+  h2.textContent = label;
+  header.append(h2);
+  const closeBtn = document.createElement('button');
+  closeBtn.className = 'mega-close';
+  closeBtn.setAttribute('aria-label', `Close ${label} menu`);
+  closeBtn.append(createSvgIcon(20, [
+    ['path', { d: 'M18 6 6 18' }],
+    ['path', { d: 'm6 6 12 12' }],
+  ]));
+  header.append(closeBtn);
+  panel.append(header);
+
+  const body = document.createElement('div');
+  body.className = 'mega-body';
+  const cols = document.createElement('div');
+  cols.className = 'mega-columns';
+  data.columns.forEach((col) => cols.append(buildMegaMenuColumn(col)));
+  body.append(cols);
+
+  if (data.sidebar) {
+    body.append(buildMegaSidebar(data.sidebar));
+  }
+
+  panel.append(body);
+  return panel;
+}
+
+function closeMegaMenu(navWrapper) {
+  const open = navWrapper.querySelector('.nav-mega-menu.open');
+  if (open) open.classList.remove('open');
+  navWrapper.querySelectorAll('.nav-section-btn[aria-expanded="true"]').forEach((btn) => {
+    btn.setAttribute('aria-expanded', 'false');
+  });
+}
+
+function restructureNavSections(nav) {
+  const navSections = nav.querySelector('.nav-sections');
+  if (!navSections) return;
+
+  const wrapper = navSections.querySelector('.default-content-wrapper') || navSections;
+  const existingUl = wrapper.querySelector('ul');
+  if (!existingUl) return;
+
+  existingUl.textContent = '';
+  NAV_ITEMS.forEach((label) => {
+    const li = document.createElement('li');
+    const btn = document.createElement('button');
+    btn.className = 'nav-section-btn';
+    btn.textContent = label;
+    btn.setAttribute('aria-expanded', 'false');
+    li.append(btn);
+    existingUl.append(li);
+  });
 }
 
 function iconSearch() {
@@ -294,9 +675,6 @@ function iconUser() {
   ]);
 }
 
-/**
- * Replaces tools section with utility icon buttons.
- */
 function restructureNavTools(nav) {
   const navTools = nav.querySelector('.nav-tools');
   if (!navTools) return;
@@ -325,17 +703,11 @@ function restructureNavTools(nav) {
   navTools.append(ul);
 }
 
-/**
- * loads and decorates the header, mainly the nav
- * @param {Element} block The header block element
- */
 export default async function decorate(block) {
-  // load nav as fragment
   const navMeta = getMetadata('nav');
   const navPath = navMeta ? new URL(navMeta, window.location).pathname : '/nav';
   const fragment = await loadFragment(navPath);
 
-  // decorate nav DOM
   block.textContent = '';
   const nav = document.createElement('nav');
   nav.id = 'nav';
@@ -354,32 +726,7 @@ export default async function decorate(block) {
   restructureNavTools(nav);
 
   const navSections = nav.querySelector('.nav-sections');
-  if (navSections) {
-    navSections.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach((navSection) => {
-      if (navSection.querySelector('ul')) navSection.classList.add('nav-drop');
-      navSection.addEventListener('click', () => {
-        if (isDesktop.matches) {
-          const expanded = navSection.getAttribute('aria-expanded') === 'true';
-          toggleAllNavSections(navSections);
-          navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
-        }
-      });
-    });
-    navSections.querySelectorAll('.button-container').forEach((buttonContainer) => {
-      buttonContainer.classList.remove('button-container');
-      buttonContainer.querySelector('.button').classList.remove('button');
-    });
-  }
 
-  const navTools = nav.querySelector('.nav-tools');
-  if (navTools) {
-    const search = navTools.querySelector('a[href*="search"]');
-    if (search && search.textContent === '') {
-      search.setAttribute('aria-label', 'Search');
-    }
-  }
-
-  // hamburger for mobile
   const hamburger = document.createElement('div');
   hamburger.classList.add('nav-hamburger');
   hamburger.innerHTML = `<button type="button" aria-controls="nav" aria-label="Open navigation">
@@ -388,7 +735,6 @@ export default async function decorate(block) {
   hamburger.addEventListener('click', () => toggleMenu(nav, navSections));
   nav.prepend(hamburger);
   nav.setAttribute('aria-expanded', 'false');
-  // prevent mobile nav behavior on window resize
   toggleMenu(nav, navSections, isDesktop.matches);
   isDesktop.addEventListener('change', () => toggleMenu(nav, navSections, isDesktop.matches));
 
@@ -396,6 +742,41 @@ export default async function decorate(block) {
   navWrapper.className = 'nav-wrapper';
   navWrapper.append(nav);
   block.append(navWrapper);
+
+  NAV_ITEMS.forEach((label) => {
+    const data = MEGA_MENUS[label];
+    if (data) navWrapper.append(buildMegaMenu(label, data));
+  });
+
+  navWrapper.querySelectorAll('.nav-section-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const label = btn.textContent.trim().toLowerCase();
+      const wasExpanded = btn.getAttribute('aria-expanded') === 'true';
+      closeMegaMenu(navWrapper);
+      if (!wasExpanded) {
+        const panel = navWrapper.querySelector(`.nav-mega-menu[data-menu="${label}"]`);
+        if (panel) {
+          panel.classList.add('open');
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      }
+    });
+  });
+
+  // Wire up close buttons
+  navWrapper.querySelectorAll('.mega-close').forEach((closeBtn) => {
+    closeBtn.addEventListener('click', () => closeMegaMenu(navWrapper));
+  });
+
+  // Close mega-menu on Escape
+  window.addEventListener('keydown', (e) => {
+    if (e.code === 'Escape') closeMegaMenu(navWrapper);
+  });
+
+  // Close mega-menu on click outside nav
+  document.addEventListener('click', (e) => {
+    if (!navWrapper.contains(e.target)) closeMegaMenu(navWrapper);
+  });
 
   if (getMetadata('breadcrumbs').toLowerCase() === 'true') {
     navWrapper.append(await buildBreadcrumbs());
