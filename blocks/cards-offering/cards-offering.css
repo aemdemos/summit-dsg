@@ -10,16 +10,17 @@
 }
 
 .cards-offering > ul > li {
-  border: 1px solid rgba(255 255 255 / 20%);
-  border-radius: 8px;
-  background-color: rgba(255 255 255 / 8%);
-  text-align: center;
-  padding: 24px 16px;
-  transition: background-color 0.2s;
+  border: none;
+  border-radius: 12px;
+  background-color: #fff;
+  text-align: left;
+  padding: 24px 20px;
+  transition: box-shadow 0.2s;
+  box-shadow: 0 1px 4px rgb(0 0 0 / 8%);
 }
 
 .cards-offering > ul > li:hover {
-  background-color: rgba(255 255 255 / 15%);
+  box-shadow: 0 4px 16px rgb(0 0 0 / 15%);
 }
 
 .cards-offering .cards-card-body {
@@ -28,19 +29,19 @@
 
 .cards-offering .cards-card-image {
   line-height: 0;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
 }
 
 .cards-offering > ul > li img {
-  width: 48px;
-  height: 48px;
+  width: 36px;
+  height: 36px;
   object-fit: contain;
-  filter: brightness(0) invert(1);
 }
 
 .cards-offering > ul > li a {
-  color: #fff;
+  color: #1f1f1f;
   font-weight: 600;
+  font-size: 16px;
   text-decoration: none;
   display: inline-flex;
   align-items: center;

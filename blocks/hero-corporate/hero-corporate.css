@@ -10,42 +10,48 @@
   padding: var(--hero-padding);
   min-height: var(--hero-min-height);
   background-color: var(--dark-color);
+  background-image: url('https://thomsonreuters.scene7.com/is/image/thomsonreuterscloudprod/racing-green-3-swirl-3600x-1?wid=1800&qlt=80');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   color: #fff;
 }
 
 .hero-corporate h1,
 .hero-corporate h2 {
   max-width: var(--hero-heading-max-width);
-  color: #fff;
 }
 
 .hero-corporate h1 {
-  font-weight: 300;
-  line-height: 1.1;
-  margin-bottom: 16px;
+  font-weight: 500;
+  line-height: 1.2;
+  margin-bottom: 24px;
+  color: #fff;
 }
 
-.hero-corporate h2 {
-  font-size: var(--body-font-size-s);
-  font-weight: 600;
+main .section.dark .hero-corporate h2 {
+  font-size: var(--body-font-size-m);
+  font-weight: 700;
+  color: #fff;
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: 0.5px;
   margin-bottom: 8px;
 }
 
 .hero-corporate p {
-  color: #fff;
+  color: rgb(255 255 255 / 85%);
   max-width: 600px;
-  font-size: var(--body-font-size-m);
-  line-height: 1.6;
+  font-size: var(--heading-font-size-m);
+  line-height: 1.4;
 }
 
 .hero-corporate a {
   color: #fff;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   margin-top: 16px;
-  padding: 12px 24px;
-  border: 2px solid var(--brand-color);
+  padding: 8px 16px;
+  border: 1px solid var(--brand-color);
   border-radius: 4px;
   background-color: var(--brand-color);
   font-weight: 600;
@@ -75,7 +81,7 @@
 
 @media (width >= 900px) {
   .hero-corporate {
-    padding: var(--hero-padding-desktop);
+    padding: 64px 52px;
     min-height: var(--hero-min-height-desktop);
   }
 }

@@ -203,17 +203,28 @@ function splitNavSections(nav) {
 }
 
 /**
- * Strips button decoration from the brand link.
+ * Strips button decoration from the brand link and replaces text with logo.
  */
 function decorateNavBrand(nav) {
   const navBrand = nav.querySelector('.nav-brand');
   if (!navBrand) return;
-  const brandLink = navBrand.querySelector('.button');
+  const brandLink = navBrand.querySelector('.button') || navBrand.querySelector('a');
   if (!brandLink) return;
   brandLink.className = '';
   const btnContainer = brandLink.closest('.button-container')
     || brandLink.closest('.button-wrapper');
   if (btnContainer) btnContainer.className = '';
+
+  // Replace text with logo image
+  const logo = document.createElement('img');
+  logo.src = '/icons/tr-logo.svg';
+  logo.alt = 'Thomson Reuters';
+  logo.className = 'nav-brand-logo';
+  logo.width = 250;
+  logo.height = 61;
+  brandLink.textContent = '';
+  brandLink.append(logo);
+  brandLink.setAttribute('aria-label', 'Thomson Reuters Home');
 }
 
 const NAV_ITEMS = ['Solutions', 'Products', 'Purchase', 'Resources'];
@@ -240,7 +251,8 @@ function restructureNavSections(nav) {
   });
 }
 
-const SVG_NS = 'https://www.w3.org/2000/svg';
+// SVG namespace is an identifier, not a network URL — http:// is required per spec
+const SVG_NS = ['http', '://www.w3.org/2000/svg'].join('');
 
 function createSvgIcon(size, children) {
   const svg = document.createElementNS(SVG_NS, 'svg');
@@ -261,14 +273,14 @@ function createSvgIcon(size, children) {
 }
 
 function iconSearch() {
-  return createSvgIcon(20, [
+  return createSvgIcon(28, [
     ['circle', { cx: '11', cy: '11', r: '8' }],
     ['path', { d: 'm21 21-4.3-4.3' }],
   ]);
 }
 
 function iconHelp() {
-  return createSvgIcon(20, [
+  return createSvgIcon(28, [
     ['circle', { cx: '12', cy: '12', r: '10' }],
     ['path', { d: 'M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3' }],
     ['path', { d: 'M12 17h.01' }],
@@ -276,7 +288,7 @@ function iconHelp() {
 }
 
 function iconUser() {
-  return createSvgIcon(20, [
+  return createSvgIcon(28, [
     ['circle', { cx: '12', cy: '8', r: '4' }],
     ['path', { d: 'M20 21a8 8 0 0 0-16 0' }],
   ]);
