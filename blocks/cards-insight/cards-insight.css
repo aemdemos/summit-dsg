@@ -16,23 +16,17 @@
   background-color: var(--background-color);
 }
 
-.cards-insight .cards-card-body {
-  margin: var(--cards-card-body-margin);
-}
-
-/* Hide the image cell (first cards-card-body) — these cards have no images */
-.cards-insight > ul > li > .cards-card-body:first-child {
-  display: none;
-}
-
+/* Hide image placeholder column when present (two-column authored cards) */
 .cards-insight .cards-card-image {
   display: none;
 }
 
-.cards-insight > ul > li img {
-  width: 100%;
-  aspect-ratio: var(--cards-image-aspect-ratio);
-  object-fit: var(--cards-image-object-fit);
+.cards-insight > ul > li > :first-child:not(:last-child) {
+  display: none;
+}
+
+.cards-insight .cards-card-body {
+  margin: var(--cards-card-body-margin);
 }
 
 .cards-insight .cards-card-body h3 {
