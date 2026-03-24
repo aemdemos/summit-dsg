@@ -439,30 +439,28 @@ header .mega-header {
 }
 
 header .mega-header h2 {
-  font-size: 24px;
-  font-weight: 600;
-  color: #1f1f1f;
+  font-size: 16px;
+  font-weight: 500;
+  color: #404040;
   margin: 0;
 }
 
 header .mega-close {
   background: none;
-  border: 1px solid #ccc;
-  border-radius: 50%;
-  width: 36px;
-  height: 36px;
+  border: none;
+  width: 40px;
+  height: 40px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #1f1f1f;
+  color: #000;
   padding: 0;
   flex-shrink: 0;
 }
 
 header .mega-close:hover {
   background-color: #f0f0f0;
-  border-color: #999;
 }
 
 /* mega-menu body */
@@ -485,14 +483,12 @@ header .mega-col {
 }
 
 header .mega-col h3 {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  color: #1f1f1f;
+  color: #404040;
   margin: 0 0 12px;
   padding-bottom: 8px;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: none;
 }
 
 header .mega-col h3:not(:first-child) {
@@ -515,15 +511,15 @@ header .mega-col ul li {
 header .mega-col ul li a {
   display: block;
   padding: 6px 0;
-  font-size: 15px;
-  color: var(--link-color);
+  font-size: 16px;
+  color: #1f1f1f;
   text-decoration: none;
-  line-height: 1.4;
+  line-height: 1.5;
 }
 
 header .mega-col ul li a:hover {
   text-decoration: underline;
-  color: var(--link-hover-color);
+  color: #1f1f1f;
 }
 
 /* mega-menu sidebar */
@@ -534,45 +530,44 @@ header .mega-sidebar {
 }
 
 header .mega-sidebar h3 {
-  font-size: 14px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  color: #1f1f1f;
+  font-size: 16px;
+  font-weight: 400;
+  color: #737373;
   margin: 0 0 16px;
 }
 
 /* mega-menu cards */
 header .mega-card {
   display: block;
-  padding: 16px;
-  margin-bottom: 12px;
-  border: 1px solid #e0e0e0;
-  border-radius: 4px;
+  padding: 12px 0;
+  border-bottom: 1px solid #e0e0e0;
+  background: transparent;
   text-decoration: none;
   color: #1f1f1f;
-  transition: box-shadow 0.2s;
+}
+
+header .mega-card:last-of-type {
+  border-bottom: none;
 }
 
 header .mega-card:hover {
-  box-shadow: 0 2px 8px rgb(0 0 0 / 12%);
   text-decoration: none;
   color: #1f1f1f;
 }
 
 header .mega-card strong {
   display: block;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 600;
-  margin-bottom: 4px;
-  color: var(--link-color);
+  margin-bottom: 2px;
+  color: #1f1f1f;
 }
 
 header .mega-card p {
   margin: 0;
-  font-size: 13px;
+  font-size: 12px;
   line-height: 1.4;
-  color: #666;
+  color: #737373;
 }
 
 /* mega-menu extra links */
@@ -585,12 +580,14 @@ header .mega-extra-links {
 header .mega-extra-links li a {
   display: block;
   padding: 4px 0;
-  font-size: 15px;
-  color: var(--link-color);
+  font-size: 16px;
+  color: #006fc4;
+  text-decoration: underline;
 }
 
 header .mega-extra-links li a:hover {
   text-decoration: underline;
+  color: #005a9e;
 }
 
 /* mega-menu CTA */
@@ -601,27 +598,29 @@ header .mega-cta {
 }
 
 header .mega-cta p {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
   color: #1f1f1f;
   margin: 0 0 12px;
 }
 
 header .mega-cta-btn {
-  display: inline-block;
-  padding: 8px 20px;
-  border: 1px solid var(--brand-color);
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 7px 16px;
+  border: none;
   border-radius: 4px;
-  background-color: var(--brand-color);
+  background-color: #d64000;
   color: #fff;
-  font-weight: 600;
-  font-size: 14px;
+  font-weight: 400;
+  font-size: 16px;
   text-decoration: none;
+  text-align: center;
 }
 
 header .mega-cta-btn:hover {
   background-color: #b53600;
-  border-color: #b53600;
   color: #fff;
   text-decoration: none;
 }
