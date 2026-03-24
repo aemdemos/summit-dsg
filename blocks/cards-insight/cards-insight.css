@@ -20,18 +20,13 @@
   margin: var(--cards-card-body-margin);
 }
 
-.cards-insight .cards-card-image {
-  line-height: 0;
-  background-color: var(--overlay-background-color);
-  min-height: 40px;
+/* Hide the image cell (first cards-card-body) — these cards have no images */
+.cards-insight > ul > li > .cards-card-body:first-child {
+  display: none;
 }
 
-/* First child is the image cell (may be .cards-card-body if createCard didn't detect it) */
-.cards-insight > ul > li > .cards-card-body:first-child {
-  line-height: 0;
-  background-color: var(--overlay-background-color);
-  min-height: 40px;
-  margin: 0;
+.cards-insight .cards-card-image {
+  display: none;
 }
 
 .cards-insight > ul > li img {
@@ -43,6 +38,9 @@
 .cards-insight .cards-card-body h3 {
   font-weight: 600;
   font-size: var(--heading-font-size-s);
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--brand-color);
+  margin-bottom: 12px;
 }
 
 .cards-insight .cards-card-body p {
