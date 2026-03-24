@@ -16,13 +16,14 @@
   background-color: var(--background-color);
 }
 
-/* Hide image placeholder column when present (two-column authored cards) */
 .cards-insight .cards-card-image {
-  display: none;
+  line-height: 0;
 }
 
-.cards-insight > ul > li > :first-child:not(:last-child) {
-  display: none;
+.cards-insight > ul > li img {
+  width: 100%;
+  aspect-ratio: var(--cards-image-aspect-ratio);
+  object-fit: var(--cards-image-object-fit);
 }
 
 .cards-insight .cards-card-body {
