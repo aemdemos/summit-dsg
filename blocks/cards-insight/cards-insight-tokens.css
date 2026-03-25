@@ -1,6 +1,6 @@
-/* cards design tokens */
-:root {
-  --cards-grid-min-width: 257px;
+/* cards-insight design tokens */
+.cards-insight {
+  --cards-grid-min-width: 374px;
   --cards-grid-gap: 24px;
   --cards-card-border-width: 1px;
   --cards-card-border-color: #dadada;
