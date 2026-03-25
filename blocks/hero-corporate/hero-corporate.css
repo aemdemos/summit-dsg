@@ -81,15 +81,7 @@ main .section.dark .hero-corporate h2 {
 
 @media (width >= 900px) {
   .hero-corporate {
-    padding: 64px 52px;
+    padding: 64px max(32px, calc((100vw - var(--max-width-site)) / 2));
     min-height: var(--hero-min-height-desktop);
-  }
-
-  .hero-corporate-container > .default-content-wrapper,
-  .hero-corporate-container > .cards-offering-wrapper {
-    max-width: unset;
-    margin: 0;
-    padding-left: 52px;
-    padding-right: 52px;
   }
 }
