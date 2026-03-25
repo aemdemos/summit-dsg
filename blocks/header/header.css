@@ -1,20 +1,4 @@
-/* header design tokens */
-:root {
-  --nav-height: 80px;
-  --header-nav-max-width: 100%;
-  --header-nav-max-width-desktop: 100%;
-  --header-nav-padding: 0 20px;
-  --header-nav-padding-desktop: 0 20px;
-  --header-nav-gap: 24px;
-  --header-nav-gap-desktop: 40px;
-  --header-brand-width: 250px;
-  --header-dropdown-width: 200px;
-  --header-dropdown-padding: 16px;
-  --header-dropdown-left: -24px;
-  --header-hamburger-size: 22px;
-  --header-hamburger-bar-width: 20px;
-  --header-hamburger-bar-height: 2px;
-}
+@import url('./header-tokens.css');
 
 /* header and nav layout */
 header .nav-wrapper {
