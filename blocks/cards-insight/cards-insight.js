@@ -2,24 +2,23 @@ import { createOptimizedPicture } from '../../scripts/aem.js';
 import { moveInstrumentation, getBlockId } from '../../scripts/scripts.js';
 import { createCard } from '../card/card.js';
 
-/** Scene7 image URLs keyed by partial heading text for broken-image recovery */
-const SCENE7_IMAGES = {
-  'AI in Professional Services': 'https://thomsonreuters.scene7.com/is/image/thomsonreuterscloudprod/201276_109755785-1?wid=376',
-  'CoCounsel Guided Workflows': 'https://thomsonreuters.scene7.com/is/image/thomsonreuterscloudprod/243582-644540343?wid=376',
-  'Future of Professionals': 'https://thomsonreuters.scene7.com/is/image/thomsonreuterscloudprod/251216-922168087?wid=376',
-};
+/**
+ * Fix images that failed AEM optimization (about:error) by restoring their
+ * original DAM URL via alt-text lookup. Remove this map once the images are
+ * replaced with proper authored assets in DA.
+ */
+/* eslint-disable max-len */
+const IMAGE_FALLBACKS = new Map([
+  ['2026 AI in Professional Services Report', 'https://www.thomsonreuters.com/content/dam/ewp-m/images/thomsonreuters/en/photography/201276_109755785.jpeg'],
+  ['Introducing Our First CoCounsel Guided Workflows', 'https://www.thomsonreuters.com/content/dam/ewp-m/images/thomsonreuters/en/artworked-images/243582-644540343.jpeg'],
+  ['Future of Professionals Report 2025', 'https://www.thomsonreuters.com/content/dam/ewp-m/images/thomsonreuters/en/reports/251216-922168087.jpeg'],
+]);
+/* eslint-enable max-len */
 
-function fixBrokenImages(ul) {
-  ul.querySelectorAll('li').forEach((li) => {
-    const img = li.querySelector('img');
-    if (!img || !img.src.includes('about:error')) return;
-    const h3 = li.querySelector('h3');
-    if (!h3) return;
-    const heading = h3.textContent;
-    const matchKey = Object.keys(SCENE7_IMAGES).find((key) => heading.includes(key));
-    if (matchKey) {
-      img.src = SCENE7_IMAGES[matchKey];
-      img.alt = heading;
+function fixBrokenImages(block) {
+  block.querySelectorAll('img').forEach((img) => {
+    if (img.src.includes('about:error') && IMAGE_FALLBACKS.has(img.alt)) {
+      img.src = IMAGE_FALLBACKS.get(img.alt);
     }
   });
 }
@@ -30,6 +29,8 @@ export default function decorate(block) {
   block.setAttribute('aria-label', `Cards for ${blockId}`);
   block.setAttribute('role', 'region');
   block.setAttribute('aria-roledescription', 'Cards');
+
+  fixBrokenImages(block);
 
   /* change to ul, li */
   const ul = document.createElement('ul');
@@ -43,8 +44,6 @@ export default function decorate(block) {
     moveInstrumentation(img, optimizedPic.querySelector('img'));
     img.closest('picture').replaceWith(optimizedPic);
   });
-
-  fixBrokenImages(ul);
 
   block.textContent = '';
   block.append(ul);
