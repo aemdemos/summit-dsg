@@ -120,17 +120,10 @@ h6 {
   margin-top: 0.8em;
   margin-bottom: 0.25em;
   font-family: var(--heading-font-family);
-  font-weight: 300;
+  font-weight: 500;
   line-height: 1.2;
   scroll-margin: 40px;
   color: var(--text-color);
-}
-
-h3,
-h4,
-h5,
-h6 {
-  font-weight: 500;
 }
 
 h1 { font-size: var(--heading-font-size-xxl); }
@@ -327,6 +320,7 @@ main .section.dark > .default-content-wrapper > h2 {
 
 main .section.dark > .default-content-wrapper > p {
   color: rgb(255 255 255 / 80%);
+  font-size: 19px;
   max-width: 600px;
 }
 
@@ -336,6 +330,7 @@ main .section.light > .default-content-wrapper > h2 {
 
 main .section.grey > .default-content-wrapper > h2 {
   text-align: center;
+  font-size: var(--heading-font-size-l);
 }
 
 
