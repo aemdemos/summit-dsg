@@ -71,6 +71,13 @@ export default async function decorate(block) {
   }
 
   rows.forEach((row, idx) => {
+    // remove columns that only contain a broken image
+    row.querySelectorAll(':scope > div').forEach((col) => {
+      const img = col.querySelector('img');
+      if (img && img.src.includes('about:error') && col.children.length === 1) {
+        col.remove();
+      }
+    });
     const slide = createSlide(row, idx, blockId);
     moveInstrumentation(row, slide);
     slidesWrapper.append(slide);
