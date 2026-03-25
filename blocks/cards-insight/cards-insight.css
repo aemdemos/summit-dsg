@@ -55,26 +55,26 @@
 }
 
 .cards-insight .cards-card-body h3 {
-  font-weight: 600;
+  font-weight: 500;
   font-size: var(--heading-font-size-s);
-  padding-bottom: 12px;
-  border-bottom: 2px solid var(--brand-color);
-  margin-bottom: 12px;
+  margin: 12px 0 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #e6e6e6;
 }
 
 .cards-insight .cards-card-body p {
   font-size: var(--body-font-size-s);
-  line-height: 1.5;
+  line-height: 1.29;
   color: var(--text-color);
 }
 
 .cards-insight .cards-card-body a {
-  color: var(--brand-color);
-  font-weight: 600;
+  color: var(--link-color);
+  font-weight: 500;
   text-decoration: none;
 }
 
 .cards-insight .cards-card-body a:hover {
-  color: #b53600;
+  color: var(--link-hover-color);
   text-decoration: underline;
 }
