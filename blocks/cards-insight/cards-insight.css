@@ -1,5 +1,9 @@
 @import url('./cards-insight-tokens.css');
 
+.cards-insight-container > .default-content-wrapper > h2 strong {
+  color: inherit;
+}
+
 .cards-insight > ul {
   list-style: none;
   margin: 0;
