@@ -12,22 +12,15 @@
   padding: 0;
 }
 
-/* Scrollable slides track */
+/* Slides track — no scroll-snap so transitions are truly instant */
 .carousel-spotlight .carousel-spotlight-slides {
   display: flex;
-  scroll-behavior: auto;
-  scroll-snap-type: x mandatory;
-  overflow: scroll clip;
-}
-
-.carousel-spotlight .carousel-spotlight-slides::-webkit-scrollbar {
-  display: none;
+  overflow: hidden;
 }
 
 /* Individual slide — mobile: stacked (image on top, text below) */
 .carousel-spotlight .carousel-spotlight-slide {
   flex: 0 0 100%;
-  scroll-snap-align: start;
   display: flex;
   flex-direction: column;
   width: 100%;
