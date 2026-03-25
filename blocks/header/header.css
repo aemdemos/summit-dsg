@@ -38,6 +38,7 @@ header nav[aria-expanded='true'] {
   header nav {
     display: flex;
     justify-content: space-between;
+    align-items: stretch;
     gap: 0 var(--header-nav-gap-desktop);
     max-width: var(--header-nav-max-width-desktop);
     padding: var(--header-nav-padding-desktop);
@@ -46,6 +47,16 @@ header nav[aria-expanded='true'] {
   header nav[aria-expanded='true'] {
     min-height: 0;
     overflow: visible;
+  }
+
+  header .nav-brand {
+    display: flex;
+    align-items: center;
+  }
+
+  header nav .nav-tools {
+    display: flex;
+    align-items: center;
   }
 }
 
@@ -201,13 +212,22 @@ header nav .nav-sections ul > li > ul > li {
 
 @media (width >= 900px) {
   header nav .nav-sections {
-    display: block;
+    display: flex;
     visibility: visible;
     white-space: nowrap;
+    align-items: stretch;
+  }
+
+  header nav .nav-sections .default-content-wrapper {
+    display: flex;
+    align-items: stretch;
+    width: 100%;
   }
 
   header nav[aria-expanded='true'] .nav-sections {
+    display: flex;
     align-self: unset;
+    align-items: stretch;
   }
 
   header nav .nav-sections .nav-drop {
@@ -240,12 +260,15 @@ header nav .nav-sections ul > li > ul > li {
     display: flex;
     gap: var(--header-nav-gap);
     margin: 0;
-    align-items: center;
+    align-items: stretch;
+    height: 100%;
   }
 
   header nav .nav-sections .default-content-wrapper > ul > li {
     flex: 0 1 auto;
     position: relative;
+    display: flex;
+    align-items: stretch;
   }
 
   header nav .nav-sections .default-content-wrapper > ul > li > ul {
@@ -295,11 +318,11 @@ header nav .nav-section-btn {
   font-family: var(--body-font-family);
   cursor: pointer;
   padding: 0 10px;
-  height: var(--nav-height);
+  margin: 0;
+  height: 100%;
   box-sizing: border-box;
   display: inline-flex;
   align-items: center;
-  margin-bottom: -1px;
   transition: outline-color 0.2s, border-color 0.2s, background-color 0.2s;
 }
 
@@ -409,7 +432,6 @@ header .nav-mega-menu {
   left: 0;
   right: 0;
   background-color: #fff;
-  border-top: 3px solid var(--brand-color);
   box-shadow: 0 8px 24px rgb(0 0 0 / 15%);
   z-index: 10;
 }
