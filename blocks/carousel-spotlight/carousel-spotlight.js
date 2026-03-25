@@ -115,7 +115,7 @@ export default async function decorate(block) {
       const current = parseInt(block.dataset.activeSlide, 10) || 0;
       const next = e.key === 'ArrowLeft' ? current - 1 : current + 1;
       e.preventDefault();
-      showSlide(block, next, 'smooth', SLIDER_OPTIONS);
+      showSlide(block, next, 'auto', SLIDER_OPTIONS);
     });
   }
 }
