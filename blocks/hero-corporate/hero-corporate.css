@@ -84,6 +84,11 @@ main .section.dark .hero-corporate h2 {
 @media (width >= 900px) {
   .hero-corporate {
     padding: 64px max(32px, calc((100vw - var(--max-width-site)) / 2));
+
+    /* Align hero text with nav "Solutions" button:
+       nav-padding(32) + brand(250) + gap(24) = 306px when nav fills viewport;
+       when nav is centered (viewport > 1264px), add half the overflow */
+    padding-left: max(306px, calc((100vw - 652px) / 2));
     min-height: var(--hero-min-height-desktop);
   }
 }
