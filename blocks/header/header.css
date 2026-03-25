@@ -617,6 +617,8 @@ header .mega-cta-btn:hover {
 /* active nav-section-btn styling */
 header nav .nav-section-btn[aria-expanded='true'] {
   border-bottom-color: var(--brand-color);
+  position: relative;
+  z-index: 11;
 }
 
 /* responsive: hide mega-menus on mobile */
