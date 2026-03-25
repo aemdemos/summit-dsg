@@ -42,3 +42,25 @@ function buildBackToTop() {
 }
 
 buildBackToTop();
+
+// Scroll progress bar
+function buildScrollProgress() {
+  const wrapper = document.createElement('div');
+  wrapper.className = 'scroll-progress-wrapper';
+  const bar = document.createElement('div');
+  bar.className = 'scroll-progress-bar';
+  wrapper.append(bar);
+
+  const update = () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    bar.style.width = `${pct}%`;
+  };
+
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+  document.body.append(wrapper);
+}
+
+buildScrollProgress();
