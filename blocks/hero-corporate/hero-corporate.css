@@ -1,4 +1,4 @@
-@import url('../hero/hero-tokens.css');
+@import url('./hero-corporate-tokens.css');
 
 .hero-corporate-container .hero-corporate-wrapper {
   max-width: unset;

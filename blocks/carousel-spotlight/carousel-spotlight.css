@@ -1,4 +1,4 @@
-@import url('../carousel/carousel-tokens.css');
+@import url('./carousel-spotlight-tokens.css');
 
 .carousel-spotlight .carousel-spotlight-slides-container {
   position: relative;

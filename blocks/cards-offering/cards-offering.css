@@ -1,4 +1,4 @@
-@import url('../cards/cards-tokens.css');
+@import url('./cards-offering-tokens.css');
 
 .cards-offering > ul {
   list-style: none;
