@@ -51,7 +51,14 @@ function buildScrollProgress() {
   bar.className = 'scroll-progress-bar';
   wrapper.append(bar);
 
+  const header = document.querySelector('header');
+
   const update = () => {
+    const headerBottom = header ? header.getBoundingClientRect().bottom : 0;
+    const pastHeader = headerBottom <= 0;
+
+    wrapper.classList.toggle('visible', pastHeader);
+
     const scrollTop = window.scrollY;
     const docHeight = document.documentElement.scrollHeight - window.innerHeight;
     const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
