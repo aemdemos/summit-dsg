@@ -26,18 +26,12 @@
 
 .cards-insight .cards-card-image {
   line-height: 0;
-  overflow: hidden;
 }
 
 .cards-insight > ul > li img {
   width: 100%;
   aspect-ratio: var(--cards-image-aspect-ratio);
   object-fit: var(--cards-image-object-fit);
-  transition: transform 0.3s ease-in;
-}
-
-.cards-insight > ul > li:hover img {
-  transform: scale(1.1);
 }
 
 .cards-insight .cards-card-body {
