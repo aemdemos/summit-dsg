@@ -1,12 +1,13 @@
 @import url('./cards-insight-tokens.css');
 
-.cards-insight-container > .default-content-wrapper > h2 {
+main .cards-insight-container > .default-content-wrapper > h2 {
   font-size: var(--heading-font-size-l);
   font-weight: 500;
 }
 
 main .cards-insight-container > .default-content-wrapper > h2 strong {
   color: inherit;
+  font-weight: inherit;
 }
 
 .cards-insight > ul {
@@ -70,6 +71,7 @@ main .cards-insight-container > .default-content-wrapper > h2 strong {
   font-size: var(--body-font-size-s);
   line-height: 1.29;
   color: var(--text-color);
+  margin: 24px 0 0;
 }
 
 .cards-insight .cards-card-body a {
