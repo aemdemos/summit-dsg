@@ -67,7 +67,16 @@ export default async function decorate(block) {
       CONTROL_OPTIONS,
     );
     block.append(indicatorsNav);
-    container.append(buttonsContainer);
+
+    /* insert slide counter between prev and next buttons */
+    const counter = document.createElement('span');
+    counter.classList.add('slide-counter');
+    counter.textContent = `1 of ${rows.length}`;
+    const nextBtn = buttonsContainer.querySelector('.slide-next');
+    buttonsContainer.insertBefore(counter, nextBtn);
+
+    /* nav goes after slides-container (below content, not inside it) */
+    block.append(buttonsContainer);
   }
 
   rows.forEach((row, idx) => {
@@ -89,6 +98,18 @@ export default async function decorate(block) {
 
   if (!isSingleSlide) {
     initSlider(block, SLIDER_OPTIONS);
+
+    /* keep the "X of N" counter in sync with active slide */
+    const totalSlides = block.querySelectorAll(SLIDER_OPTIONS.slideSelector).length;
+    const counterEl = block.querySelector('.slide-counter');
+    if (counterEl) {
+      const observer = new MutationObserver(() => {
+        const idx = parseInt(block.dataset.activeSlide, 10) || 0;
+        counterEl.textContent = `${idx + 1} of ${totalSlides}`;
+      });
+      observer.observe(block, { attributes: true, attributeFilter: ['data-active-slide'] });
+    }
+
     slidesWrapper.addEventListener('keydown', (e) => {
       if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
       const current = parseInt(block.dataset.activeSlide, 10) || 0;
