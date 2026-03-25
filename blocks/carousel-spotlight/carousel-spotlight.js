@@ -97,6 +97,19 @@ export default async function decorate(block) {
   block.prepend(container);
 
   if (!isSingleSlide) {
+    /* Override prev/next to use instant transitions (slider.js defaults to 'smooth').
+       Register before initSlider so these handlers fire first and stop propagation. */
+    block.querySelector('.slide-prev')?.addEventListener('click', (e) => {
+      e.stopImmediatePropagation();
+      const current = parseInt(block.dataset.activeSlide, 10) || 0;
+      showSlide(block, current - 1, 'auto', SLIDER_OPTIONS);
+    });
+    block.querySelector('.slide-next')?.addEventListener('click', (e) => {
+      e.stopImmediatePropagation();
+      const current = parseInt(block.dataset.activeSlide, 10) || 0;
+      showSlide(block, current + 1, 'auto', SLIDER_OPTIONS);
+    });
+
     initSlider(block, SLIDER_OPTIONS);
 
     /* keep the "X of N" counter in sync with active slide */
