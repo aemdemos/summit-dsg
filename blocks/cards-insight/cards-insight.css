@@ -1,6 +1,11 @@
 @import url('./cards-insight-tokens.css');
 
-.cards-insight-container > .default-content-wrapper > h2 strong {
+.cards-insight-container > .default-content-wrapper > h2 {
+  font-size: var(--heading-font-size-l);
+  font-weight: 500;
+}
+
+main .cards-insight-container > .default-content-wrapper > h2 strong {
   color: inherit;
 }
 
@@ -10,7 +15,6 @@
   padding: 0;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--cards-grid-min-width)), var(--cards-grid-min-width)));
-  justify-content: center;
   gap: var(--cards-grid-gap);
 }
 
