@@ -294,7 +294,12 @@ header nav .nav-section-btn {
   font-weight: 400;
   font-family: var(--body-font-family);
   cursor: pointer;
-  padding: 20px 10px 16px;
+  padding: 0 10px;
+  height: var(--nav-height);
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: -1px;
   transition: outline-color 0.2s, border-color 0.2s, background-color 0.2s;
 }
 
@@ -611,7 +616,7 @@ header .mega-cta-btn:hover {
 
 /* active nav-section-btn styling */
 header nav .nav-section-btn[aria-expanded='true'] {
-  color: var(--brand-color);
+  border-bottom-color: var(--brand-color);
 }
 
 /* responsive: hide mega-menus on mobile */
