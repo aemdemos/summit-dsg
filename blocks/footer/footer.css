@@ -1,123 +1,200 @@
-@import url('./footer-tokens.css');
+/* footer design tokens */
+:root {
+  --footer-bg: var(--dark-color);
+  --footer-text-color: #fff;
+  --footer-heading-font-size: 16px;
+  --footer-link-font-size: 14px;
+  --footer-column-gap: 24px;
+  --footer-columns-padding: 40px 24px;
+  --footer-columns-padding-desktop: 40px 24px;
+  --footer-legal-padding: 20px 24px;
+  --footer-separator-color: #666;
+  --footer-link-item-margin: 0 4px 12px;
+  --footer-heading-margin: 0 0 16px 4px;
+}
 
+/* Footer container */
 footer {
-  background-color: var(--dark-color);
-  color: #fff;
-  font-size: 14px;
+  background-color: var(--footer-bg);
+  color: var(--footer-text-color);
+  font-size: var(--footer-link-font-size);
   border-top: none;
 }
 
 footer .footer > div {
-  margin: auto;
-  max-width: var(--footer-max-width);
-  padding: var(--footer-padding);
+  margin: 0 auto;
 }
 
-/* Column layout */
+/* =============================================
+   Column Navigation
+   ============================================= */
 footer .footer .footer-columns {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 24px;
   list-style: none;
-  padding: 0;
+  padding: var(--footer-columns-padding);
   margin: 0;
+
+  /* mobile: stacked accordion */
+  display: block;
 }
 
+/* Individual column */
 footer .footer .footer-column {
-  flex: 1 1 150px;
-  min-width: 140px;
+  border-top: 1px solid var(--footer-separator-color);
 }
 
+footer .footer .footer-column:last-child {
+  border-bottom: 1px solid var(--footer-separator-color);
+}
+
+/* Column headings */
 footer .footer .footer-column h3 {
-  color: #fff;
-  font-size: 16px;
+  color: var(--footer-text-color);
+  font-size: var(--footer-heading-font-size);
   font-weight: 700;
   text-transform: none;
   letter-spacing: normal;
-  margin: 0 0 16px;
+  margin: 0;
+  line-height: 1.35;
 }
 
-footer .footer .footer-column ul {
+/* Accordion toggle button (mobile) */
+footer .footer .footer-column-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 20px;
+  background: none;
+  border: none;
+  color: var(--footer-text-color);
+  font-size: var(--footer-heading-font-size);
+  font-weight: 700;
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+/* Chevron icon via CSS */
+footer .footer .footer-column-toggle::after {
+  content: '';
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-right: 2px solid var(--footer-text-color);
+  border-bottom: 2px solid var(--footer-text-color);
+  transform: rotate(45deg);
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+  margin-left: 16px;
+}
+
+footer .footer .footer-column-toggle[aria-expanded="true"]::after {
+  transform: rotate(-135deg);
+}
+
+/* Column link lists */
+footer .footer .footer-column > ul {
   list-style: none;
   padding: 0;
   margin: 0;
+
+  /* mobile: hidden by default, accordion controlled */
+  display: none;
 }
 
-footer .footer .footer-column ul li {
-  padding: 4px 0;
+footer .footer .footer-column.footer-column-expanded > ul {
+  display: block;
 }
 
-footer .footer .footer-column ul a {
-  color: #fff;
+footer .footer .footer-column > ul > li {
+  padding: 20px 20px 20px 32px;
+  margin: 0;
+  border-bottom: 1px solid var(--footer-separator-color);
+}
+
+footer .footer .footer-column > ul > li:last-child {
+  border-bottom: none;
+}
+
+footer .footer .footer-column > ul a {
+  color: var(--footer-text-color);
   text-decoration: none;
-  font-size: 14px;
+  font-size: var(--footer-link-font-size);
 }
 
-footer .footer .footer-column ul a:hover {
+footer .footer .footer-column > ul a:hover {
   text-decoration: underline;
 }
 
-/* Legal bar */
+/* Social icons in Connect column */
+footer .footer .footer-column > ul a .icon {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  margin-right: 4px;
+}
+
+footer .footer .footer-column > ul a .icon svg {
+  fill: currentcolor;
+  width: 20px;
+  height: 20px;
+}
+
+/* =============================================
+   Legal Bar
+   ============================================= */
 footer .footer .footer-legal {
-  margin-top: 32px;
-  padding-top: 20px;
-  border-top: 1px solid rgb(255 255 255 / 20%);
+  padding: var(--footer-legal-padding);
+  border-top: 1px solid var(--footer-separator-color);
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 16px;
+  gap: 32px;
 }
 
+/* Brand link */
 footer .footer .footer-legal-brand {
-  color: #fff;
+  color: var(--footer-text-color);
   font-weight: 700;
-  font-size: 14px;
+  font-size: 16px;
   text-decoration: none;
-  margin-right: 8px;
 }
 
 footer .footer .footer-legal-brand:hover {
   text-decoration: underline;
 }
 
+/* Legal nav links */
 footer .footer .footer-legal nav ul {
   display: flex;
   flex-wrap: wrap;
   list-style: none;
   padding: 0;
   margin: 0;
-  gap: 4px;
+  gap: 8px 32px;
 }
 
 footer .footer .footer-legal nav ul li {
   padding: 0;
 }
 
-footer .footer .footer-legal nav ul li::after {
-  content: '|';
-  margin-left: 4px;
-  color: rgb(255 255 255 / 50%);
-}
-
-footer .footer .footer-legal nav ul li:last-child::after {
-  content: '';
-}
-
 footer .footer .footer-legal nav a {
-  color: #fff;
+  color: var(--footer-text-color);
   text-decoration: none;
-  font-size: 14px;
+  font-size: var(--footer-link-font-size);
 }
 
 footer .footer .footer-legal nav a:hover {
   text-decoration: underline;
 }
 
+/* CCPA link */
 footer .footer .footer-legal-ccpa {
   flex-basis: 100%;
-  color: #fff;
+  color: var(--footer-text-color);
   text-decoration: none;
-  font-size: 12px;
+  font-size: var(--footer-link-font-size);
   margin-top: 4px;
 }
 
@@ -125,12 +202,80 @@ footer .footer .footer-legal-ccpa:hover {
   text-decoration: underline;
 }
 
+/* Remove button styles applied by AEM decoration */
+footer .footer .button-container {
+  margin: 0;
+}
+
+footer .footer a.button {
+  color: var(--footer-text-color);
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: inherit;
+  font-weight: inherit;
+  text-decoration: none;
+  white-space: normal;
+  margin: 0;
+}
+
+footer .footer a.button:hover {
+  background: none;
+  text-decoration: underline;
+}
+
+/* =============================================
+   Desktop (>= 900px)
+   ============================================= */
 @media (width >= 900px) {
-  footer .footer > div {
-    padding: var(--footer-padding-desktop);
+  /* Columns: horizontal flex layout */
+  footer .footer .footer-columns {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: var(--footer-column-gap);
+    padding: var(--footer-columns-padding-desktop);
+    justify-content: center;
   }
 
-  footer .footer .footer-columns {
+  footer .footer .footer-column {
+    flex: 1 1 0%;
+    border-top: none;
+  }
+
+  footer .footer .footer-column:last-child {
+    border-bottom: none;
+  }
+
+  /* Headings are plain text, not toggles */
+  footer .footer .footer-column h3 {
+    margin: var(--footer-heading-margin);
+  }
+
+  footer .footer .footer-column-toggle {
+    padding: 0;
+    cursor: default;
+    pointer-events: none;
+  }
+
+  /* Hide chevron on desktop */
+  footer .footer .footer-column-toggle::after {
+    display: none;
+  }
+
+  /* Link lists always visible on desktop */
+  footer .footer .footer-column > ul {
+    display: block;
+  }
+
+  /* Desktop link spacing */
+  footer .footer .footer-column > ul > li {
+    padding: 0;
+    margin: var(--footer-link-item-margin);
+    border-bottom: none;
+  }
+
+  /* Legal bar - no top border on desktop (already has visual separator) */
+  footer .footer .footer-legal {
     flex-wrap: nowrap;
   }
 }

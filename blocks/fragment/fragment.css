@@ -1,4 +1,7 @@
-@import url('./fragment-tokens.css');
+/* fragment design tokens (structural; no visual customization) */
+:root {
+  /* Reserved for future fragment-specific tokens */
+}
 
 /* suppress nested section padding */
 .fragment-wrapper > .section {

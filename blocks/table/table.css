@@ -1,4 +1,9 @@
-@import url('./table-tokens.css');
+/* table design tokens */
+:root {
+  --table-header-border-width: 2px;
+  --table-row-border-width: 1px;
+  --table-cell-padding: 0.5em;
+}
 
 .table.block {
   width: 100%;

@@ -1,4 +1,12 @@
-@import url('./hero-tokens.css');
+/* hero design tokens */
+:root {
+  --hero-padding: 48px 24px;
+  --hero-padding-desktop: 64px 48px;
+  --hero-min-height: 300px;
+  --hero-min-height-desktop: 480px;
+  --hero-heading-max-width: 800px;
+  --hero-text-color: white;
+}
 
 .hero-container .hero-wrapper {
   max-width: unset;

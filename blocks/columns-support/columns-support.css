@@ -1,4 +1,7 @@
-@import url('../columns/columns-tokens.css');
+/* columns design tokens */
+:root {
+  --columns-gap: 24px;
+}
 
 .columns-support > div {
   display: flex;

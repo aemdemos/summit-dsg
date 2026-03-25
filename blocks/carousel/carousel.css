@@ -1,4 +1,21 @@
-@import url('./carousel-tokens.css');
+/* carousel design tokens */
+:root {
+  --carousel-content-margin: 48px;
+  --carousel-content-margin-desktop: 72px;
+  --carousel-content-padding: 24px;
+  --carousel-content-background: rgb(255 255 255 / 90%);
+  --carousel-indicators-gap: 6px 12px;
+  --carousel-indicators-padding: 12px;
+  --carousel-indicator-size: 10px;
+  --carousel-indicator-background: #dadada;
+  --carousel-indicator-active-background: var(--text-color);
+  --carousel-nav-inset: 12px;
+  --carousel-nav-inset-desktop: 24px;
+  --carousel-nav-button-size: 44px;
+  --carousel-nav-button-background: rgb(255 255 255 / 80%);
+  --carousel-nav-button-hover-background: rgb(255 255 255 / 95%);
+  --carousel-transition-duration: 0.2s;
+}
 
 .carousel .carousel-slides-container {
   position: relative;
