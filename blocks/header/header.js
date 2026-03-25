@@ -1,6 +1,5 @@
-import { getMetadata, loadSections, DOMPURIFY } from '../../scripts/aem.js';
+import { getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
-import { decorateMain, ensureDOMPurify } from '../../scripts/scripts.js';
 
 const isDesktop = window.matchMedia('(min-width: 900px)');
 
@@ -189,10 +188,12 @@ function createSvgIcon(size, children) {
 
 function parseColumnGroups(colLi) {
   const groups = [];
-  const strongs = colLi.querySelectorAll(':scope > strong');
+  const strongs = colLi.querySelectorAll(':scope > strong, :scope > p > strong');
   strongs.forEach((strong) => {
+    if (strong.closest('a')) return;
     const heading = strong.textContent.trim();
-    let next = strong.nextElementSibling;
+    const startEl = strong.parentElement.tagName === 'P' ? strong.parentElement : strong;
+    let next = startEl.nextElementSibling;
     while (next && next.tagName !== 'UL') next = next.nextElementSibling;
     const links = [];
     if (next && next.tagName === 'UL') {
@@ -207,7 +208,7 @@ function parseColumnGroups(colLi) {
 }
 
 function parseSidebar(sidebarLi) {
-  const emEl = sidebarLi.querySelector(':scope > em');
+  const emEl = sidebarLi.querySelector(':scope > em, :scope > p > em');
   const heading = emEl ? emEl.textContent.trim() : '';
   const cards = [];
   const extraLinks = [];
@@ -255,11 +256,15 @@ function parseNavItems(nav) {
 
   const items = [];
   topUl.querySelectorAll(':scope > li').forEach((li) => {
-    const label = Array.from(li.childNodes)
+    let label = Array.from(li.childNodes)
       .filter((n) => n.nodeType === Node.TEXT_NODE)
       .map((n) => n.textContent.trim())
       .join('')
       .trim();
+    if (!label) {
+      const p = li.querySelector(':scope > p');
+      if (p) label = p.textContent.trim();
+    }
     const nestedUl = li.querySelector(':scope > ul');
     if (!nestedUl) {
       items.push({ label, hasMega: false });
@@ -268,7 +273,7 @@ function parseNavItems(nav) {
     const columns = [];
     let sidebar = null;
     nestedUl.querySelectorAll(':scope > li').forEach((colLi) => {
-      if (colLi.querySelector(':scope > em')) {
+      if (colLi.querySelector(':scope > em, :scope > p > em')) {
         sidebar = parseSidebar(colLi);
         return;
       }
@@ -474,24 +479,10 @@ function restructureNavTools(nav) {
   navTools.append(ul);
 }
 
-async function loadNav(navPath) {
-  // Try local content path first (for local dev where .plain.html proxies to remote)
-  const localResp = await fetch(`/content${navPath}.html`);
-  if (localResp.ok) {
-    await ensureDOMPurify();
-    const main = document.createElement('main');
-    main.innerHTML = window.DOMPurify.sanitize(await localResp.text(), DOMPURIFY);
-    decorateMain(main);
-    await loadSections(main);
-    return main;
-  }
-  return loadFragment(navPath);
-}
-
 export default async function decorate(block) {
   const navMeta = getMetadata('nav');
   const navPath = navMeta ? new URL(navMeta, window.location).pathname : '/nav';
-  const fragment = await loadNav(navPath);
+  const fragment = await loadFragment(navPath);
 
   block.textContent = '';
   const nav = document.createElement('nav');
