@@ -2,11 +2,11 @@
 :root {
   --nav-height: 80px;
   --header-nav-max-width: 100%;
-  --header-nav-max-width-desktop: 100%;
+  --header-nav-max-width-desktop: calc(var(--max-width-site) + 64px);
   --header-nav-padding: 0 20px;
-  --header-nav-padding-desktop: 0 20px;
+  --header-nav-padding-desktop: 0 32px;
   --header-nav-gap: 24px;
-  --header-nav-gap-desktop: 40px;
+  --header-nav-gap-desktop: 24px;
   --header-brand-width: 250px;
   --header-dropdown-width: 200px;
   --header-dropdown-padding: 16px;
