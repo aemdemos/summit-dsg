@@ -1,12 +1,41 @@
 @import url('./columns-support-tokens.css');
 
+/* White card container — heading portion */
+main .columns-support-container > .default-content-wrapper {
+  background: var(--background-color);
+  border-radius: 12px 12px 0 0;
+  padding: 60px 60px 0;
+  max-width: var(--max-width-site);
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* White card container — columns portion */
+main .columns-support-container > .columns-support-wrapper {
+  background: var(--background-color);
+  border-radius: 0 0 12px 12px;
+  padding: 0 60px 60px;
+  max-width: var(--max-width-site);
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* Section heading: left-aligned, weight 500 — extra class for specificity over .section.grey rule */
+main .section.columns-support-container > .default-content-wrapper > h2 {
+  text-align: left;
+  font-weight: 500;
+  margin-bottom: 0;
+}
+
+/* Column row layout */
 .columns-support > div {
   display: flex;
   flex-direction: column;
 }
 
+/* Icons */
 .columns-support img {
-  max-width: 64px;
+  max-width: 58px;
   height: auto;
 }
 
@@ -22,33 +51,30 @@
   display: block;
 }
 
+/* Column headings */
 .columns-support h3 {
-  font-weight: 600;
+  font-size: var(--heading-font-size-m);
+  font-weight: 500;
   color: var(--heading-text-color);
+  margin-bottom: 16px;
 }
 
+/* Body text */
+.columns-support p {
+  color: var(--text-color);
+  font-size: var(--body-font-size-m);
+  line-height: 1.25;
+}
+
+/* Links — blue, underlined, no arrow */
 .columns-support a {
-  color: var(--brand-color);
+  color: var(--link-color);
   font-weight: 600;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.columns-support a::after {
-  content: '\2192';
-  font-size: 1.2em;
-  transition: transform 0.2s;
+  text-decoration: underline;
 }
 
 .columns-support a:hover {
-  color: #b53600;
-  text-decoration: none;
-}
-
-.columns-support a:hover::after {
-  transform: translateX(3px);
+  color: var(--link-hover-color);
 }
 
 /* Hide broken icons gracefully */
