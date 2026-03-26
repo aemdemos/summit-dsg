@@ -1,8 +1,17 @@
 @import url('./columns-support-tokens.css');
 
+/* Remove grey section background — source has no background */
+main .section.grey.columns-support-container {
+  background-color: transparent;
+  border-top: none;
+  border-bottom: none;
+}
+
 /* White card container — heading portion */
 main .columns-support-container > .default-content-wrapper {
   background: var(--background-color);
+  border: 1px solid #737373;
+  border-bottom: none;
   border-radius: 12px 12px 0 0;
   padding: 60px 60px 0;
   max-width: var(--max-width-site);
@@ -13,6 +22,8 @@ main .columns-support-container > .default-content-wrapper {
 /* White card container — columns portion */
 main .columns-support-container > .columns-support-wrapper {
   background: var(--background-color);
+  border: 1px solid #737373;
+  border-top: none;
   border-radius: 0 0 12px 12px;
   padding: 0 60px 60px;
   max-width: var(--max-width-site);
