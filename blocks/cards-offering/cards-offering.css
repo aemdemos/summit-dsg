@@ -10,7 +10,7 @@
 }
 
 .cards-offering > ul > li {
-  border: 1px solid transparent;
+  border: 2px solid transparent;
   border-radius: 12px;
   background-color: #fff;
   text-align: left;
@@ -21,7 +21,7 @@
 }
 
 .cards-offering > ul > li:hover {
-  border: 2px solid #d64000;
+  border-color: #d64000;
   background-color: #f8eadd;
   box-shadow: rgb(31 31 31 / 10%) 0 2px 8px 2px;
 }
