@@ -1,5 +1,15 @@
 @import url('./hero-corporate-tokens.css');
 
+main .section.hero-corporate-container {
+  padding-top: 0;
+  padding-bottom: 48px;
+}
+
+/* "Explore additional offerings" heading — bold, overrides global 300 weight */
+main .section.hero-corporate-container > .default-content-wrapper > h2 {
+  font-weight: 700;
+}
+
 .hero-corporate-container .hero-corporate-wrapper {
   max-width: unset;
   padding: 0;
@@ -25,6 +35,8 @@
 .hero-corporate h1 {
   font-weight: 500;
   line-height: 1.2;
+  letter-spacing: -1px;
+  margin-top: 8px;
   margin-bottom: 24px;
   color: #fff;
 }
@@ -35,6 +47,7 @@ main .section.dark .hero-corporate h2 {
   color: #fff;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  margin-top: 0;
   margin-bottom: 8px;
 }
 
@@ -42,6 +55,7 @@ main .section.dark .hero-corporate h2 {
   color: rgb(255 255 255 / 85%);
   max-width: 600px;
   font-size: var(--heading-font-size-m);
+  font-weight: 300;
   line-height: 1.4;
 }
 
@@ -81,7 +95,7 @@ main .section.dark .hero-corporate h2 {
 
 @media (width >= 900px) {
   .hero-corporate {
-    padding: 64px 52px;
+    padding: 48px max(32px, calc((100vw - var(--max-width-site)) / 2));
     min-height: var(--hero-min-height-desktop);
   }
 }

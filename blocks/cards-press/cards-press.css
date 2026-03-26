@@ -1,59 +1,20 @@
-@import url('./cards-press-tokens.css');
-
-.cards-press > ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-}
-
-.cards-press > ul > li {
-  border: none;
-  border-bottom: 1px solid #e0e0e0;
-  border-radius: 0;
-  overflow: hidden;
-  background-color: var(--background-color);
-  padding: 24px 0;
-}
-
-.cards-press > ul > li:last-child {
-  border-bottom: none;
-}
-
-.cards-press .cards-card-body {
-  margin: 0;
-}
-
+/* Hide image container (press cards have no images) */
 .cards-press .cards-card-image {
   display: none;
 }
 
-.cards-press h3 {
-  font-size: var(--heading-font-size-s);
-  font-weight: 600;
-  margin-bottom: 12px;
+/* Section heading — match cards-insight heading style */
+main .cards-press-container > .default-content-wrapper > h2 {
+  font-size: var(--heading-font-size-l);
+  font-weight: 500;
 }
 
-.cards-press .cards-card-body p {
-  font-size: var(--body-font-size-s);
-  line-height: 1.5;
-  color: var(--text-color);
+main .cards-press-container > .default-content-wrapper > h2 strong {
+  color: inherit;
+  font-weight: inherit;
 }
 
-.cards-press .cards-card-body a {
-  color: var(--brand-color);
-  font-weight: 600;
-  text-decoration: none;
-}
-
-.cards-press .cards-card-body a:hover {
-  color: #b53600;
-  text-decoration: underline;
-}
-
-/* "See all press releases" link after cards */
+/* "See all press releases" CTA button */
 .cards-press-wrapper + .default-content-wrapper {
   text-align: center;
   padding-top: 24px;

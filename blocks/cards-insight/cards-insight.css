@@ -1,11 +1,21 @@
 @import url('./cards-insight-tokens.css');
 
+main .cards-insight-container > .default-content-wrapper > h2 {
+  font-size: var(--heading-font-size-l);
+  font-weight: 500;
+}
+
+main .cards-insight-container > .default-content-wrapper > h2 strong {
+  color: inherit;
+  font-weight: inherit;
+}
+
 .cards-insight > ul {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(var(--cards-grid-min-width), 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--cards-grid-min-width)), var(--cards-grid-min-width)));
   gap: var(--cards-grid-gap);
 }
 
@@ -14,10 +24,22 @@
   border-radius: 8px;
   overflow: hidden;
   background-color: var(--background-color);
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.3s;
+  cursor: pointer;
+}
+
+.cards-insight > ul > li:hover {
+  box-shadow: rgb(0 70 123 / 62%) 0 8px 16px;
 }
 
 .cards-insight .cards-card-image {
   line-height: 0;
+}
+
+.cards-insight .cards-card-image p {
+  margin: 0;
 }
 
 .cards-insight > ul > li img {
@@ -28,29 +50,38 @@
 
 .cards-insight .cards-card-body {
   margin: var(--cards-card-body-margin);
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.cards-insight .cards-card-body p:last-child {
+  margin-top: auto;
 }
 
 .cards-insight .cards-card-body h3 {
-  font-weight: 600;
+  font-weight: 500;
   font-size: var(--heading-font-size-s);
-  padding-bottom: 12px;
-  border-bottom: 2px solid var(--brand-color);
-  margin-bottom: 12px;
+  margin: 12px 0 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #e6e6e6;
+  min-height: 2.4em;
 }
 
 .cards-insight .cards-card-body p {
   font-size: var(--body-font-size-s);
-  line-height: 1.5;
+  line-height: 1.29;
   color: var(--text-color);
+  margin: 24px 0 0;
 }
 
 .cards-insight .cards-card-body a {
-  color: var(--brand-color);
-  font-weight: 600;
+  color: var(--link-color);
+  font-weight: 500;
   text-decoration: none;
 }
 
 .cards-insight .cards-card-body a:hover {
-  color: #b53600;
+  color: var(--link-hover-color);
   text-decoration: underline;
 }

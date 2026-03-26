@@ -10,17 +10,20 @@
 }
 
 .cards-offering > ul > li {
-  border: none;
+  border: 2px solid transparent;
   border-radius: 12px;
   background-color: #fff;
   text-align: left;
   padding: 24px 20px;
-  transition: box-shadow 0.2s;
+  box-sizing: border-box;
+  transition: all 0.3s;
   box-shadow: 0 1px 4px rgb(0 0 0 / 8%);
 }
 
 .cards-offering > ul > li:hover {
-  box-shadow: 0 4px 16px rgb(0 0 0 / 15%);
+  border-color: #d64000;
+  background-color: #f8eadd;
+  box-shadow: rgb(31 31 31 / 10%) 0 2px 8px 2px;
 }
 
 .cards-offering .cards-card-body {
@@ -30,29 +33,37 @@
 .cards-offering .cards-card-image {
   line-height: 0;
   margin-bottom: 16px;
+  transition: margin-bottom 0.3s;
+}
+
+.cards-offering > ul > li:hover .cards-card-image {
+  margin-bottom: 12px;
 }
 
 .cards-offering > ul > li img {
-  width: 36px;
-  height: 36px;
+  width: 24px;
+  height: 24px;
   object-fit: contain;
+  transform-origin: top left;
+  transition: transform 0.15s ease-out;
+}
+
+.cards-offering > ul > li:hover img {
+  transform: scale(1.17);
 }
 
 .cards-offering > ul > li a {
   color: #1f1f1f;
-  font-weight: 600;
-  font-size: 16px;
+  font-weight: 500;
+  font-size: 20px;
   text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
 }
 
 .cards-offering > ul > li a::after {
-  content: '\2192';
+  content: '\00a0\2192';
   color: var(--brand-color);
   font-size: 1.2em;
-  transition: transform 0.2s;
+  transition: letter-spacing 0.2s;
 }
 
 .cards-offering > ul > li a:hover {
@@ -60,7 +71,7 @@
 }
 
 .cards-offering > ul > li a:hover::after {
-  transform: translateX(3px);
+  letter-spacing: 4px;
 }
 
 @media (width >= 900px) {

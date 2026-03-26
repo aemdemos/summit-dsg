@@ -6,9 +6,10 @@
   --footer-link-font-size: 14px;
   --footer-column-gap: 24px;
   --footer-columns-padding: 40px 24px;
-  --footer-columns-padding-desktop: 40px 24px;
+  --footer-columns-padding-desktop: 60px 24px;
   --footer-legal-padding: 20px 24px;
   --footer-separator-color: #666;
   --footer-link-item-margin: 0 4px 12px;
   --footer-heading-margin: 0 0 16px 4px;
+  --footer-brand-color: #005da2;
 }

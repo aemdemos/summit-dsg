@@ -67,10 +67,26 @@ export default async function decorate(block) {
       CONTROL_OPTIONS,
     );
     block.append(indicatorsNav);
-    container.append(buttonsContainer);
+
+    /* insert slide counter between prev and next buttons */
+    const counter = document.createElement('span');
+    counter.classList.add('slide-counter');
+    counter.textContent = `1 of ${rows.length}`;
+    const nextBtn = buttonsContainer.querySelector('.slide-next');
+    buttonsContainer.insertBefore(counter, nextBtn);
+
+    /* nav goes after slides-container (below content, not inside it) */
+    block.append(buttonsContainer);
   }
 
   rows.forEach((row, idx) => {
+    // remove columns that only contain a broken image
+    row.querySelectorAll(':scope > div').forEach((col) => {
+      const img = col.querySelector('img');
+      if (img && img.src.includes('about:error') && col.children.length === 1) {
+        col.remove();
+      }
+    });
     const slide = createSlide(row, idx, blockId);
     moveInstrumentation(row, slide);
     slidesWrapper.append(slide);
@@ -81,13 +97,38 @@ export default async function decorate(block) {
   block.prepend(container);
 
   if (!isSingleSlide) {
+    /* Override prev/next to use instant transitions (slider.js defaults to 'smooth').
+       Register before initSlider so these handlers fire first and stop propagation. */
+    block.querySelector('.slide-prev')?.addEventListener('click', (e) => {
+      e.stopImmediatePropagation();
+      const current = parseInt(block.dataset.activeSlide, 10) || 0;
+      showSlide(block, current - 1, 'auto', SLIDER_OPTIONS);
+    });
+    block.querySelector('.slide-next')?.addEventListener('click', (e) => {
+      e.stopImmediatePropagation();
+      const current = parseInt(block.dataset.activeSlide, 10) || 0;
+      showSlide(block, current + 1, 'auto', SLIDER_OPTIONS);
+    });
+
     initSlider(block, SLIDER_OPTIONS);
+
+    /* keep the "X of N" counter in sync with active slide */
+    const totalSlides = block.querySelectorAll(SLIDER_OPTIONS.slideSelector).length;
+    const counterEl = block.querySelector('.slide-counter');
+    if (counterEl) {
+      const observer = new MutationObserver(() => {
+        const idx = parseInt(block.dataset.activeSlide, 10) || 0;
+        counterEl.textContent = `${idx + 1} of ${totalSlides}`;
+      });
+      observer.observe(block, { attributes: true, attributeFilter: ['data-active-slide'] });
+    }
+
     slidesWrapper.addEventListener('keydown', (e) => {
       if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
       const current = parseInt(block.dataset.activeSlide, 10) || 0;
       const next = e.key === 'ArrowLeft' ? current - 1 : current + 1;
       e.preventDefault();
-      showSlide(block, next, 'smooth', SLIDER_OPTIONS);
+      showSlide(block, next, 'auto', SLIDER_OPTIONS);
     });
   }
 }

@@ -48,13 +48,16 @@ function buildLegalBar(section) {
   const wrapper = section.querySelector('.default-content-wrapper');
   if (!wrapper) return legal;
 
-  // First <p><a> is the brand link
+  // First <p><a> is the brand link — include TR logo icon
   const brandP = wrapper.querySelector('p:first-child a');
   if (brandP) {
     const brand = document.createElement('a');
     brand.href = brandP.href;
     brand.className = 'footer-legal-brand';
-    brand.textContent = brandP.textContent;
+    const icon = document.createElement('span');
+    icon.className = 'icon icon-tr-logo';
+    brand.append(icon);
+    brand.append(document.createTextNode(` ${brandP.textContent}`));
     legal.append(brand);
   }
 
@@ -169,7 +172,9 @@ export default async function decorate(block) {
 
   // Build legal bar from authored content
   if (legalSection) {
-    footer.append(buildLegalBar(legalSection));
+    const legalBar = buildLegalBar(legalSection);
+    decorateIcons(legalBar);
+    footer.append(legalBar);
   }
 
   block.append(footer);

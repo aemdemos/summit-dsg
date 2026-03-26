@@ -1,12 +1,56 @@
 @import url('./columns-support-tokens.css');
 
+/* Remove grey section background — constrain section width to align with cards grid */
+main .section.grey.columns-support-container {
+  background-color: transparent;
+  border-top: none;
+  border-bottom: none;
+  max-width: calc(var(--max-width-site) + 64px);
+  margin: 0 auto;
+  padding: 0 32px;
+  box-sizing: border-box;
+}
+
+/* White card container — heading portion */
+main .columns-support-container > .default-content-wrapper {
+  background: var(--background-color);
+  border: 1px solid #737373;
+  border-bottom: none;
+  border-radius: 12px 12px 0 0;
+  padding: 60px 60px 32px;
+  max-width: 1170px;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* White card container — columns portion */
+main .columns-support-container > .columns-support-wrapper {
+  background: var(--background-color);
+  border: 1px solid #737373;
+  border-top: none;
+  border-radius: 0 0 12px 12px;
+  padding: 0 60px 60px;
+  max-width: 1170px;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* Section heading: left-aligned, weight 500 — extra class for specificity over .section.grey rule */
+main .section.columns-support-container > .default-content-wrapper > h2 {
+  text-align: left;
+  font-weight: 500;
+  margin-bottom: 0;
+}
+
+/* Column row layout */
 .columns-support > div {
   display: flex;
   flex-direction: column;
 }
 
+/* Icons */
 .columns-support img {
-  max-width: 64px;
+  max-width: 58px;
   height: auto;
 }
 
@@ -20,31 +64,51 @@
 
 .columns-support > div > .columns-support-img-col img {
   display: block;
+  margin-bottom: 16px;
 }
 
+/* Column headings */
 .columns-support h3 {
-  font-weight: 600;
+  font-size: var(--heading-font-size-m);
+  font-weight: 500;
   color: var(--heading-text-color);
+  line-height: 1.4;
+  margin: 0 0 16px;
 }
 
+/* Body text */
+.columns-support p {
+  color: var(--text-color);
+  font-size: var(--body-font-size-m);
+  line-height: 1.25;
+  margin: 0;
+}
+
+/* Link paragraph spacing */
+.columns-support p:has(a) {
+  margin-top: 24px;
+}
+
+/* Links — blue, underlined, with orange arrow */
 .columns-support a {
-  color: var(--brand-color);
+  color: var(--link-color);
   font-weight: 600;
-  text-decoration: none;
+  text-decoration: underline;
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
 }
 
 .columns-support a::after {
   content: '\2192';
-  font-size: 1.2em;
+  color: var(--brand-color);
+  font-size: 1.3em;
+  text-decoration: none;
   transition: transform 0.2s;
 }
 
 .columns-support a:hover {
-  color: #b53600;
-  text-decoration: none;
+  color: var(--link-hover-color);
 }
 
 .columns-support a:hover::after {

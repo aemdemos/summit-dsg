@@ -1,5 +1,6 @@
 @import url('./carousel-spotlight-tokens.css');
 
+/* Container */
 .carousel-spotlight .carousel-spotlight-slides-container {
   position: relative;
 }
@@ -11,46 +12,31 @@
   padding: 0;
 }
 
+/* Slides track — no scroll-snap so transitions are truly instant */
 .carousel-spotlight .carousel-spotlight-slides {
   display: flex;
-  scroll-behavior: smooth;
-  scroll-snap-type: x mandatory;
-  overflow: scroll clip;
+  overflow: hidden;
 }
 
-.carousel-spotlight .carousel-spotlight-slides::-webkit-scrollbar {
-  display: none;
-}
-
+/* Individual slide — mobile: stacked (image on top, text below) */
 .carousel-spotlight .carousel-spotlight-slide {
   flex: 0 0 100%;
-  scroll-snap-align: start;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  position: relative;
   width: 100%;
-  min-height: min(50vw, calc(100dvh - var(--header-height)));
 }
 
-.carousel-spotlight .carousel-spotlight-slide:has(.carousel-spotlight-slide-content[data-align='center']) {
-  align-items: center;
-}
-
-.carousel-spotlight .carousel-spotlight-slide:has(.carousel-spotlight-slide-content[data-align='right']) {
-  align-items: flex-end;
-}
-
+/* Image column */
 .carousel-spotlight .carousel-spotlight-slide .carousel-spotlight-slide-image {
-  position: absolute;
-  inset: 0;
-  background-color: var(--dark-color);
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
 }
 
 .carousel-spotlight .carousel-spotlight-slide .carousel-spotlight-slide-image picture {
-  position: absolute;
-  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .carousel-spotlight .carousel-spotlight-slide .carousel-spotlight-slide-image picture > img {
@@ -59,125 +45,151 @@
   object-fit: cover;
 }
 
+/* Content column */
 .carousel-spotlight .carousel-spotlight-slide .carousel-spotlight-slide-content {
-  z-index: 1;
-  margin: var(--carousel-content-margin);
-  padding: 32px;
-  color: var(--text-color);
-  background-color: rgb(255 255 255 / 95%);
-  position: relative;
-  width: var(--slide-content-width, auto);
-  border-radius: 4px;
+  padding: 24px 0;
+}
+
+/* Orange separator line above heading */
+.carousel-spotlight .carousel-spotlight-slide .carousel-spotlight-slide-content::before {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: var(--carousel-spotlight-separator-color);
+  margin-bottom: 24px;
 }
 
 .carousel-spotlight .carousel-spotlight-slide .carousel-spotlight-slide-content h3 {
   color: var(--heading-text-color);
   font-size: var(--heading-font-size-l);
   margin-top: 0;
+  font-weight: 700;
 }
 
 .carousel-spotlight .carousel-spotlight-slide .carousel-spotlight-slide-content p {
   font-size: var(--body-font-size-s);
   line-height: 1.6;
+  color: var(--text-color);
 }
 
 .carousel-spotlight .carousel-spotlight-slide .carousel-spotlight-slide-content a {
-  color: var(--brand-color);
+  color: var(--text-color);
   font-weight: 600;
-  text-decoration: none;
-}
-
-.carousel-spotlight .carousel-spotlight-slide .carousel-spotlight-slide-content a:hover {
   text-decoration: underline;
 }
 
-.carousel-spotlight .carousel-spotlight-slide-indicators {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: var(--carousel-indicators-gap);
-  padding: var(--carousel-indicators-padding);
-  background-color: transparent;
-  line-height: 0;
+.carousel-spotlight .carousel-spotlight-slide .carousel-spotlight-slide-content a:hover {
+  color: var(--brand-color);
 }
 
-.carousel-spotlight .carousel-spotlight-slide-indicator button {
-  width: var(--carousel-indicator-size);
-  height: var(--carousel-indicator-size);
-  margin: 0;
-  padding: 0;
-  border-radius: 50%;
-  background-color: var(--carousel-indicator-background);
-  transition: background-color var(--carousel-transition-duration);
-}
-
-.carousel-spotlight .carousel-spotlight-slide-indicator button:disabled,
-.carousel-spotlight .carousel-spotlight-slide-indicator button:hover,
-.carousel-spotlight .carousel-spotlight-slide-indicator button:focus-visible {
-  background-color: var(--carousel-indicator-active-background);
-}
-
+/* Navigation — prev/next + counter at bottom-left */
 .carousel-spotlight .carousel-spotlight-navigation-buttons {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  left: var(--carousel-nav-inset);
-  right: var(--carousel-nav-inset);
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  z-index: 1;
+  gap: var(--carousel-spotlight-nav-gap);
+  padding-top: 16px;
 }
 
 /* stylelint-disable-next-line no-descending-specificity */
 .carousel-spotlight .carousel-spotlight-navigation-buttons button {
   position: relative;
-  width: var(--carousel-nav-button-size);
-  height: var(--carousel-nav-button-size);
+  width: var(--carousel-spotlight-nav-button-size);
+  height: var(--carousel-spotlight-nav-button-size);
   margin: 0;
   border-radius: 50%;
   padding: 0;
-  background-color: var(--carousel-nav-button-background);
-  transition: background-color var(--carousel-transition-duration);
+  background-color: transparent;
+  border: var(--carousel-spotlight-nav-button-border);
+  transition: border-color var(--carousel-spotlight-transition-duration);
+  cursor: pointer;
 }
 
 .carousel-spotlight .carousel-spotlight-navigation-buttons button:hover,
 .carousel-spotlight .carousel-spotlight-navigation-buttons button:focus-visible {
-  background-color: var(--carousel-nav-button-hover-background);
+  border: var(--carousel-spotlight-nav-button-hover-border);
 }
 
 .carousel-spotlight .carousel-spotlight-navigation-buttons button::after {
   display: block;
   content: '';
-  border: 2px solid;
+  border: 2px solid var(--text-color);
   border-bottom: 0;
   border-left: 0;
-  height: 12px;
-  width: 12px;
+  height: 8px;
+  width: 8px;
   position: absolute;
   top: 50%;
-  left: calc(50% + 2px);
+  left: calc(50% + 1px);
   transform: translate(-50%, -50%) rotate(-135deg);
 }
 
 .carousel-spotlight .carousel-spotlight-navigation-buttons button.slide-next::after {
   transform: translate(-50%, -50%) rotate(45deg);
-  left: calc(50% - 2px);
+  left: calc(50% - 1px);
 }
 
-@media (width >= 600px) {
-  .carousel-spotlight .carousel-spotlight-navigation-buttons {
-    left: var(--carousel-nav-inset-desktop);
-    right: var(--carousel-nav-inset-desktop);
+/* Slide counter text (e.g. "1 of 6") */
+.carousel-spotlight .carousel-spotlight-navigation-buttons .slide-counter {
+  font-size: var(--body-font-size-s);
+  color: var(--text-color);
+  white-space: nowrap;
+  min-width: 3em;
+  text-align: center;
+}
+
+/* Dot indicators — hide on desktop, show on mobile as fallback */
+.carousel-spotlight .carousel-spotlight-slide-indicators {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--carousel-spotlight-indicators-gap);
+  padding: var(--carousel-spotlight-indicators-padding);
+  background-color: transparent;
+  line-height: 0;
+}
+
+.carousel-spotlight .carousel-spotlight-slide-indicator button {
+  width: var(--carousel-spotlight-indicator-size);
+  height: var(--carousel-spotlight-indicator-size);
+  margin: 0;
+  padding: 0;
+  border-radius: 50%;
+  background-color: var(--carousel-spotlight-indicator-background);
+  transition: background-color var(--carousel-spotlight-transition-duration);
+}
+
+.carousel-spotlight .carousel-spotlight-slide-indicator button:disabled,
+.carousel-spotlight .carousel-spotlight-slide-indicator button:hover,
+.carousel-spotlight .carousel-spotlight-slide-indicator button:focus-visible {
+  background-color: var(--carousel-spotlight-indicator-active-background);
+}
+
+/* Desktop — side-by-side: text left, image right */
+@media (width >= 900px) {
+  .carousel-spotlight .carousel-spotlight-slide {
+    flex-direction: row;
+    align-items: stretch;
+    gap: var(--carousel-spotlight-gap);
   }
 
   .carousel-spotlight .carousel-spotlight-slide .carousel-spotlight-slide-content {
-    --slide-content-width: calc((100% - 184px) / 2);
-
-    margin: var(--carousel-content-margin-desktop);
+    flex: 1 1 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 24px 0;
+    order: -1;
   }
 
-  .carousel-spotlight .carousel-spotlight-slide .carousel-spotlight-slide-content[data-align='justify'] {
-    --slide-content-width: auto;
+  .carousel-spotlight .carousel-spotlight-slide .carousel-spotlight-slide-image {
+    flex: 1 1 50%;
+    aspect-ratio: auto;
+    min-height: 400px;
+  }
+
+  /* Hide dot indicators on desktop (counter replaces them) */
+  .carousel-spotlight nav[aria-label="Carousel Slide Controls"] {
+    display: none;
   }
 }

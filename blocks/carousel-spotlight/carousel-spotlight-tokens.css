@@ -1,18 +1,16 @@
-/* carousel design tokens */
+/* carousel-spotlight design tokens */
 :root {
-  --carousel-content-margin: 48px;
-  --carousel-content-margin-desktop: 72px;
-  --carousel-content-padding: 24px;
-  --carousel-content-background: rgb(255 255 255 / 90%);
-  --carousel-indicators-gap: 6px 12px;
-  --carousel-indicators-padding: 12px;
-  --carousel-indicator-size: 10px;
-  --carousel-indicator-background: #dadada;
-  --carousel-indicator-active-background: var(--text-color);
-  --carousel-nav-inset: 12px;
-  --carousel-nav-inset-desktop: 24px;
-  --carousel-nav-button-size: 44px;
-  --carousel-nav-button-background: rgb(255 255 255 / 80%);
-  --carousel-nav-button-hover-background: rgb(255 255 255 / 95%);
-  --carousel-transition-duration: 0.2s;
+  --carousel-spotlight-gap: 40px;
+  --carousel-spotlight-content-padding: 0;
+  --carousel-spotlight-separator-color: var(--brand-color, #e35205);
+  --carousel-spotlight-nav-button-size: 36px;
+  --carousel-spotlight-nav-button-border: 1px solid #767676;
+  --carousel-spotlight-nav-button-hover-border: 1px solid var(--text-color);
+  --carousel-spotlight-nav-gap: 8px;
+  --carousel-spotlight-transition-duration: 0.2s;
+  --carousel-spotlight-indicator-size: 10px;
+  --carousel-spotlight-indicator-background: #dadada;
+  --carousel-spotlight-indicator-active-background: var(--text-color);
+  --carousel-spotlight-indicators-gap: 6px 12px;
+  --carousel-spotlight-indicators-padding: 12px;
 }

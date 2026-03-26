@@ -142,10 +142,27 @@ footer .footer .footer-legal {
 
 /* Brand link */
 footer .footer .footer-legal-brand {
-  color: var(--footer-text-color);
-  font-weight: 700;
+  color: var(--footer-brand-color);
+  font-weight: 400;
   font-size: 16px;
   text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+footer .footer .footer-legal-brand .icon {
+  display: inline-flex;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+footer .footer .footer-legal-brand .icon svg {
+  width: 24px;
+  height: 24px;
+  fill: var(--footer-brand-color);
 }
 
 footer .footer .footer-legal-brand:hover {
@@ -182,7 +199,9 @@ footer .footer .footer-legal-ccpa {
   color: var(--footer-text-color);
   text-decoration: none;
   font-size: var(--footer-link-font-size);
-  margin-top: 4px;
+  border-top: 1px solid var(--footer-separator-color);
+  padding-top: 20px;
+  margin-top: 0;
 }
 
 footer .footer .footer-legal-ccpa:hover {
@@ -236,6 +255,7 @@ footer .footer a.button:hover {
   /* Headings are plain text, not toggles */
   footer .footer .footer-column h3 {
     margin: var(--footer-heading-margin);
+    padding-bottom: 21px;
   }
 
   footer .footer .footer-column-toggle {
@@ -259,10 +279,11 @@ footer .footer a.button:hover {
     padding: 0;
     margin: var(--footer-link-item-margin);
     border-bottom: none;
+    line-height: 24px;
   }
 
-  /* Legal bar - no top border on desktop (already has visual separator) */
+  /* Legal bar - allow wrapping so CCPA drops to its own line */
   footer .footer .footer-legal {
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
   }
 }
