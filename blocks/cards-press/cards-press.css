@@ -1,6 +1,9 @@
-@import url('./cards-press-tokens.css');
+/* Hide image container (press cards have no images) */
+.cards-press .cards-card-image {
+  display: none;
+}
 
-/* Section heading — orange, weight 500, matches cards-insight heading */
+/* Section heading — match cards-insight heading style */
 main .cards-press-container > .default-content-wrapper > h2 {
   font-size: var(--heading-font-size-l);
   font-weight: 500;
@@ -9,80 +12,6 @@ main .cards-press-container > .default-content-wrapper > h2 {
 main .cards-press-container > .default-content-wrapper > h2 strong {
   color: inherit;
   font-weight: inherit;
-}
-
-/* Grid layout — same as cards-insight */
-.cards-press > ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--cards-grid-min-width)), var(--cards-grid-min-width)));
-  gap: var(--cards-grid-gap);
-}
-
-/* Card — bordered, rounded, with hover shadow */
-.cards-press > ul > li {
-  border: var(--cards-card-border-width) solid var(--cards-card-border-color);
-  border-radius: 8px;
-  overflow: hidden;
-  background-color: var(--background-color);
-  display: flex;
-  flex-direction: column;
-  transition: box-shadow 0.3s;
-  cursor: pointer;
-}
-
-.cards-press > ul > li:hover {
-  box-shadow: rgb(0 70 123 / 62%) 0 8px 16px;
-}
-
-/* Hide image container (press cards have no images) */
-.cards-press .cards-card-image {
-  display: none;
-}
-
-/* Card body */
-.cards-press .cards-card-body {
-  margin: var(--cards-card-body-margin);
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-}
-
-/* Push link to the bottom */
-.cards-press .cards-card-body p:last-child {
-  margin-top: auto;
-}
-
-/* Card heading — with bottom separator */
-.cards-press .cards-card-body h3 {
-  font-weight: 500;
-  font-size: var(--heading-font-size-s);
-  margin: 12px 0 16px;
-  padding-bottom: 16px;
-  border-bottom: 1px solid #e6e6e6;
-  min-height: 2.4em;
-}
-
-/* Body text */
-.cards-press .cards-card-body p {
-  font-size: var(--body-font-size-s);
-  line-height: 1.29;
-  color: var(--text-color);
-  margin: 24px 0 0;
-}
-
-/* Links — blue, matching cards-insight */
-.cards-press .cards-card-body a {
-  color: var(--link-color);
-  font-weight: 500;
-  text-decoration: none;
-}
-
-.cards-press .cards-card-body a:hover {
-  color: var(--link-hover-color);
-  text-decoration: underline;
 }
 
 /* "See all press releases" CTA button */
