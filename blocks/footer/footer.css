@@ -36,6 +36,7 @@ footer .footer .footer-column:last-child {
 /* Column headings */
 footer .footer .footer-column h3 {
   color: var(--footer-text-color);
+  font-family: var(--footer-heading-font-family);
   font-size: var(--footer-heading-font-size);
   font-weight: 700;
   text-transform: none;
@@ -132,8 +133,15 @@ footer .footer .footer-column > ul a .icon svg {
    Legal Bar
    ============================================= */
 footer .footer .footer-legal {
-  padding: var(--footer-legal-padding);
   border-top: 1px solid var(--footer-separator-color);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Upper legal bar: brand + legal links */
+footer .footer .footer-legal-upper {
+  padding: var(--footer-legal-padding);
+  max-width: var(--footer-legal-max-width);
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -193,15 +201,16 @@ footer .footer .footer-legal nav a:hover {
   text-decoration: underline;
 }
 
-/* CCPA link */
+/* CCPA link — separate lower section */
+footer .footer .footer-legal-lower {
+  padding: var(--footer-legal-padding);
+  border-top: 1px solid var(--footer-separator-color);
+}
+
 footer .footer .footer-legal-ccpa {
-  flex-basis: 100%;
   color: var(--footer-text-color);
   text-decoration: none;
   font-size: var(--footer-link-font-size);
-  border-top: 1px solid var(--footer-separator-color);
-  padding-top: 20px;
-  margin-top: 0;
 }
 
 footer .footer .footer-legal-ccpa:hover {
@@ -240,7 +249,8 @@ footer .footer a.button:hover {
     flex-wrap: nowrap;
     gap: var(--footer-column-gap);
     padding: var(--footer-columns-padding-desktop);
-    justify-content: center;
+    max-width: var(--footer-legal-max-width);
+    margin: 0 auto;
   }
 
   footer .footer .footer-column {
@@ -282,8 +292,8 @@ footer .footer a.button:hover {
     line-height: 24px;
   }
 
-  /* Legal bar - allow wrapping so CCPA drops to its own line */
-  footer .footer .footer-legal {
-    flex-wrap: wrap;
+  /* Legal bar — brand + links stay on one line on desktop */
+  footer .footer .footer-legal-upper {
+    flex-wrap: nowrap;
   }
 }
