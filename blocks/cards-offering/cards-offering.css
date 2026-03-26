@@ -37,12 +37,12 @@
   width: 24px;
   height: 24px;
   object-fit: contain;
-  transition: width 0.15s ease-out, height 0.15s ease-out;
+  transform-origin: top left;
+  transition: transform 0.15s ease-out;
 }
 
 .cards-offering > ul > li:hover img {
-  width: 28px;
-  height: 28px;
+  transform: scale(1.17);
 }
 
 .cards-offering > ul > li a {
