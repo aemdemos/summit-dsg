@@ -2,7 +2,12 @@
 
 main .section.hero-corporate-container {
   padding-top: 0;
-  padding-bottom: 0;
+  padding-bottom: 48px;
+}
+
+/* "Explore additional offerings" heading — bold, overrides global 300 weight */
+main .section.hero-corporate-container > .default-content-wrapper > h2 {
+  font-weight: 700;
 }
 
 .hero-corporate-container .hero-corporate-wrapper {
