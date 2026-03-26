@@ -14,7 +14,7 @@ main .columns-support-container > .default-content-wrapper {
   border-bottom: none;
   border-radius: 12px 12px 0 0;
   padding: 60px 60px 32px;
-  max-width: var(--max-width-site);
+  max-width: 1170px;
   margin: 0 auto;
   box-sizing: border-box;
 }
@@ -26,7 +26,7 @@ main .columns-support-container > .columns-support-wrapper {
   border-top: none;
   border-radius: 0 0 12px 12px;
   padding: 0 60px 60px;
-  max-width: var(--max-width-site);
+  max-width: 1170px;
   margin: 0 auto;
   box-sizing: border-box;
 }
