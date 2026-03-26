@@ -10,16 +10,18 @@
 }
 
 .cards-offering > ul > li {
-  border: none;
+  border: 1px solid transparent;
   border-radius: 12px;
   background-color: #fff;
   text-align: left;
   padding: 24px 20px;
+  box-sizing: border-box;
   transition: all 0.3s;
   box-shadow: 0 1px 4px rgb(0 0 0 / 8%);
 }
 
 .cards-offering > ul > li:hover {
+  border: 2px solid #d64000;
   background-color: #f8eadd;
   box-shadow: rgb(31 31 31 / 10%) 0 2px 8px 2px;
 }
@@ -31,6 +33,11 @@
 .cards-offering .cards-card-image {
   line-height: 0;
   margin-bottom: 16px;
+  transition: margin-bottom 0.3s;
+}
+
+.cards-offering > ul > li:hover .cards-card-image {
+  margin-bottom: 12px;
 }
 
 .cards-offering > ul > li img {
