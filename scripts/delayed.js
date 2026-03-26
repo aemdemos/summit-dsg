@@ -37,8 +37,9 @@ function buildBackToTop() {
     if (footer) {
       const footerTop = footer.getBoundingClientRect().top;
       const overlap = window.innerHeight - footerTop;
+      const maxBottom = window.innerHeight - 40 - gap;
       btn.style.bottom = overlap > 0
-        ? `${overlap + gap}px`
+        ? `${Math.min(overlap + gap, maxBottom)}px`
         : `${defaultBottom}px`;
     }
   };
