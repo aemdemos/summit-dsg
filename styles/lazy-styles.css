@@ -12,7 +12,7 @@
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  transition: right 0.3s;
+  transition: right 0.3s, bottom 0.15s;
   z-index: 10;
   cursor: pointer;
 }
