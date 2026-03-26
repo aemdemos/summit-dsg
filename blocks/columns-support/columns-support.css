@@ -13,7 +13,7 @@ main .columns-support-container > .default-content-wrapper {
   border: 1px solid #737373;
   border-bottom: none;
   border-radius: 12px 12px 0 0;
-  padding: 60px 60px 0;
+  padding: 60px 60px 32px;
   max-width: var(--max-width-site);
   margin: 0 auto;
   box-sizing: border-box;
@@ -60,6 +60,7 @@ main .section.columns-support-container > .default-content-wrapper > h2 {
 
 .columns-support > div > .columns-support-img-col img {
   display: block;
+  margin-bottom: 16px;
 }
 
 /* Column headings */
@@ -79,6 +80,11 @@ main .section.columns-support-container > .default-content-wrapper > h2 {
   margin: 0;
 }
 
+/* Link paragraph spacing */
+.columns-support p:has(a) {
+  margin-top: 24px;
+}
+
 /* Links — blue, underlined, with orange arrow */
 .columns-support a {
   color: var(--link-color);
@@ -92,7 +98,7 @@ main .section.columns-support-container > .default-content-wrapper > h2 {
 .columns-support a::after {
   content: '\2192';
   color: var(--brand-color);
-  font-size: 1.2em;
+  font-size: 1.3em;
   text-decoration: none;
   transition: transform 0.2s;
 }
