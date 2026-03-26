@@ -44,16 +44,13 @@
   font-weight: 500;
   font-size: 20px;
   text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
 }
 
 .cards-offering > ul > li a::after {
-  content: '\2192';
+  content: '\00a0\2192';
   color: var(--brand-color);
   font-size: 1.2em;
-  transition: transform 0.2s;
+  transition: letter-spacing 0.2s;
 }
 
 .cards-offering > ul > li a:hover {
@@ -61,7 +58,7 @@
 }
 
 .cards-offering > ul > li a:hover::after {
-  transform: translateX(3px);
+  letter-spacing: 4px;
 }
 
 @media (width >= 900px) {
