@@ -67,7 +67,8 @@ main .section.columns-support-container > .default-content-wrapper > h2 {
   font-size: var(--heading-font-size-m);
   font-weight: 500;
   color: var(--heading-text-color);
-  margin-bottom: 16px;
+  line-height: 1.4;
+  margin: 0 0 16px;
 }
 
 /* Body text */
@@ -75,17 +76,33 @@ main .section.columns-support-container > .default-content-wrapper > h2 {
   color: var(--text-color);
   font-size: var(--body-font-size-m);
   line-height: 1.25;
+  margin: 0;
 }
 
-/* Links — blue, underlined, no arrow */
+/* Links — blue, underlined, with orange arrow */
 .columns-support a {
   color: var(--link-color);
   font-weight: 600;
   text-decoration: underline;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.columns-support a::after {
+  content: '\2192';
+  color: var(--brand-color);
+  font-size: 1.2em;
+  text-decoration: none;
+  transition: transform 0.2s;
 }
 
 .columns-support a:hover {
   color: var(--link-hover-color);
+}
+
+.columns-support a:hover::after {
+  transform: translateX(3px);
 }
 
 /* Hide broken icons gracefully */
