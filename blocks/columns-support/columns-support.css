@@ -1,10 +1,14 @@
 @import url('./columns-support-tokens.css');
 
-/* Remove grey section background — source has no background */
+/* Remove grey section background — constrain section width to align with cards grid */
 main .section.grey.columns-support-container {
   background-color: transparent;
   border-top: none;
   border-bottom: none;
+  max-width: calc(var(--max-width-site) + 64px);
+  margin: 0 auto;
+  padding: 0 32px;
+  box-sizing: border-box;
 }
 
 /* White card container — heading portion */
@@ -15,7 +19,7 @@ main .columns-support-container > .default-content-wrapper {
   border-radius: 12px 12px 0 0;
   padding: 60px 60px 32px;
   max-width: 1170px;
-  margin: 0 auto;
+  margin: 0;
   box-sizing: border-box;
 }
 
@@ -27,7 +31,7 @@ main .columns-support-container > .columns-support-wrapper {
   border-radius: 0 0 12px 12px;
   padding: 0 60px 60px;
   max-width: 1170px;
-  margin: 0 auto;
+  margin: 0;
   box-sizing: border-box;
 }
 
