@@ -27,13 +27,13 @@ function buildBackToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
-  // Show/hide based on scroll position
+  // Show/hide based on scroll position — hide when footer is in view
+  const footer = document.querySelector('footer');
   const toggle = () => {
-    if (window.scrollY > 400) {
-      btn.classList.add('visible');
-    } else {
-      btn.classList.remove('visible');
-    }
+    const scrolledDown = window.scrollY > 400;
+    const footerVisible = footer
+      && footer.getBoundingClientRect().top < window.innerHeight;
+    btn.classList.toggle('visible', scrolledDown && !footerVisible);
   };
   window.addEventListener('scroll', toggle, { passive: true });
   toggle();
