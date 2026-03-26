@@ -65,6 +65,7 @@ main .cards-insight-container > .default-content-wrapper > h2 strong {
   margin: 12px 0 16px;
   padding-bottom: 16px;
   border-bottom: 1px solid #e6e6e6;
+  min-height: 2.4em;
 }
 
 .cards-insight .cards-card-body p {
