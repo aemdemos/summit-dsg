@@ -146,6 +146,23 @@ footer .footer .footer-legal-brand {
   font-weight: 400;
   font-size: 16px;
   text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+footer .footer .footer-legal-brand .icon {
+  display: inline-flex;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+footer .footer .footer-legal-brand .icon svg {
+  width: 24px;
+  height: 24px;
+  fill: var(--footer-brand-color);
 }
 
 footer .footer .footer-legal-brand:hover {
