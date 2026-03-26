@@ -3,41 +3,45 @@ import { moveInstrumentation, getBlockId } from '../../scripts/scripts.js';
 import { createCard } from '../card/card.js';
 
 /**
- * Temporary fallback: restore Scene7 URLs for images that failed AEM
- * optimization (about:error). Remove this map once images are re-authored
- * as links in DA (see convertScene7Links).
- */
-/* eslint-disable max-len */
-const IMAGE_FALLBACKS = new Map([
-  ['2026 AI in Professional Services Report', 'https://thomsonreuters.scene7.com/is/image/thomsonreuterscloudprod/201276_109755785-1'],
-  ['Introducing Our First CoCounsel Guided Workflows', 'https://thomsonreuters.scene7.com/is/image/thomsonreuterscloudprod/243582-644540343'],
-  ['Future of Professionals Report 2025', 'https://thomsonreuters.scene7.com/is/image/thomsonreuterscloudprod/251216-922168087'],
-]);
-/* eslint-enable max-len */
-
-function fixBrokenImages(block) {
-  block.querySelectorAll('img').forEach((img) => {
-    if (img.src.includes('about:error') && IMAGE_FALLBACKS.has(img.alt)) {
-      img.src = IMAGE_FALLBACKS.get(img.alt);
-    }
-  });
-}
-
-/**
- * Convert Scene7 links to <img> elements. Authors place Scene7 URLs as
- * links in the image cell (since AEM cannot process Scene7 through its
- * media pipeline). The link text becomes the alt attribute.
+ * Convert Scene7 image tokens to <img> elements.
+ *
+ * AEM's media pipeline converts ANY recognisable URL (bare text, links, img
+ * tags) to about:error when it cannot download the image. To survive the
+ * pipeline we store only a short token in the image cell:
+ *
+ *   scene7:<account>/<asset-id>
+ *
+ * The JS reconstructs the full URL at runtime.
  *
  * Authoring pattern in DA:
- *   Image cell → link with href = Scene7 URL, text = alt text
+ *   Image cell → scene7:thomsonreuterscloudprod/201276_109755785-1
  */
-function convertScene7Links(block) {
-  block.querySelectorAll(':scope > div > div > a[href*="scene7.com"]').forEach((link) => {
-    const img = document.createElement('img');
-    img.src = link.href;
-    img.alt = link.textContent || '';
-    img.loading = 'lazy';
-    link.parentElement.replaceChildren(img);
+const SCENE7_BASE = 'https://thomsonreuters.scene7.com/is/image/';
+
+function resolveExternalImages(block) {
+  [...block.children].forEach((row) => {
+    const cells = row.querySelectorAll(':scope > div');
+    if (cells.length < 2) return;
+
+    const imageCell = cells[0];
+    const contentCell = cells[1];
+
+    /* scene7: token → reconstruct full URL */
+    const text = imageCell.textContent.trim();
+    const match = text.match(/^scene7:(.+)/i);
+    if (match) {
+      const heading = contentCell.querySelector('h1, h2, h3, h4, h5, h6');
+      const img = document.createElement('img');
+      img.src = `${SCENE7_BASE}${match[1]}`;
+      img.alt = heading ? heading.textContent : '';
+      img.loading = 'lazy';
+      imageCell.replaceChildren(img);
+      return;
+    }
+
+    /* Remove about:error images left by AEM's pipeline */
+    const broken = imageCell.querySelector('img[src="about:error"]');
+    if (broken) broken.remove();
   });
 }
 
@@ -48,8 +52,7 @@ export default function decorate(block) {
   block.setAttribute('role', 'region');
   block.setAttribute('aria-roledescription', 'Cards');
 
-  convertScene7Links(block);
-  fixBrokenImages(block);
+  resolveExternalImages(block);
 
   /* change to ul, li */
   const ul = document.createElement('ul');
