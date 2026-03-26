@@ -34,9 +34,15 @@
 }
 
 .cards-offering > ul > li img {
-  width: 36px;
-  height: 36px;
+  width: 24px;
+  height: 24px;
   object-fit: contain;
+  transition: width 0.15s ease-out, height 0.15s ease-out;
+}
+
+.cards-offering > ul > li:hover img {
+  width: 28px;
+  height: 28px;
 }
 
 .cards-offering > ul > li a {
