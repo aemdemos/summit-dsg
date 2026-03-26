@@ -52,16 +52,19 @@ function buildLegalBar(section) {
   const upper = document.createElement('div');
   upper.className = 'footer-legal-upper';
 
-  // First <p><a> is the brand link — include TR logo icon
+  // First <p><a> is the brand link — rendered as full logo image
   const brandP = wrapper.querySelector('p:first-child a');
   if (brandP) {
     const brand = document.createElement('a');
     brand.href = brandP.href;
     brand.className = 'footer-legal-brand';
     const icon = document.createElement('span');
-    icon.className = 'icon icon-tr-logo';
+    icon.className = 'icon icon-tr-footer-logo';
     brand.append(icon);
-    brand.append(document.createTextNode(` ${brandP.textContent}`));
+    const label = document.createElement('span');
+    label.className = 'sr-only';
+    label.textContent = brandP.textContent;
+    brand.append(label);
     upper.append(brand);
   }
 
