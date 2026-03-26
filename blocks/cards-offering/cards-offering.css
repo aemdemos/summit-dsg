@@ -10,17 +10,18 @@
 }
 
 .cards-offering > ul > li {
-  border: none;
-  border-radius: 12px;
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
   background-color: #fff;
   text-align: left;
   padding: 24px 20px;
-  transition: box-shadow 0.2s;
-  box-shadow: 0 1px 4px rgb(0 0 0 / 8%);
+  transition: all 0.3s;
 }
 
 .cards-offering > ul > li:hover {
-  box-shadow: 0 4px 16px rgb(0 0 0 / 15%);
+  background-color: #f8eadd;
+  border-color: var(--brand-color);
+  box-shadow: rgb(31 31 31 / 10%) 0 2px 8px 2px;
 }
 
 .cards-offering .cards-card-body {

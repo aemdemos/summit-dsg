@@ -1,5 +1,10 @@
 @import url('./hero-corporate-tokens.css');
 
+main .section.hero-corporate-container {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
 .hero-corporate-container .hero-corporate-wrapper {
   max-width: unset;
   padding: 0;
@@ -26,6 +31,7 @@
   font-weight: 500;
   line-height: 1.2;
   letter-spacing: -1px;
+  margin-top: 8px;
   margin-bottom: 24px;
   color: #fff;
 }
@@ -36,6 +42,7 @@ main .section.dark .hero-corporate h2 {
   color: #fff;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  margin-top: 0;
   margin-bottom: 8px;
 }
 
