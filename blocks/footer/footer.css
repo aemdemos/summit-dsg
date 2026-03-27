@@ -140,8 +140,10 @@ footer .footer .footer-legal {
 
 /* Upper legal bar: brand + legal links */
 footer .footer .footer-legal-upper {
-  padding: var(--footer-legal-padding);
+  width: 100%;
   max-width: var(--footer-legal-max-width);
+  margin: 0 auto;
+  padding: var(--footer-legal-padding);
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -206,7 +208,10 @@ footer .footer .footer-legal nav a:hover {
 
 /* CCPA link — separate lower section */
 footer .footer .footer-legal-lower {
+  width: 100%;
   padding: var(--footer-legal-padding);
+  max-width: var(--footer-legal-max-width);
+  margin: 0 auto;
   border-top: 1px solid var(--footer-separator-color);
 }
 
