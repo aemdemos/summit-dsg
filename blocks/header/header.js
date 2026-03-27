@@ -155,6 +155,13 @@ function decorateNavBrand(nav) {
     || brandLink.closest('.button-wrapper');
   if (btnContainer) btnContainer.className = '';
   brandLink.setAttribute('aria-label', 'Thomson Reuters Home');
+
+  const logo = document.createElement('img');
+  logo.src = '/icons/tr-header-logo.svg';
+  logo.alt = 'Thomson Reuters';
+  logo.className = 'nav-brand-logo';
+  brandLink.textContent = '';
+  brandLink.append(logo);
 }
 
 // SVG namespace is an identifier, not a network URL — http:// is required per spec
