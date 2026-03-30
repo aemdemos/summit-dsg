@@ -258,6 +258,8 @@ footer .footer a.button:hover {
     flex-wrap: nowrap;
     gap: var(--footer-column-gap);
     padding: var(--footer-columns-padding-desktop);
+    max-width: var(--max-width-site);
+    margin: 0 auto;
   }
 
   footer .footer .footer-column {
