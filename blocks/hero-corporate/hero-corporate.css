@@ -2,7 +2,7 @@
 
 main .section.hero-corporate-container {
   padding-top: 0;
-  padding-bottom: 24px;
+  padding-bottom: 48px;
   background-image: url('https://thomsonreuters.scene7.com/is/image/thomsonreuterscloudprod/racing-green-3-swirl-3600x-1?wid=1800&qlt=80');
   background-size: cover;
   background-position: top left;
@@ -100,7 +100,7 @@ main .section.dark .hero-corporate h2 {
 
 @media (width >= 900px) {
   .hero-corporate {
-    padding: 48px max(32px, calc((100vw - var(--max-width-site)) / 2));
+    padding: 60px max(32px, calc((100vw - var(--max-width-site)) / 2));
     min-height: var(--hero-min-height-desktop);
   }
 }
