@@ -2,16 +2,21 @@
 
 main .section.hero-corporate-container {
   padding-top: 0;
-  padding-bottom: 48px;
+  padding-bottom: 24px;
   background-image: url('https://thomsonreuters.scene7.com/is/image/thomsonreuterscloudprod/racing-green-3-swirl-3600x-1?wid=1800&qlt=80');
   background-size: cover;
   background-position: top left;
   background-repeat: no-repeat;
 }
 
-/* "Explore additional offerings" heading — bold, overrides global 300 weight */
+/* "Explore additional offerings" section text */
 main .section.hero-corporate-container > .default-content-wrapper > h2 {
   font-weight: 700;
+}
+
+main .section.hero-corporate-container > .default-content-wrapper > p {
+  color: rgb(255 255 255 / 85%);
+  margin: 0 0 16px;
 }
 
 .hero-corporate-container .hero-corporate-wrapper {
@@ -52,10 +57,11 @@ main .section.dark .hero-corporate h2 {
 
 .hero-corporate p {
   color: rgb(255 255 255 / 85%);
-  max-width: 600px;
-  font-size: var(--heading-font-size-m);
-  font-weight: 300;
-  line-height: 1.4;
+  max-width: 700px;
+  font-size: var(--body-font-size-m);
+  font-weight: 400;
+  line-height: 1.5;
+  margin: 0;
 }
 
 .hero-corporate a {
