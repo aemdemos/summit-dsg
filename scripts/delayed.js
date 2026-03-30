@@ -29,7 +29,7 @@ function buildBackToTop() {
 
   // Show/hide based on scroll position — push above footer when it's in view
   const footer = document.querySelector('footer');
-  const defaultBottom = 200;
+  const defaultBottom = 186;
   const gap = 16;
   const toggle = () => {
     const scrolledDown = window.scrollY > 400;
