@@ -123,8 +123,8 @@ footer .footer .footer-column > ul a .icon {
   margin-right: 4px;
 }
 
-footer .footer .footer-column > ul a .icon svg {
-  fill: currentcolor;
+footer .footer .footer-column > ul a .icon img {
+  filter: brightness(0) invert(1);
   width: 20px;
   height: 20px;
 }
@@ -165,9 +165,10 @@ footer .footer .footer-legal-brand .icon {
   height: 23px;
 }
 
-footer .footer .footer-legal-brand .icon svg {
+footer .footer .footer-legal-brand .icon img {
   width: 166px;
   height: 23px;
+  filter: brightness(0) invert(1);
 }
 
 footer .footer .footer-legal-brand .sr-only {
@@ -251,18 +252,19 @@ footer .footer a.button:hover {
    Desktop (>= 900px)
    ============================================= */
 @media (width >= 900px) {
-  /* Columns: horizontal flex layout */
+  /* Columns: match original emcmUi-SiteFooter-listsInner */
   footer .footer .footer-columns {
     display: flex;
     flex-wrap: nowrap;
     gap: var(--footer-column-gap);
     padding: var(--footer-columns-padding-desktop);
-    max-width: var(--footer-legal-max-width);
-    margin: 0 auto;
+    box-sizing: border-box;
+    justify-content: center;
   }
 
   footer .footer .footer-column {
     flex: 1 1 0%;
+    max-width: 208px;
     border-top: none;
   }
 
