@@ -9,6 +9,7 @@ export default async function decorate(block) {
   block.setAttribute('aria-roledescription', 'Quote');
 
   const [quotation, attribution] = [...block.children].map((c) => c.firstElementChild);
+  if (!quotation) return;
   const blockquote = document.createElement('blockquote');
   // decorate quotation
   quotation.className = 'quote-quotation';

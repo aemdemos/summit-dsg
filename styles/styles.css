@@ -265,6 +265,7 @@ main > .section > div {
 main > .section:first-of-type {
   margin-top: 0;
   padding-top: 0;
+  position: relative;
 }
 
 @media (width >= 900px) {

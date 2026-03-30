@@ -16,7 +16,7 @@ function closeOnEscape(e) {
     } else if (!isDesktop.matches) {
       // eslint-disable-next-line no-use-before-define
       toggleMenu(nav, navSections);
-      nav.querySelector('button').focus();
+      nav.querySelector('button')?.focus();
     }
   }
 }
@@ -47,6 +47,7 @@ function toggleAllNavSections(sections, expanded = false) {
 function toggleMenu(nav, navSections, forceExpanded = null) {
   const expanded = forceExpanded !== null ? !forceExpanded : nav.getAttribute('aria-expanded') === 'true';
   const button = nav.querySelector('.nav-hamburger button');
+  if (!button) return;
   document.body.style.overflowY = (expanded || isDesktop.matches) ? '' : 'hidden';
   nav.setAttribute('aria-expanded', expanded ? 'false' : 'true');
   toggleAllNavSections(navSections, expanded || isDesktop.matches ? 'false' : 'true');
@@ -76,7 +77,9 @@ const MAX_BREADCRUMB_DEPTH = 20;
 
 async function buildBreadcrumbsFromNavTree(nav, currentUrl) {
   const crumbs = [];
-  const homeUrl = document.querySelector('.nav-brand a[href]').href;
+  const brandLink = document.querySelector('.nav-brand a[href]');
+  if (!brandLink) return crumbs;
+  const homeUrl = brandLink.href;
 
   let menuItem = Array.from(nav.querySelectorAll('a')).find((a) => a.href === currentUrl);
   if (menuItem) {

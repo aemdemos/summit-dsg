@@ -7,6 +7,7 @@ export default function decorate(block) {
   block.setAttribute('role', 'region');
   block.setAttribute('aria-roledescription', 'Columns');
 
+  if (!block.firstElementChild) return;
   const cols = [...block.firstElementChild.children];
   block.classList.add(`columns-support-${cols.length}-cols`);
 

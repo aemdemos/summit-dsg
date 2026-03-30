@@ -92,3 +92,64 @@
   fill: #fff;
   pointer-events: none;
 }
+
+/* Scroll-down prompt arrow */
+.scroll-prompt {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: 2;
+  padding: 8px;
+}
+
+.scroll-prompt.visible {
+  opacity: 1;
+}
+
+.scroll-prompt-arrows {
+  animation: scroll-bounce 1.5s infinite;
+}
+
+.scroll-prompt-arrow {
+  animation: scroll-opacity 1.5s infinite;
+}
+
+.scroll-prompt-arrow:nth-child(2) {
+  margin-top: -8px;
+}
+
+.scroll-prompt-arrow svg {
+  width: 25px;
+  height: 20px;
+  fill: #404040;
+  display: block;
+}
+
+@keyframes scroll-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(6px);
+  }
+}
+
+@keyframes scroll-opacity {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.4;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

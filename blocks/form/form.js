@@ -55,7 +55,7 @@ async function handleSubmit(form) {
   const submit = form.querySelector('button[type="submit"]');
   try {
     form.setAttribute('data-submitting', 'true');
-    submit.disabled = true;
+    if (submit) submit.disabled = true;
 
     // create payload
     const payload = generatePayload(form);
@@ -79,7 +79,7 @@ async function handleSubmit(form) {
     console.error(e);
   } finally {
     form.setAttribute('data-submitting', 'false');
-    submit.disabled = false;
+    if (submit) submit.disabled = false;
   }
 }
 
