@@ -79,3 +79,42 @@ function buildScrollProgress() {
 }
 
 buildScrollProgress();
+
+// Chat button (visual placeholder for Salesforce Embedded Messaging)
+function buildChatButton() {
+  const btn = document.createElement('button');
+  btn.className = 'chat-button';
+  btn.setAttribute('aria-label', 'Hello, have a question? Let\'s chat.');
+  btn.title = 'Hello, have a question? Let\'s chat.';
+
+  // Chat bubble SVG matching the original Salesforce MIAW icon
+  const svgNs = ['http', '://www.w3.org/2000/svg'].join('');
+  const svg = document.createElementNS(svgNs, 'svg');
+  svg.setAttribute('focusable', 'false');
+  svg.setAttribute('aria-hidden', 'true');
+  svg.setAttribute('viewBox', '0 0 100 100');
+
+  const bubble = document.createElementNS(svgNs, 'path');
+  bubble.setAttribute('d', [
+    'M50 0c27.614 0 50 20.52 50 45.833S77.614 91.667 50 91.667',
+    'c-8.458 0-16.425-1.925-23.409-5.323-13.33 6.973-21.083',
+    '9.839-23.258 8.595-2.064-1.18.114-8.436 6.534-21.767',
+    'C3.667 65.54 0 56.08 0 45.833 0 20.52 22.386 0 50 0z',
+  ].join(''));
+
+  const lines = document.createElementNS(svgNs, 'path');
+  lines.setAttribute('d', [
+    'm54.583 61.667H22.917a2.917 2.917 0 000 5.833h31.666',
+    'a2.917 2.917 0 000-5.833zm12.5-15.834H22.917a2.917',
+    '2.917 0 000 5.834h44.166a2.917 2.917 0 000-5.834z',
+    'M79.583 30H22.917a2.917 2.917 0 000 5.833h56.666',
+    'a2.917 2.917 0 000-5.833z',
+  ].join(''));
+
+  svg.append(bubble, lines);
+  btn.append(svg);
+
+  document.body.append(btn);
+}
+
+buildChatButton();
