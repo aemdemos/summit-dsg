@@ -29,7 +29,7 @@ function buildBackToTop() {
 
   // Show/hide based on scroll position — push above footer when it's in view
   const footer = document.querySelector('footer');
-  const defaultBottom = 100;
+  const defaultBottom = 85;
   const gap = 16;
   const toggle = () => {
     const scrolledDown = window.scrollY > 400;
@@ -94,24 +94,20 @@ function buildChatButton() {
   svg.setAttribute('aria-hidden', 'true');
   svg.setAttribute('viewBox', '0 0 100 100');
 
-  const bubble = document.createElementNS(svgNs, 'path');
-  bubble.setAttribute('d', [
-    'M50 0c27.614 0 50 20.52 50 45.833S77.614 91.667 50 91.667',
-    'c-8.458 0-16.425-1.925-23.409-5.323-13.33 6.973-21.083',
-    '9.839-23.258 8.595-2.064-1.18.114-8.436 6.534-21.767',
-    'C3.667 65.54 0 56.08 0 45.833 0 20.52 22.386 0 50 0z',
-  ].join(''));
+  const icon = document.createElementNS(svgNs, 'path');
+  icon.setAttribute('d', [
+    'M50 0c27.614 0 50 20.52 50 45.833S77.614 91.667 50',
+    '91.667c-8.458 0-16.425-1.925-23.409-5.323-13.33',
+    '6.973-21.083 9.839-23.258 8.595-2.064-1.18.114-8.436',
+    '6.534-21.767C3.667 65.54 0 56.08 0 45.833 0 20.52',
+    '22.386 0 50 0zm4.583 61.667H22.917a2.917 2.917 0 000',
+    '5.833h31.666a2.917 2.917 0 000-5.833zm12.5-15.834',
+    'H22.917a2.917 2.917 0 000 5.834h44.166a2.917 2.917',
+    '0 000-5.834zM79.583 30H22.917a2.917 2.917 0 000',
+    '5.833h56.666a2.917 2.917 0 000-5.833z',
+  ].join(' '));
 
-  const lines = document.createElementNS(svgNs, 'path');
-  lines.setAttribute('d', [
-    'm54.583 61.667H22.917a2.917 2.917 0 000 5.833h31.666',
-    'a2.917 2.917 0 000-5.833zm12.5-15.834H22.917a2.917',
-    '2.917 0 000 5.834h44.166a2.917 2.917 0 000-5.834z',
-    'M79.583 30H22.917a2.917 2.917 0 000 5.833h56.666',
-    'a2.917 2.917 0 000-5.833z',
-  ].join(''));
-
-  svg.append(bubble, lines);
+  svg.append(icon);
   btn.append(svg);
 
   document.body.append(btn);

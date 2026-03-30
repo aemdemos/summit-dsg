@@ -1,7 +1,7 @@
 /* Back to top button */
 .back-to-top {
   position: fixed;
-  bottom: 100px;
+  bottom: 85px;
   right: -40px;
   width: 40px;
   height: 40px;
@@ -65,8 +65,8 @@
 /* Chat button */
 .chat-button {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
+  bottom: 25px;
+  right: 30px;
   width: 56px;
   height: 56px;
   border-radius: 50%;
@@ -87,8 +87,8 @@
 }
 
 .chat-button svg {
-  width: 28px;
-  height: 28px;
+  width: 30px;
+  height: 30px;
   fill: #fff;
   pointer-events: none;
 }
