@@ -96,7 +96,7 @@
 /* Scroll-down prompt arrow */
 .scroll-prompt {
   position: absolute;
-  bottom: 22px;
+  bottom: 32px;
   left: 50%;
   transform: translateX(-50%);
   cursor: pointer;

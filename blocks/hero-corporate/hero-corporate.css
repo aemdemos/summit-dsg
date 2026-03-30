@@ -2,7 +2,7 @@
 
 main .section.hero-corporate-container {
   padding-top: 0;
-  padding-bottom: 64px;
+  padding-bottom: 74px;
   background-image: url('https://thomsonreuters.scene7.com/is/image/thomsonreuterscloudprod/racing-green-3-swirl-3600x-1?wid=1800&qlt=80');
   background-size: cover;
   background-position: top left;
@@ -17,7 +17,7 @@ main .section.hero-corporate-container > .default-content-wrapper > h2 {
 
 main .section.hero-corporate-container > .default-content-wrapper > p {
   color: rgb(255 255 255 / 85%);
-  margin: 0 0 16px;
+  margin: 0 0 8px;
 }
 
 .hero-corporate-container .hero-corporate-wrapper {
