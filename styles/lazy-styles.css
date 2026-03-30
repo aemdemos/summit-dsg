@@ -96,7 +96,7 @@
 /* Scroll-down prompt arrow */
 .scroll-prompt {
   position: absolute;
-  bottom: 0;
+  bottom: 6px;
   left: 50%;
   transform: translateX(-50%);
   cursor: pointer;
@@ -125,7 +125,7 @@
 .scroll-prompt-arrow svg {
   width: 25px;
   height: 20px;
-  fill: #404040;
+  fill: #d64000;
   display: block;
 }
 
