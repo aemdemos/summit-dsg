@@ -252,16 +252,19 @@ footer .footer a.button:hover {
    Desktop (>= 900px)
    ============================================= */
 @media (width >= 900px) {
-  /* Columns: horizontal flex layout — full width like the original site */
+  /* Columns: match original emcmUi-SiteFooter-listsInner */
   footer .footer .footer-columns {
     display: flex;
     flex-wrap: nowrap;
     gap: var(--footer-column-gap);
     padding: var(--footer-columns-padding-desktop);
+    box-sizing: border-box;
+    justify-content: center;
   }
 
   footer .footer .footer-column {
     flex: 1 1 0%;
+    max-width: 208px;
     border-top: none;
   }
 
