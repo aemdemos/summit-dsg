@@ -16,16 +16,21 @@ export default function decorate(block) {
     const picture = p.querySelector(':scope > picture');
     const rawImg = p.querySelector(':scope > img:only-child');
 
-    if (picture && p.children.length === 1) {
-      // AEM already wrapped the img in picture — move the picture element
-      block.prepend(picture);
-      p.remove();
-      break;
-    } else if (rawImg) {
-      // Raw img — wrap it ourselves
-      const pic = document.createElement('picture');
-      pic.append(rawImg);
-      block.prepend(pic);
+    if ((picture && p.children.length === 1) || rawImg) {
+      // Use the authored image as the section background
+      const img = picture ? picture.querySelector('img') : rawImg;
+      // eslint-disable-next-line no-console
+      console.log('[hero-corporate] DEBUG', { picture: !!picture, rawImg: !!rawImg, img: !!img, imgSrc: img?.src, pChildren: p.children.length, pHTML: p.innerHTML });
+      if (img) {
+        const section = block.closest('.section');
+        // eslint-disable-next-line no-console
+        console.log('[hero-corporate] DEBUG section', { section: !!section, sectionClass: section?.className });
+        if (section) {
+          section.style.backgroundImage = `url('${img.src}')`;
+          // eslint-disable-next-line no-console
+          console.log('[hero-corporate] DEBUG set bg', section.style.backgroundImage);
+        }
+      }
       p.remove();
       break;
     }
