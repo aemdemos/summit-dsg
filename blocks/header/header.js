@@ -154,15 +154,14 @@ function decorateNavBrand(nav) {
   const btnContainer = brandLink.closest('.button-container')
     || brandLink.closest('.button-wrapper');
   if (btnContainer) btnContainer.className = '';
+  brandLink.setAttribute('aria-label', 'Thomson Reuters Home');
+
   const logo = document.createElement('img');
-  logo.src = '/icons/tr-logo.svg';
+  logo.src = '/icons/tr-header-logo.svg';
   logo.alt = 'Thomson Reuters';
   logo.className = 'nav-brand-logo';
-  logo.width = 250;
-  logo.height = 61;
   brandLink.textContent = '';
   brandLink.append(logo);
-  brandLink.setAttribute('aria-label', 'Thomson Reuters Home');
 }
 
 // SVG namespace is an identifier, not a network URL — http:// is required per spec

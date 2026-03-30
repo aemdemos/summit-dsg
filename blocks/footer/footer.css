@@ -36,6 +36,7 @@ footer .footer .footer-column:last-child {
 /* Column headings */
 footer .footer .footer-column h3 {
   color: var(--footer-text-color);
+  font-family: var(--footer-heading-font-family);
   font-size: var(--footer-heading-font-size);
   font-weight: 700;
   text-transform: none;
@@ -132,41 +133,53 @@ footer .footer .footer-column > ul a .icon svg {
    Legal Bar
    ============================================= */
 footer .footer .footer-legal {
-  padding: var(--footer-legal-padding);
   border-top: 1px solid var(--footer-separator-color);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Upper legal bar: brand + legal links */
+footer .footer .footer-legal-upper {
+  width: 100%;
+  max-width: var(--footer-legal-max-width);
+  margin: 0 auto;
+  padding: var(--footer-legal-padding);
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 32px;
 }
 
-/* Brand link */
+/* Brand link — full logo image */
 footer .footer .footer-legal-brand {
-  color: var(--footer-brand-color);
-  font-weight: 400;
-  font-size: 16px;
+  display: block;
+  width: 166px;
+  height: 23px;
+  flex-shrink: 0;
   text-decoration: none;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  white-space: nowrap;
 }
 
 footer .footer .footer-legal-brand .icon {
-  display: inline-flex;
-  width: 24px;
-  height: 24px;
-  flex-shrink: 0;
+  display: block;
+  width: 166px;
+  height: 23px;
 }
 
 footer .footer .footer-legal-brand .icon svg {
-  width: 24px;
-  height: 24px;
-  fill: var(--footer-brand-color);
+  width: 166px;
+  height: 23px;
 }
 
-footer .footer .footer-legal-brand:hover {
-  text-decoration: underline;
+footer .footer .footer-legal-brand .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
 }
 
 /* Legal nav links */
@@ -193,15 +206,19 @@ footer .footer .footer-legal nav a:hover {
   text-decoration: underline;
 }
 
-/* CCPA link */
+/* CCPA link — separate lower section */
+footer .footer .footer-legal-lower {
+  width: 100%;
+  padding: var(--footer-legal-padding);
+  max-width: var(--footer-legal-max-width);
+  margin: 0 auto;
+  border-top: 1px solid var(--footer-separator-color);
+}
+
 footer .footer .footer-legal-ccpa {
-  flex-basis: 100%;
   color: var(--footer-text-color);
   text-decoration: none;
   font-size: var(--footer-link-font-size);
-  border-top: 1px solid var(--footer-separator-color);
-  padding-top: 20px;
-  margin-top: 0;
 }
 
 footer .footer .footer-legal-ccpa:hover {
@@ -240,7 +257,8 @@ footer .footer a.button:hover {
     flex-wrap: nowrap;
     gap: var(--footer-column-gap);
     padding: var(--footer-columns-padding-desktop);
-    justify-content: center;
+    max-width: var(--footer-legal-max-width);
+    margin: 0 auto;
   }
 
   footer .footer .footer-column {
@@ -282,8 +300,8 @@ footer .footer a.button:hover {
     line-height: 24px;
   }
 
-  /* Legal bar - allow wrapping so CCPA drops to its own line */
-  footer .footer .footer-legal {
-    flex-wrap: wrap;
+  /* Legal bar — brand + links stay on one line on desktop */
+  footer .footer .footer-legal-upper {
+    flex-wrap: nowrap;
   }
 }

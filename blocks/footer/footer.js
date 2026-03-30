@@ -48,17 +48,24 @@ function buildLegalBar(section) {
   const wrapper = section.querySelector('.default-content-wrapper');
   if (!wrapper) return legal;
 
-  // First <p><a> is the brand link — include TR logo icon
+  // Upper section: brand link + legal nav links
+  const upper = document.createElement('div');
+  upper.className = 'footer-legal-upper';
+
+  // First <p><a> is the brand link — rendered as full logo image
   const brandP = wrapper.querySelector('p:first-child a');
   if (brandP) {
     const brand = document.createElement('a');
     brand.href = brandP.href;
     brand.className = 'footer-legal-brand';
     const icon = document.createElement('span');
-    icon.className = 'icon icon-tr-logo';
+    icon.className = 'icon icon-tr-footer-logo';
     brand.append(icon);
-    brand.append(document.createTextNode(` ${brandP.textContent}`));
-    legal.append(brand);
+    const label = document.createElement('span');
+    label.className = 'sr-only';
+    label.textContent = brandP.textContent;
+    brand.append(label);
+    upper.append(brand);
   }
 
   // The <ul> contains legal links
@@ -67,16 +74,21 @@ function buildLegalBar(section) {
     const legalNav = document.createElement('nav');
     legalNav.setAttribute('aria-label', 'legal');
     legalNav.append(legalUl);
-    legal.append(legalNav);
+    upper.append(legalNav);
   }
 
-  // Last <p><a> is the CCPA link
+  legal.append(upper);
+
+  // Lower section: CCPA link
   const allPs = wrapper.querySelectorAll('p');
   const lastP = Array.from(allPs).at(-1);
   const ccpaLink = lastP?.querySelector('a');
   if (ccpaLink && ccpaLink !== brandP) {
+    const lower = document.createElement('div');
+    lower.className = 'footer-legal-lower';
     ccpaLink.className = 'footer-legal-ccpa';
-    legal.append(ccpaLink);
+    lower.append(ccpaLink);
+    legal.append(lower);
   }
 
   return legal;
