@@ -1,8 +1,0 @@
-/* cards-press design tokens — matches cards-insight */
-.cards-press {
-  --cards-grid-min-width: 374px;
-  --cards-grid-gap: 24px;
-  --cards-card-border-width: 1px;
-  --cards-card-border-color: #737373;
-  --cards-card-body-margin: 24px;
-}

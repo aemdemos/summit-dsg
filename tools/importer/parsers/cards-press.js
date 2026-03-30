@@ -56,6 +56,6 @@ export default function parse(element, { document }) {
     }
   });
 
-  const block = WebImporter.Blocks.createBlock(document, { name: 'cards-press', cells });
+  const block = WebImporter.Blocks.createBlock(document, { name: 'Cards Insight (press)', cells });
   element.replaceWith(block);
 }
