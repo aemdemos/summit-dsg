@@ -358,6 +358,9 @@ export function decorateSections(main) {
             .filter((style) => style)
             .map((style) => toClassName(style.trim()));
           styles.forEach((style) => section.classList.add(style));
+        } else if (key === 'background') {
+          const url = typeof value === 'string' ? value.trim() : '';
+          if (url) section.style.backgroundImage = `url('${url}')`;
         } else if (isSafeObjectKey(key)) {
           section.setAttribute(`data-${key}`, String(value ?? ''));
         }
