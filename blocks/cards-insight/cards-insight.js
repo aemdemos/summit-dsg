@@ -3,12 +3,13 @@ import { moveInstrumentation, getBlockId } from '../../scripts/scripts.js';
 import { createCard } from '../card/card.js';
 
 /**
- * Replace about:error images with local fallbacks.
+ * Replace unreachable external images with local fallbacks.
  *
  * Content is authored with Scene7 URLs (the canonical source), but
  * AEM's media pipeline cannot download them server-side and rewrites
- * src to about:error.  The alt text (preserved by the pipeline) is
- * matched to a local copy in /images/.
+ * src to about:error.  DA rewrites them to content.da.live URLs that
+ * are also not publicly accessible.  In both cases the alt text is
+ * preserved, so we match on alt and swap in a local copy from /images/.
  */
 const IMAGE_FALLBACKS = new Map([
   ['2026 AI in Professional Services Report', '/images/ai-professional-services-report.jpg'],
@@ -17,9 +18,11 @@ const IMAGE_FALLBACKS = new Map([
 ]);
 
 function resolveExternalImages(block) {
-  block.querySelectorAll('img[src="about:error"]').forEach((img) => {
+  block.querySelectorAll('img').forEach((img) => {
     const fallback = IMAGE_FALLBACKS.get(img.alt);
-    if (fallback) {
+    if (!fallback) return;
+    const { src } = img;
+    if (src === 'about:error' || src.includes('content.da.live')) {
       img.src = fallback;
       img.loading = 'lazy';
     }
