@@ -165,7 +165,7 @@ function buildSectionContent(main) {
       const keyCell = document.createElement('div');
       keyCell.textContent = 'style';
       const valCell = document.createElement('div');
-      valCell.textContent = 'dark';
+      valCell.textContent = 'dark, green';
       row.append(keyCell, valCell);
       meta.append(row);
       section.appendChild(meta);
