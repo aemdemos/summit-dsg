@@ -48,10 +48,11 @@ main .section.columns-support-container > .default-content-wrapper > h2 {
   flex-direction: column;
 }
 
-/* Icons */
+/* Icons — explicit dimensions so lazy images allocate space before loading */
 .columns-support img {
-  max-width: 58px;
-  height: auto;
+  display: block;
+  width: 58px;
+  height: 58px;
 }
 
 .columns-support > div > div {

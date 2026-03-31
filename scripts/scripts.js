@@ -219,14 +219,16 @@ function buildSectionContent(main) {
     }
   }
 
-  // Remove broken SVG placeholder images
-  main.querySelectorAll('img[src^="data:image/svg+xml"]').forEach((img) => {
-    const p = img.closest('p');
-    if (p) p.remove();
-  });
-  main.querySelectorAll('img[src="about:error"]').forEach((img) => {
-    const p = img.closest('p');
-    if (p) p.remove();
+  // Remove broken placeholder images (about:error from failed DAM fetches,
+  // data:image/svg+xml stubs).  Remove the direct parent when it is a <p>
+  // or a <div> whose only child is the broken image.
+  main.querySelectorAll('img[src^="data:image/svg+xml"], img[src="about:error"]').forEach((img) => {
+    const parent = img.parentElement;
+    if (!parent) return;
+    if (parent.tagName === 'P'
+      || (parent.tagName === 'DIV' && parent.children.length === 1)) {
+      parent.remove();
+    }
   });
 }
 
@@ -419,6 +421,46 @@ function applyAbercrombieSectionStyles(main) {
 }
 
 /**
+ * Fix SVG images wrapped in <picture> elements with broken webp sources.
+ *
+ * AEM's pipeline wraps all images—including SVGs—in <picture> with
+ * type="image/webp" sources.  The server cannot convert SVGs to webp so it
+ * returns the raw SVG, but the browser still tries to decode it as webp and
+ * fails silently.  Removing the webp sources lets the browser fall through to
+ * the native SVG source.
+ * @param {Element} main The container element
+ */
+function fixSvgPictures(main) {
+  main.querySelectorAll('picture').forEach((picture) => {
+    const img = picture.querySelector('img');
+    if (!img || !img.src.includes('.svg')) return;
+    picture.querySelectorAll('source[type="image/webp"]').forEach((s) => s.remove());
+  });
+}
+
+/**
+ * Remap block names so content authored as one variant loads another block's code.
+ * Runs after sections are decorated but before blocks are decorated.
+ */
+const BLOCK_REMAP = {
+  'cards-press': 'cards-insight',
+};
+
+function remapBlocks(main) {
+  Object.entries(BLOCK_REMAP).forEach(([from, to]) => {
+    main.querySelectorAll(`.${from}`).forEach((block) => {
+      block.classList.replace(from, to);
+      const wrapper = block.parentElement;
+      if (wrapper) wrapper.classList.replace(`${from}-wrapper`, `${to}-wrapper`);
+      const section = block.closest('.section');
+      if (section) {
+        section.classList.replace(`${from}-container`, `${to}-container`);
+      }
+    });
+  });
+}
+
+/**
  * Decorates the main element.
  * @param {Element} main The main element
  */
@@ -426,8 +468,10 @@ function applyAbercrombieSectionStyles(main) {
 export function decorateMain(main) {
   // hopefully forward compatible button decoration
   decorateIcons(main);
+  fixSvgPictures(main);
   buildAutoBlocks(main);
   decorateSections(main);
+  remapBlocks(main);
   decorateBlocks(main);
   applyAbercrombieSectionStyles(main);
   decorateButtons(main);
