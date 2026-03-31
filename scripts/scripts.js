@@ -157,7 +157,9 @@ function buildSectionContent(main) {
       section.insertBefore(h2, cardsOffering);
       section.insertBefore(p, cardsOffering);
     }
-    // Dark section style + green swirl background for hero + offerings
+    // "Green Hero" section style: dark theme + green swirl background
+    // Applied automatically — authors can override by adding section-metadata in DA
+    // Background: Thomson Reuters racing-green swirl (Scene7)
     if (!section.querySelector('.section-metadata')) {
       const meta = document.createElement('div');
       meta.className = 'section-metadata';
