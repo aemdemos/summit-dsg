@@ -3,18 +3,18 @@ import { moveInstrumentation, getBlockId } from '../../scripts/scripts.js';
 import { createCard } from '../card/card.js';
 
 /**
- * Replace unreachable external images with local fallbacks.
+ * Replace unreachable external images with the original Scene7 URLs.
  *
  * Content is authored with Scene7 URLs (the canonical source), but
  * AEM's media pipeline cannot download them server-side and rewrites
  * src to about:error.  DA rewrites them to content.da.live URLs that
- * are also not publicly accessible.  In both cases the alt text is
- * preserved, so we match on alt and swap in a local copy from /images/.
+ * are also not publicly accessible.  The browser can reach Scene7
+ * directly, so we restore the original URL using the preserved alt text.
  */
 const IMAGE_FALLBACKS = new Map([
-  ['2026 AI in Professional Services Report', '/images/ai-professional-services-report.jpg'],
-  ['Introducing Our First CoCounsel Guided Workflows', '/images/cocounsel-guided-workflows.jpg'],
-  ['Future of Professionals Report 2025', '/images/future-of-professionals-2025.jpg'],
+  ['2026 AI in Professional Services Report', 'https://thomsonreuters.scene7.com/is/image/thomsonreuterscloudprod/201276_109755785-1'],
+  ['Introducing Our First CoCounsel Guided Workflows', 'https://thomsonreuters.scene7.com/is/image/thomsonreuterscloudprod/243582-644540343'],
+  ['Future of Professionals Report 2025', 'https://thomsonreuters.scene7.com/is/image/thomsonreuterscloudprod/251216-922168087'],
 ]);
 
 function resolveExternalImages(block) {

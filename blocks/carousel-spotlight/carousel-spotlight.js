@@ -4,17 +4,17 @@ import { createSliderControls, initSlider, showSlide } from '../../scripts/slide
 export { showSlide };
 
 /**
- * Replace unreachable external images with local fallbacks.
+ * Replace unreachable external images with the original DAM URLs.
  *
  * Content is authored with Thomson Reuters DAM URLs (the canonical source),
  * but AEM's media pipeline cannot download them server-side and rewrites
  * src to about:error.  DA rewrites them to content.da.live URLs that
- * are also not publicly accessible.  In both cases the alt text is
- * preserved, so we match on alt and swap in a local copy from /images/.
+ * are also not publicly accessible.  The browser can reach the DAM
+ * directly, so we restore the original URL using the preserved alt text.
  */
 const IMAGE_FALLBACKS = new Map([
-  ['2026 AI in Professional Services Report', '/images/ai-report-carousel.jpg'],
-  ['Future of Professionals Report 2025', '/images/future-professionals-carousel.jpg'],
+  ['2026 AI in Professional Services Report', 'https://www.thomsonreuters.com/content/dam/ewp-m/images/thomsonreuters/en/photography/201276_109755785.jpeg'],
+  ['Future of Professionals Report 2025', 'https://www.thomsonreuters.com/content/dam/ewp-m/images/thomsonreuters/en/reports/251216-922168087.jpeg'],
 ]);
 
 function resolveExternalImages(block) {
