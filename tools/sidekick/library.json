@@ -3,13 +3,13 @@
   "offset": 0,
   "limit": 7,
   "data": [
-    { "name": "Section Metadata", "path": "/content/block-library/section-metadata" },
-    { "name": "Hero Corporate", "path": "/content/block-library/hero-corporate" },
-    { "name": "Cards Offering", "path": "/content/block-library/cards-offering" },
-    { "name": "Cards Insight", "path": "/content/block-library/cards-insight" },
-    { "name": "Carousel Spotlight", "path": "/content/block-library/carousel-spotlight" },
-    { "name": "Columns Support", "path": "/content/block-library/columns-support" },
-    { "name": "Columns", "path": "/content/block-library/columns" }
+    { "name": "Section Metadata", "path": "/tools/sidekick/library/section-metadata" },
+    { "name": "Hero Corporate", "path": "/tools/sidekick/library/hero-corporate" },
+    { "name": "Cards Offering", "path": "/tools/sidekick/library/cards-offering" },
+    { "name": "Cards Insight", "path": "/tools/sidekick/library/cards-insight" },
+    { "name": "Carousel Spotlight", "path": "/tools/sidekick/library/carousel-spotlight" },
+    { "name": "Columns Support", "path": "/tools/sidekick/library/columns-support" },
+    { "name": "Columns", "path": "/tools/sidekick/library/columns" }
   ],
   "columns": ["name", "path"],
   ":type": "sheet"
