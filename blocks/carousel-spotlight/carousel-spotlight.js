@@ -4,28 +4,28 @@ import { createSliderControls, initSlider, showSlide } from '../../scripts/slide
 export { showSlide };
 
 /**
- * Replace unreachable external images with the original DAM URLs.
+ * Convert Scene7 / DAM text URLs to images.
  *
- * Content is authored with Thomson Reuters DAM URLs (the canonical source),
- * but AEM's media pipeline cannot download them server-side and rewrites
- * src to about:error.  DA rewrites them to content.da.live URLs that
- * are also not publicly accessible.  The browser can reach the DAM
- * directly, so we restore the original URL using the preserved alt text.
+ * Authors paste external image URLs as plain text in DA to prevent DA
+ * from rewriting them to content.da.live.  This function detects those
+ * text URLs and creates proper <img> elements the browser can render.
  */
-const IMAGE_FALLBACKS = new Map([
-  ['2026 AI in Professional Services Report', 'https://www.thomsonreuters.com/content/dam/ewp-m/images/thomsonreuters/en/photography/201276_109755785.jpeg'],
-  ['Future of Professionals Report 2025', 'https://www.thomsonreuters.com/content/dam/ewp-m/images/thomsonreuters/en/reports/251216-922168087.jpeg'],
-]);
+const IMAGE_URL_PATTERNS = [
+  /^https:\/\/thomsonreuters\.scene7\.com\//,
+  /^https:\/\/www\.thomsonreuters\.com\/content\/dam\//,
+];
 
-function resolveExternalImages(block) {
-  block.querySelectorAll('img').forEach((img) => {
-    const fallback = IMAGE_FALLBACKS.get(img.alt);
-    if (!fallback) return;
-    const { src } = img;
-    if (src === 'about:error' || src.includes('content.da.live')) {
-      img.src = fallback;
-      img.loading = 'lazy';
-    }
+function resolveImageUrls(block) {
+  block.querySelectorAll('p').forEach((p) => {
+    const text = p.textContent.trim();
+    if (!text.startsWith('https://')) return;
+    if (!IMAGE_URL_PATTERNS.some((re) => re.test(text))) return;
+    const img = document.createElement('img');
+    img.src = text;
+    img.alt = '';
+    img.loading = 'lazy';
+    p.textContent = '';
+    p.appendChild(img);
   });
 }
 
@@ -107,7 +107,7 @@ export default async function decorate(block) {
     block.append(buttonsContainer);
   }
 
-  resolveExternalImages(block);
+  resolveImageUrls(block);
 
   rows.forEach((row, idx) => {
     const slide = createSlide(row, idx, blockId);

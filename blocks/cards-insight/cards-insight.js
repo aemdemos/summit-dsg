@@ -3,29 +3,28 @@ import { moveInstrumentation, getBlockId } from '../../scripts/scripts.js';
 import { createCard } from '../card/card.js';
 
 /**
- * Replace unreachable external images with the original Scene7 URLs.
+ * Convert Scene7 / DAM text URLs to images.
  *
- * Content is authored with Scene7 URLs (the canonical source), but
- * AEM's media pipeline cannot download them server-side and rewrites
- * src to about:error.  DA rewrites them to content.da.live URLs that
- * are also not publicly accessible.  The browser can reach Scene7
- * directly, so we restore the original URL using the preserved alt text.
+ * Authors paste external image URLs as plain text in DA to prevent DA
+ * from rewriting them to content.da.live.  This function detects those
+ * text URLs and creates proper <img> elements the browser can render.
  */
-const IMAGE_FALLBACKS = new Map([
-  ['2026 AI in Professional Services Report', 'https://thomsonreuters.scene7.com/is/image/thomsonreuterscloudprod/201276_109755785-1'],
-  ['Introducing Our First CoCounsel Guided Workflows', 'https://thomsonreuters.scene7.com/is/image/thomsonreuterscloudprod/243582-644540343'],
-  ['Future of Professionals Report 2025', 'https://thomsonreuters.scene7.com/is/image/thomsonreuterscloudprod/251216-922168087'],
-]);
+const IMAGE_URL_PATTERNS = [
+  /^https:\/\/thomsonreuters\.scene7\.com\//,
+  /^https:\/\/www\.thomsonreuters\.com\/content\/dam\//,
+];
 
-function resolveExternalImages(block) {
-  block.querySelectorAll('img').forEach((img) => {
-    const fallback = IMAGE_FALLBACKS.get(img.alt);
-    if (!fallback) return;
-    const { src } = img;
-    if (src === 'about:error' || src.includes('content.da.live')) {
-      img.src = fallback;
-      img.loading = 'lazy';
-    }
+function resolveImageUrls(block) {
+  block.querySelectorAll('p').forEach((p) => {
+    const text = p.textContent.trim();
+    if (!text.startsWith('https://')) return;
+    if (!IMAGE_URL_PATTERNS.some((re) => re.test(text))) return;
+    const img = document.createElement('img');
+    img.src = text;
+    img.alt = '';
+    img.loading = 'lazy';
+    p.textContent = '';
+    p.appendChild(img);
   });
 }
 
@@ -36,7 +35,7 @@ export default function decorate(block) {
   block.setAttribute('role', 'region');
   block.setAttribute('aria-roledescription', 'Cards');
 
-  resolveExternalImages(block);
+  resolveImageUrls(block);
 
   /* change to ul, li */
   const ul = document.createElement('ul');
