@@ -303,6 +303,13 @@ main .section.grey {
   border-bottom: 1px solid #e0e0e0;
 }
 
+main .section.green {
+  background-image: url('https://thomsonreuters.scene7.com/is/image/thomsonreuterscloudprod/racing-green-3-swirl-3600x-1?wid=1800&qlt=80');
+  background-size: cover;
+  background-position: top left;
+  background-repeat: no-repeat;
+}
+
 /* Thomson Reuters section headings */
 main > .section > .default-content-wrapper > h2 {
   color: var(--brand-color);
