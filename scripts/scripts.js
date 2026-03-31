@@ -439,6 +439,28 @@ function fixSvgPictures(main) {
 }
 
 /**
+ * Remap block names so content authored as one variant loads another block's code.
+ * Runs after sections are decorated but before blocks are decorated.
+ */
+const BLOCK_REMAP = {
+  'cards-press': 'cards-insight',
+};
+
+function remapBlocks(main) {
+  Object.entries(BLOCK_REMAP).forEach(([from, to]) => {
+    main.querySelectorAll(`.${from}`).forEach((block) => {
+      block.classList.replace(from, to);
+      const wrapper = block.parentElement;
+      if (wrapper) wrapper.classList.replace(`${from}-wrapper`, `${to}-wrapper`);
+      const section = block.closest('.section');
+      if (section) {
+        section.classList.replace(`${from}-container`, `${to}-container`);
+      }
+    });
+  });
+}
+
+/**
  * Decorates the main element.
  * @param {Element} main The main element
  */
@@ -449,6 +471,7 @@ export function decorateMain(main) {
   fixSvgPictures(main);
   buildAutoBlocks(main);
   decorateSections(main);
+  remapBlocks(main);
   decorateBlocks(main);
   applyAbercrombieSectionStyles(main);
   decorateButtons(main);
