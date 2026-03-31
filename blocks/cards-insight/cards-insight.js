@@ -6,8 +6,9 @@ import { createCard } from '../card/card.js';
  * Convert Scene7 / DAM text URLs to images.
  *
  * Authors paste external image URLs as plain text in DA to prevent DA
- * from rewriting them to content.da.live.  This function detects those
- * text URLs and creates proper <img> elements the browser can render.
+ * from rewriting them to content.da.live.  AEM may auto-link pasted URLs,
+ * delivering them as <div><a href="url">url_text</a></div> instead of
+ * plain text.  This function handles both cases.
  */
 const IMAGE_URL_PATTERNS = [
   /^https:\/\/thomsonreuters\.scene7\.com\//,
@@ -15,7 +16,26 @@ const IMAGE_URL_PATTERNS = [
 ];
 
 function resolveImageUrls(block) {
+  // 1. Handle Scene7/DAM URLs that AEM auto-linked into <a> tags.
+  //    The URL text may be split: <a href="…?wid=376">…?wid=37</a>6
+  //    Use a.href (the full resolved URL) as the image source.
+  block.querySelectorAll('a[href]').forEach((a) => {
+    if (!IMAGE_URL_PATTERNS.some((re) => re.test(a.href))) return;
+    // Only convert links whose visible text looks like a URL (not authored labels)
+    if (!a.textContent.trim().startsWith('https://')) return;
+    const container = a.parentElement;
+    if (!container) return;
+    const img = document.createElement('img');
+    img.src = a.href;
+    img.alt = '';
+    img.loading = 'lazy';
+    container.textContent = '';
+    container.appendChild(img);
+  });
+
+  // 2. Handle plain-text URLs in <p> elements (fallback).
   block.querySelectorAll('p').forEach((p) => {
+    if (p.querySelector('img')) return;
     const text = p.textContent.trim();
     if (!text.startsWith('https://')) return;
     if (!IMAGE_URL_PATTERNS.some((re) => re.test(text))) return;
