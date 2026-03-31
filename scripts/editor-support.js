@@ -55,7 +55,7 @@ async function applyChanges(event) {
     || detail?.request?.to?.container?.resource; // move in sections
   if (!resource) return false;
   const updates = detail?.response?.updates;
-  if (!updates.length) return false;
+  if (!updates?.length) return false;
   const { content } = updates[0];
   if (!content) return false;
 
@@ -68,6 +68,7 @@ async function applyChanges(event) {
   parsedUpdate.write(sanitizedContent);
   parsedUpdate.close();
   const element = document.querySelector(`[data-aue-resource="${resource}"]`);
+  if (!element) return false;
 
   if (element) {
     if (element.matches('main')) {

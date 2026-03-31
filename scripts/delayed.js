@@ -29,7 +29,7 @@ function buildBackToTop() {
 
   // Show/hide based on scroll position — push above footer when it's in view
   const footer = document.querySelector('footer');
-  const defaultBottom = 186;
+  const defaultBottom = 206;
   const gap = 16;
   const toggle = () => {
     const scrolledDown = window.scrollY > 400;
@@ -114,3 +114,51 @@ function buildChatButton() {
 }
 
 buildChatButton();
+
+// Scroll-down prompt arrow (matches source cmp-scroll-prompt)
+function buildScrollPrompt() {
+  const firstSection = document.querySelector('main > .section');
+  if (!firstSection) return;
+
+  const wrapper = document.createElement('div');
+  wrapper.className = 'scroll-prompt';
+
+  const container = document.createElement('div');
+  container.className = 'scroll-prompt-arrows';
+
+  // Two stacked chevron-down arrows
+  const svgNs = ['http', '://www.w3.org/2000/svg'].join('');
+  for (let i = 0; i < 2; i += 1) {
+    const arrow = document.createElement('div');
+    arrow.className = 'scroll-prompt-arrow';
+    const svg = document.createElementNS(svgNs, 'svg');
+    svg.setAttribute('viewBox', '0 0 512 512');
+    svg.setAttribute('aria-hidden', 'true');
+    const path = document.createElementNS(svgNs, 'path');
+    path.setAttribute('d', [
+      'm396.6 160 19.4 20.7L256 352 96',
+      '180.7l19.3-20.7L256 310.5z',
+    ].join(' '));
+    svg.append(path);
+    arrow.append(svg);
+    container.append(arrow);
+  }
+
+  wrapper.append(container);
+  wrapper.addEventListener('click', () => {
+    const next = firstSection.nextElementSibling;
+    if (next) next.scrollIntoView({ behavior: 'smooth' });
+  });
+
+  // Hide once user scrolls past first section
+  const toggle = () => {
+    const { bottom } = firstSection.getBoundingClientRect();
+    wrapper.classList.toggle('visible', bottom > 0);
+  };
+  window.addEventListener('scroll', toggle, { passive: true });
+  toggle();
+
+  firstSection.append(wrapper);
+}
+
+buildScrollPrompt();

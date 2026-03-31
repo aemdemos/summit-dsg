@@ -6,7 +6,7 @@ import {
 const searchParams = new URLSearchParams(window.location.search);
 
 function findNextHeading(el) {
-  let preceedingEl = el.parentElement.previousElement || el.parentElement.parentElement;
+  let preceedingEl = el.parentElement.previousElementSibling || el.parentElement.parentElement;
   let h = 'H2';
   while (preceedingEl) {
     const lastHeading = [...preceedingEl.querySelectorAll('h1, h2, h3, h4, h5, h6')].pop();
@@ -15,7 +15,7 @@ function findNextHeading(el) {
       h = level < 6 ? `H${level + 1}` : 'H6';
       preceedingEl = false;
     } else {
-      preceedingEl = preceedingEl.previousElement || preceedingEl.parentElement;
+      preceedingEl = preceedingEl.previousElementSibling || preceedingEl.parentElement;
     }
   }
   return h;
@@ -115,7 +115,7 @@ function renderResult(result, searchTerms, titleTag) {
 
 function clearSearchResults(block) {
   const searchResults = block.querySelector('.search-results');
-  searchResults.innerHTML = '';
+  if (searchResults) searchResults.innerHTML = '';
 }
 
 function clearSearch(block) {
@@ -203,6 +203,7 @@ async function handleSearch(e, block, config) {
   const searchTerms = searchValue.toLowerCase().split(/\s+/).filter((term) => !!term);
 
   const data = await fetchData(config.source);
+  if (!data) return;
   const filteredData = filterData(searchTerms, data);
   await renderResults(block, config, filteredData, searchTerms);
 }

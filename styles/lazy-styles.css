@@ -1,7 +1,7 @@
 /* Back to top button */
 .back-to-top {
   position: fixed;
-  bottom: 186px;
+  bottom: 206px;
   right: -40px;
   width: 40px;
   height: 40px;
@@ -77,7 +77,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 0 0 2px #fff, 0 0 0 4px #d64000, 0 2px 12px rgb(0 0 0 / 30%);
+  box-shadow: 0 2px 12px rgb(0 0 0 / 30%);
   transition: background-color 0.2s;
   padding: 0;
 }
@@ -91,4 +91,57 @@
   height: 30px;
   fill: #fff;
   pointer-events: none;
+}
+
+/* Scroll-down prompt arrow */
+.scroll-prompt {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: 2;
+  padding: 8px;
+}
+
+.scroll-prompt.visible {
+  opacity: 1;
+}
+
+.scroll-prompt-arrow {
+  animation: scroll-down 2s ease-in-out infinite;
+}
+
+.scroll-prompt-arrow:nth-child(2) {
+  margin-top: -8px;
+  animation-delay: 0.35s;
+}
+
+.scroll-prompt-arrow svg {
+  width: 25px;
+  height: 20px;
+  fill: #d64000;
+  display: block;
+}
+
+@keyframes scroll-down {
+  0% {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+
+  30% {
+    opacity: 1;
+  }
+
+  70% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
 }

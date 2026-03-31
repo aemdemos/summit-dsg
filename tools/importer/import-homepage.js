@@ -7,7 +7,7 @@ import cardsOfferingParser from './parsers/cards-offering.js';
 import carouselSpotlightParser from './parsers/carousel-spotlight.js';
 import cardsInsightParser from './parsers/cards-insight.js';
 import columnsSupportParser from './parsers/columns-support.js';
-import cardsPressParser from './parsers/cards-press.js';
+import cardsInsightPressParser from './parsers/cards-press.js';
 
 // TRANSFORMER IMPORTS
 import cleanupTransformer from './transformers/thomsonreuters-cleanup.js';
@@ -42,7 +42,7 @@ const PAGE_TEMPLATE = {
       instances: ['#customer-support-module .dig-paper__content'],
     },
     {
-      name: 'cards-press',
+      name: 'cards-insight-press',
       instances: ['#press-releases-module .card-wrapper'],
     },
   ],
@@ -84,7 +84,7 @@ const PAGE_TEMPLATE = {
       name: 'Press Releases',
       selector: '#press-releases-module',
       style: null,
-      blocks: ['cards-press'],
+      blocks: ['cards-insight-press'],
       defaultContent: [
         '#press-releases-module .rich-text-wrapper h2',
         '#press-releases-module .dig-button',
@@ -100,7 +100,7 @@ const parsers = {
   'carousel-spotlight': carouselSpotlightParser,
   'cards-insight': cardsInsightParser,
   'columns-support': columnsSupportParser,
-  'cards-press': cardsPressParser,
+  'cards-insight-press': cardsInsightPressParser,
 };
 
 // TRANSFORMER REGISTRY — sections handled separately before parsing

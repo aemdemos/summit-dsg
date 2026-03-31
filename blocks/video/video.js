@@ -51,15 +51,17 @@ const loadVideoEmbed = async (block, link, autoplay, background) => {
   if (isYoutube) {
     const embedWrapper = await htmlToElement(getYoutubeEmbedHtml(url, autoplay, background));
     block.append(embedWrapper);
-    embedWrapper.querySelector('iframe').addEventListener('load', () => {
-      block.dataset.embedLoaded = true;
-    });
+    const iframe = embedWrapper.querySelector('iframe');
+    if (iframe) {
+      iframe.addEventListener('load', () => { block.dataset.embedLoaded = true; });
+    }
   } else if (isVimeo) {
     const embedWrapper = await htmlToElement(getVimeoEmbedHtml(url, autoplay, background));
     block.append(embedWrapper);
-    embedWrapper.querySelector('iframe').addEventListener('load', () => {
-      block.dataset.embedLoaded = true;
-    });
+    const iframe = embedWrapper.querySelector('iframe');
+    if (iframe) {
+      iframe.addEventListener('load', () => { block.dataset.embedLoaded = true; });
+    }
   } else {
     const videoEl = getVideoElement(link, autoplay, background);
     block.append(videoEl);
@@ -71,7 +73,9 @@ const loadVideoEmbed = async (block, link, autoplay, background) => {
 
 export default async function decorate(block) {
   const placeholder = block.querySelector('picture');
-  const link = block.querySelector('a').href;
+  const anchor = block.querySelector('a');
+  if (!anchor) return;
+  const link = anchor.href;
   block.textContent = '';
   block.dataset.embedLoaded = false;
 

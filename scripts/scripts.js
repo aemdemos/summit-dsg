@@ -157,17 +157,23 @@ function buildSectionContent(main) {
       section.insertBefore(h2, cardsOffering);
       section.insertBefore(p, cardsOffering);
     }
-    // Dark section style for hero + offerings
+    // Dark section style + green swirl background for hero + offerings
     if (!section.querySelector('.section-metadata')) {
       const meta = document.createElement('div');
       meta.className = 'section-metadata';
-      const row = document.createElement('div');
-      const keyCell = document.createElement('div');
-      keyCell.textContent = 'style';
-      const valCell = document.createElement('div');
-      valCell.textContent = 'dark';
-      row.append(keyCell, valCell);
-      meta.append(row);
+      const styleRow = document.createElement('div');
+      const styleKey = document.createElement('div');
+      styleKey.textContent = 'style';
+      const styleVal = document.createElement('div');
+      styleVal.textContent = 'dark, green';
+      styleRow.append(styleKey, styleVal);
+      const bgRow = document.createElement('div');
+      const bgKey = document.createElement('div');
+      bgKey.textContent = 'background';
+      const bgVal = document.createElement('div');
+      bgVal.textContent = 'https://thomsonreuters.scene7.com/is/image/thomsonreuterscloudprod/racing-green-3-swirl-3600x-1?wid=1800&qlt=80';
+      bgRow.append(bgKey, bgVal);
+      meta.append(styleRow, bgRow);
       section.appendChild(meta);
     }
   }
@@ -358,6 +364,9 @@ export function decorateSections(main) {
             .filter((style) => style)
             .map((style) => toClassName(style.trim()));
           styles.forEach((style) => section.classList.add(style));
+        } else if (key === 'background') {
+          const url = typeof value === 'string' ? value.trim() : '';
+          if (url) section.style.backgroundImage = `url('${url}')`;
         } else if (isSafeObjectKey(key)) {
           section.setAttribute(`data-${key}`, String(value ?? ''));
         }

@@ -23,7 +23,8 @@ export default async function decorate(block) {
     const id = `tabpanel-${blockId}-tab-${i + 1}`;
 
     // decorate tabpanel
-    const tabpanel = block.children[i];
+    const tabpanel = tab.closest('.tabs > div') || block.children[i];
+    if (!tabpanel) return;
     tabpanel.className = 'tabs-panel';
     tabpanel.id = id;
     tabpanel.setAttribute('aria-hidden', !!i);

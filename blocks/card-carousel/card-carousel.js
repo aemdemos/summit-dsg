@@ -40,7 +40,8 @@ export default function decorate(block) {
   slidesWrapper.querySelectorAll('picture > img').forEach((img) => {
     const optimizedPic = createOptimizedPicture(img.src, img.alt, false, [{ width: '750' }]);
     moveInstrumentation(img, optimizedPic.querySelector('img'));
-    img.closest('picture').replaceWith(optimizedPic);
+    const pic = img.closest('picture');
+    if (pic) pic.replaceWith(optimizedPic);
   });
 
   container.append(slidesWrapper);

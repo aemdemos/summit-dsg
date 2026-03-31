@@ -3,6 +3,32 @@ import { createSliderControls, initSlider, showSlide } from '../../scripts/slide
 
 export { showSlide };
 
+/**
+ * Replace unreachable external images with the original DAM URLs.
+ *
+ * Content is authored with Thomson Reuters DAM URLs (the canonical source),
+ * but AEM's media pipeline cannot download them server-side and rewrites
+ * src to about:error.  DA rewrites them to content.da.live URLs that
+ * are also not publicly accessible.  The browser can reach the DAM
+ * directly, so we restore the original URL using the preserved alt text.
+ */
+const IMAGE_FALLBACKS = new Map([
+  ['2026 AI in Professional Services Report', 'https://www.thomsonreuters.com/content/dam/ewp-m/images/thomsonreuters/en/photography/201276_109755785.jpeg'],
+  ['Future of Professionals Report 2025', 'https://www.thomsonreuters.com/content/dam/ewp-m/images/thomsonreuters/en/reports/251216-922168087.jpeg'],
+]);
+
+function resolveExternalImages(block) {
+  block.querySelectorAll('img').forEach((img) => {
+    const fallback = IMAGE_FALLBACKS.get(img.alt);
+    if (!fallback) return;
+    const { src } = img;
+    if (src === 'about:error' || src.includes('content.da.live')) {
+      img.src = fallback;
+      img.loading = 'lazy';
+    }
+  });
+}
+
 const SLIDER_OPTIONS = {
   slidesContainer: '.carousel-spotlight-slides',
   slideSelector: '.carousel-spotlight-slide',
@@ -28,8 +54,10 @@ function createSlide(row, slideIndex, carouselId) {
   slide.setAttribute('id', `carousel-spotlight-${carouselId}-slide-${slideIndex}`);
   slide.classList.add('carousel-spotlight-slide');
 
-  row.querySelectorAll(':scope > div').forEach((column, colIdx) => {
-    column.classList.add(`carousel-spotlight-slide-${colIdx === 0 ? 'image' : 'content'}`);
+  const columns = [...row.querySelectorAll(':scope > div')];
+  columns.forEach((column) => {
+    const hasMedia = column.querySelector('picture, img');
+    column.classList.add(`carousel-spotlight-slide-${hasMedia ? 'image' : 'content'}`);
     slide.append(column);
   });
 
@@ -79,14 +107,9 @@ export default async function decorate(block) {
     block.append(buttonsContainer);
   }
 
+  resolveExternalImages(block);
+
   rows.forEach((row, idx) => {
-    // remove columns that only contain a broken image
-    row.querySelectorAll(':scope > div').forEach((col) => {
-      const img = col.querySelector('img');
-      if (img && img.src.includes('about:error') && col.children.length === 1) {
-        col.remove();
-      }
-    });
     const slide = createSlide(row, idx, blockId);
     moveInstrumentation(row, slide);
     slidesWrapper.append(slide);

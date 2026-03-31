@@ -28,7 +28,9 @@ export async function createModal(contentNodes) {
   dialog.prepend(closeButton);
 
   const block = buildBlock('modal', '');
-  document.querySelector('main').append(block);
+  const main = document.querySelector('main');
+  if (!main) return { block, showModal: () => {} };
+  main.append(block);
   decorateBlock(block);
   await loadBlock(block);
 

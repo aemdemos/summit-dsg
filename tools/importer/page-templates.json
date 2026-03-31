@@ -39,7 +39,7 @@
           ]
         },
         {
-          "name": "cards-press",
+          "name": "cards-insight-press",
           "instances": [
             "#press-releases-module .card-wrapper"
           ]
@@ -99,7 +99,7 @@
           "selector": "#press-releases-module",
           "style": null,
           "blocks": [
-            "cards-press"
+            "cards-insight-press"
           ],
           "defaultContent": [
             "#press-releases-module .rich-text-wrapper h2",

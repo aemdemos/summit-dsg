@@ -85,3 +85,28 @@ main .cards-insight-container > .default-content-wrapper > h2 strong {
   color: var(--link-hover-color);
   text-decoration: underline;
 }
+
+/* Press variant — cards without images + trailing CTA button */
+.cards-insight.press .cards-card-image {
+  display: none;
+}
+
+.cards-insight-wrapper + .default-content-wrapper {
+  text-align: center;
+  padding-top: 24px;
+}
+
+.cards-insight-wrapper + .default-content-wrapper p a {
+  display: inline-block;
+  padding: 10px 32px;
+  background-color: var(--brand-color);
+  color: #fff;
+  border-radius: 24px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.cards-insight-wrapper + .default-content-wrapper p a:hover {
+  background-color: #b53600;
+  color: #fff;
+}
