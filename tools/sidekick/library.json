@@ -1,0 +1,16 @@
+{
+  "total": 7,
+  "offset": 0,
+  "limit": 7,
+  "data": [
+    { "name": "Section Metadata", "path": "/content/block-library/section-metadata" },
+    { "name": "Hero Corporate", "path": "/content/block-library/hero-corporate" },
+    { "name": "Cards Offering", "path": "/content/block-library/cards-offering" },
+    { "name": "Cards Insight", "path": "/content/block-library/cards-insight" },
+    { "name": "Carousel Spotlight", "path": "/content/block-library/carousel-spotlight" },
+    { "name": "Columns Support", "path": "/content/block-library/columns-support" },
+    { "name": "Columns", "path": "/content/block-library/columns" }
+  ],
+  "columns": ["name", "path"],
+  ":type": "sheet"
+}
