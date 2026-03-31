@@ -15,3 +15,6 @@ Trace*.json
 
 # Local draft HTML (run with --html-folder drafts); migration structure is in docs/migrations/
 drafts/
+
+# Local image fallbacks (not deployed via git)
+images/

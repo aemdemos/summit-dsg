@@ -3,17 +3,17 @@ import { moveInstrumentation, getBlockId } from '../../scripts/scripts.js';
 import { createCard } from '../card/card.js';
 
 /**
- * Replace about:error images with the original Scene7 URLs.
+ * Replace about:error images with local fallbacks.
  *
  * Content is authored with Scene7 URLs (the canonical source), but
  * AEM's media pipeline cannot download them server-side and rewrites
- * src to about:error.  The browser can reach Scene7 directly, so we
- * restore the original URL using the alt text preserved by the pipeline.
+ * src to about:error.  The alt text (preserved by the pipeline) is
+ * matched to a local copy in /images/.
  */
 const IMAGE_FALLBACKS = new Map([
-  ['2026 AI in Professional Services Report', 'https://thomsonreuters.scene7.com/is/image/thomsonreuterscloudprod/201276_109755785-1'],
-  ['Introducing Our First CoCounsel Guided Workflows', 'https://thomsonreuters.scene7.com/is/image/thomsonreuterscloudprod/243582-644540343'],
-  ['Future of Professionals Report 2025', 'https://thomsonreuters.scene7.com/is/image/thomsonreuterscloudprod/251216-922168087'],
+  ['2026 AI in Professional Services Report', '/images/ai-professional-services-report.jpg'],
+  ['Introducing Our First CoCounsel Guided Workflows', '/images/cocounsel-guided-workflows.jpg'],
+  ['Future of Professionals Report 2025', '/images/future-of-professionals-2025.jpg'],
 ]);
 
 function resolveExternalImages(block) {
