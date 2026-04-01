@@ -83,7 +83,7 @@ main .cards-insight-container > .default-content-wrapper > h2 strong {
 
 .cards-insight .cards-card-body a:hover {
   color: var(--link-hover-color);
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 /* Press variant — cards without images + trailing CTA button */
