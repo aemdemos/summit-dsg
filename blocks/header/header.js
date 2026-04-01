@@ -248,7 +248,10 @@ function parseSidebar(sidebarLi) {
   sidebarLi.querySelectorAll(':scope > p').forEach((p) => {
     const link = p.querySelector('a');
     const strong = p.querySelector('strong');
-    if (link && strong) {
+    // decorateButtons converts <strong><a> into <a class="button primary">,
+    // so detect CTA by checking for the button class as well as strong wrapping.
+    const isButton = link && (link.classList.contains('primary') || link.classList.contains('button'));
+    if (link && (strong || isButton)) {
       ctaUrl = link.href;
     } else if (link && !strong) {
       extraLinks.push([link.textContent.trim(), link.href]);

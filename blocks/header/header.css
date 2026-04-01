@@ -430,8 +430,11 @@ header .nav-mega-menu {
   top: var(--nav-height);
   left: 0;
   right: 0;
+  max-width: 1440px;
+  margin: 0 auto;
   background-color: #fff;
-  box-shadow: 0 8px 24px rgb(0 0 0 / 15%);
+  box-shadow: 0 16px 12px 8px rgb(31 31 31 / 10%);
+  border-bottom: 1px solid #e6e6e6;
   z-index: 10;
 }
 
