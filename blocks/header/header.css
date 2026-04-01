@@ -434,7 +434,9 @@ header .nav-mega-menu {
   margin: 0 auto;
   background-color: #fff;
   box-shadow: 0 16px 12px 8px rgb(31 31 31 / 10%);
+  border-top: 1px solid #1f1f1f;
   border-bottom: 1px solid #e6e6e6;
+  border-radius: 0 0 8px 8px;
   z-index: 10;
 }
 
