@@ -15,7 +15,7 @@ main .section.hero-corporate-container > .default-content-wrapper > h2 {
 }
 
 main .section.hero-corporate-container > .default-content-wrapper > p {
-  color: rgb(255 255 255 / 85%);
+  color: #fff;
   margin: 0 0 8px;
 }
 
@@ -57,7 +57,7 @@ main .section.dark .hero-corporate h2 {
 }
 
 .hero-corporate p {
-  color: rgb(255 255 255 / 85%);
+  color: #fff;
   max-width: 700px;
   font-size: 21px;
   font-weight: 300;
