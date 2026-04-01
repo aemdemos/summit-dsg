@@ -10,7 +10,7 @@ main .section.hero-corporate-container {
 
 /* "Explore additional offerings" section text */
 main .section.hero-corporate-container > .default-content-wrapper > h2 {
-  font-weight: 300;
+  font-weight: 500;
   margin-top: 16px;
 }
 
