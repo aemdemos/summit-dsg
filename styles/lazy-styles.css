@@ -130,7 +130,7 @@
 .feedback-tab {
   position: fixed;
   right: 0;
-  top: 50%;
+  top: calc(50% - 50px);
   transform: rotate(-90deg) translateY(-100%);
   transform-origin: top right;
   z-index: 998;
