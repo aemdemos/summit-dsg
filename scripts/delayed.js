@@ -162,3 +162,49 @@ function buildScrollPrompt() {
 }
 
 buildScrollPrompt();
+
+// Feedback sidebar tab (visual replica of the source site's Qualtrics widget)
+function buildFeedbackTab() {
+  const btn = document.createElement('button');
+  btn.className = 'feedback-tab';
+  btn.setAttribute('aria-label', 'Feedback - Show survey');
+
+  // Smiley face SVG (speech-bubble with smile)
+  const svgNs = ['http', '://www.w3.org/2000/svg'].join('');
+  const svg = document.createElementNS(svgNs, 'svg');
+  svg.setAttribute('width', '20');
+  svg.setAttribute('height', '18');
+  svg.setAttribute('viewBox', '0 0 24 22');
+  svg.setAttribute('fill', 'none');
+
+  const path = document.createElementNS(svgNs, 'path');
+  path.setAttribute('fill', '#fdfdfd');
+  path.setAttribute('fill-rule', 'evenodd');
+  path.setAttribute('d', [
+    'M22.362.827C21.72.5 20.88.5 19.2.5H3.3C1.755.5.983.5.575.819A1.5',
+    '1.5 0 000 1.969c-.01.517.453 1.135 1.38 2.371l1.14 1.52c.178.237.267.356.33.487a1.5',
+    '1.5 0 01.122.365C3 6.855 3 7.003 3 7.3v9.4c0 1.68 0 2.52.327 3.162a3 3 0',
+    '001.311 1.311c.642.327 1.482.327 3.162.327h11.4c1.68 0 2.52 0',
+    '3.162-.327a3 3 0 001.311-1.311C24 19.22 24 18.38 24 16.7V3.8c0-1.68',
+    '0-2.52-.327-3.162a3 3 0 00-1.311-1.311zM7.5 8a1.5 1.5 0 110 3 1.5',
+    '1.5 0 010-3zm4.5 1.5a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zm7.5-1.5a1.5',
+    '1.5 0 110 3 1.5 1.5 0 010-3zM8.129 15.209a.75.75 0 01 1.042-.18A5.25',
+    '5.25 0 0012 16.25a5.25 5.25 0 002.829-1.221.75.75 0 01.862 1.222A6.75',
+    '6.75 0 0112 17.75a6.75 6.75 0 01-3.691-1.499.75.75 0 01-.18-1.042z',
+  ].join(' '));
+  path.setAttribute('clip-rule', 'evenodd');
+  svg.append(path);
+
+  const iconWrap = document.createElement('span');
+  iconWrap.className = 'feedback-tab-icon';
+  iconWrap.append(svg);
+
+  const text = document.createElement('span');
+  text.className = 'feedback-tab-text';
+  text.textContent = 'Feedback';
+
+  btn.append(iconWrap, text);
+  document.body.append(btn);
+}
+
+buildFeedbackTab();
