@@ -63,15 +63,10 @@
   content: '\00a0\2192';
   color: var(--brand-color);
   font-size: 1.2em;
-  transition: letter-spacing 0.2s;
 }
 
 .cards-offering > ul > li a:hover {
   color: var(--brand-color);
-}
-
-.cards-offering > ul > li a:hover::after {
-  letter-spacing: 4px;
 }
 
 @media (width >= 900px) {

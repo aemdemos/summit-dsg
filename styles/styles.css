@@ -120,7 +120,7 @@ h6 {
   margin-top: 0.8em;
   margin-bottom: 0.25em;
   font-family: var(--heading-font-family);
-  font-weight: 500;
+  font-weight: 300;
   line-height: 1.2;
   scroll-margin: 40px;
   color: var(--text-color);
@@ -327,7 +327,7 @@ main .section.dark > .default-content-wrapper > h2 {
 }
 
 main .section.dark > .default-content-wrapper > p {
-  color: rgb(255 255 255 / 80%);
+  color: rgb(255 255 255 / 85%);
   font-size: 19px;
   max-width: 600px;
 }

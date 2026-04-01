@@ -38,7 +38,7 @@ main .columns-support-container > .columns-support-wrapper {
 /* Section heading: left-aligned, weight 500 — extra class for specificity over .section.grey rule */
 main .section.columns-support-container > .default-content-wrapper > h2 {
   text-align: left;
-  font-weight: 500;
+  font-weight: 300;
   margin-bottom: 0;
 }
 
@@ -71,7 +71,7 @@ main .section.columns-support-container > .default-content-wrapper > h2 {
 /* Column headings */
 .columns-support h3 {
   font-size: var(--heading-font-size-m);
-  font-weight: 500;
+  font-weight: 300;
   color: var(--heading-text-color);
   line-height: 1.4;
   margin: 0 0 16px;
@@ -94,7 +94,7 @@ main .section.columns-support-container > .default-content-wrapper > h2 {
 .columns-support a {
   color: var(--link-color);
   font-weight: 600;
-  text-decoration: underline;
+  text-decoration: none;
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -104,16 +104,10 @@ main .section.columns-support-container > .default-content-wrapper > h2 {
   content: '\2192';
   color: var(--brand-color);
   font-size: 1.3em;
-  text-decoration: none;
-  transition: transform 0.2s;
 }
 
 .columns-support a:hover {
   color: var(--link-hover-color);
-}
-
-.columns-support a:hover::after {
-  transform: translateX(3px);
 }
 
 /* Hide broken icons gracefully */

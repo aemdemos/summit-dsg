@@ -1,8 +1,8 @@
 @import url('./cards-insight-tokens.css');
 
 main .cards-insight-container > .default-content-wrapper > h2 {
-  font-size: var(--heading-font-size-l);
-  font-weight: 500;
+  font-size: var(--heading-font-size-xl);
+  font-weight: 300;
 }
 
 main .cards-insight-container > .default-content-wrapper > h2 strong {
@@ -61,7 +61,8 @@ main .cards-insight-container > .default-content-wrapper > h2 strong {
 
 .cards-insight .cards-card-body h3 {
   font-weight: 500;
-  font-size: var(--heading-font-size-s);
+  font-size: var(--heading-font-size-m);
+  line-height: 1.4;
   margin: 12px 0 16px;
   padding-bottom: 16px;
   border-bottom: 1px solid #e6e6e6;
@@ -69,21 +70,23 @@ main .cards-insight-container > .default-content-wrapper > h2 strong {
 }
 
 .cards-insight .cards-card-body p {
-  font-size: var(--body-font-size-s);
-  line-height: 1.29;
+  font-size: var(--body-font-size-m);
+  line-height: 20px;
   color: var(--text-color);
   margin: 24px 0 0;
 }
 
 .cards-insight .cards-card-body a {
   color: var(--link-color);
-  font-weight: 500;
+  font-size: var(--body-font-size-m);
+  font-weight: 600;
+  line-height: 20px;
   text-decoration: none;
 }
 
 .cards-insight .cards-card-body a:hover {
   color: var(--link-hover-color);
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 /* Press variant — cards without images + trailing CTA button */

@@ -315,8 +315,9 @@ header nav .nav-section-btn {
   font-size: 16px;
   font-weight: 400;
   font-family: var(--body-font-family);
+  line-height: 22px;
   cursor: pointer;
-  padding: 20px 6px 16px;
+  padding: 20px 10px 16px;
   margin: 0;
   height: 100%;
   box-sizing: border-box;
@@ -430,8 +431,13 @@ header .nav-mega-menu {
   top: var(--nav-height);
   left: 0;
   right: 0;
+  max-width: 1440px;
+  margin: 0 auto;
   background-color: #fff;
-  box-shadow: 0 8px 24px rgb(0 0 0 / 15%);
+  box-shadow: 0 16px 12px 8px rgb(31 31 31 / 10%);
+  border-top: 1px solid #1f1f1f;
+  border-bottom: 1px solid #e6e6e6;
+  border-radius: 0 0 8px 8px;
   z-index: 10;
 }
 
@@ -516,15 +522,16 @@ header .mega-col ul {
 
 header .mega-col ul li {
   font-weight: 400;
+  margin-bottom: 8px;
 }
 
 header .mega-col ul li a {
   display: block;
-  padding: 6px 0;
+  padding: 0;
   font-size: 16px;
   color: #1f1f1f;
   text-decoration: none;
-  line-height: 1.5;
+  line-height: 24px;
 }
 
 header .mega-col ul li a:hover {
@@ -534,9 +541,9 @@ header .mega-col ul li a:hover {
 
 /* mega-menu sidebar */
 header .mega-sidebar {
-  flex: 0 0 320px;
-  border-left: 1px solid #e0e0e0;
-  padding-left: 40px;
+  flex: 0 0 350px;
+  border-left: 1px solid #e6e6e6;
+  padding-left: 20px;
 }
 
 header .mega-sidebar h3 {
@@ -615,7 +622,10 @@ header .mega-cta p {
 }
 
 header .mega-cta-btn {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   width: 100%;
   box-sizing: border-box;
   padding: 7px 16px;
@@ -627,6 +637,13 @@ header .mega-cta-btn {
   font-size: 16px;
   text-decoration: none;
   text-align: center;
+}
+
+header .mega-cta-btn .mega-cta-icon {
+  display: inline-flex;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
 }
 
 header .mega-cta-btn:hover {

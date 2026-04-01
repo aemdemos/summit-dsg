@@ -248,7 +248,10 @@ function parseSidebar(sidebarLi) {
   sidebarLi.querySelectorAll(':scope > p').forEach((p) => {
     const link = p.querySelector('a');
     const strong = p.querySelector('strong');
-    if (link && strong) {
+    // decorateButtons converts <strong><a> into <a class="button primary">,
+    // so detect CTA by checking for the button class as well as strong wrapping.
+    const isButton = link && (link.classList.contains('primary') || link.classList.contains('button'));
+    if (link && (strong || isButton)) {
       ctaUrl = link.href;
     } else if (link && !strong) {
       extraLinks.push([link.textContent.trim(), link.href]);
@@ -375,7 +378,18 @@ function buildMegaSidebar(sidebar) {
     const a = document.createElement('a');
     a.href = sidebar.ctaUrl;
     a.className = 'mega-cta-btn';
-    a.textContent = 'Contact us';
+    const iconSpan = document.createElement('span');
+    iconSpan.className = 'mega-cta-icon';
+    iconSpan.append(createFilledSvgIcon(16, 16, '0 0 16 16', [
+      'M2 1C0.890625 1 0 1.89062 0 3V11C0 12.1094 0.890625 13',
+      '2 13H5V15.1875C5 15.75 5.65625 16.0938 6.125',
+      '15.75L10 13H14C15.1094 13 16 12.1094 16 11V3C16',
+      '1.89062 15.1094 1 14 1H2Z',
+    ].join(' ')));
+    a.append(iconSpan);
+    const textSpan = document.createElement('span');
+    textSpan.textContent = 'Contact us';
+    a.append(textSpan);
     ctaWrap.append(a);
     aside.append(ctaWrap);
   }

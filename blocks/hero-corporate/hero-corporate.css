@@ -10,7 +10,7 @@ main .section.hero-corporate-container {
 
 /* "Explore additional offerings" section text */
 main .section.hero-corporate-container > .default-content-wrapper > h2 {
-  font-weight: 700;
+  font-weight: 300;
   margin-top: 16px;
 }
 
@@ -37,7 +37,7 @@ main .section.hero-corporate-container > .default-content-wrapper > p {
 }
 
 .hero-corporate h1 {
-  font-weight: 500;
+  font-weight: 300;
   line-height: 1.2;
   letter-spacing: -1px;
   margin-top: 8px;
@@ -47,10 +47,9 @@ main .section.hero-corporate-container > .default-content-wrapper > p {
 
 main .section.dark .hero-corporate h2 {
   font-size: var(--body-font-size-m);
-  font-weight: 700;
+  font-weight: 400;
   color: #fff;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: normal;
   margin-top: 0;
   margin-bottom: 8px;
 }
@@ -58,9 +57,9 @@ main .section.dark .hero-corporate h2 {
 .hero-corporate p {
   color: rgb(255 255 255 / 85%);
   max-width: 700px;
-  font-size: var(--body-font-size-m);
-  font-weight: 400;
-  line-height: 1.5;
+  font-size: 21px;
+  font-weight: 300;
+  line-height: 29.4px;
   margin: 0;
 }
 
