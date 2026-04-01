@@ -62,21 +62,27 @@
 
 .carousel-spotlight .carousel-spotlight-slide .carousel-spotlight-slide-content h3 {
   color: var(--heading-text-color);
-  font-size: var(--heading-font-size-l);
+  font-size: var(--heading-font-size-m);
+  line-height: 1.4;
   margin-top: 0;
-  font-weight: 700;
+  margin-bottom: 16px;
+  font-weight: 500;
 }
 
 .carousel-spotlight .carousel-spotlight-slide .carousel-spotlight-slide-content p {
-  font-size: var(--body-font-size-s);
-  line-height: 1.6;
+  font-size: 19px;
+  line-height: 24px;
   color: var(--text-color);
+  margin-top: 24px;
+  margin-bottom: 24px;
 }
 
 .carousel-spotlight .carousel-spotlight-slide .carousel-spotlight-slide-content a {
   color: var(--text-color);
+  font-size: var(--body-font-size-m);
   font-weight: 600;
   text-decoration: underline;
+  line-height: 20px;
 }
 
 .carousel-spotlight .carousel-spotlight-slide .carousel-spotlight-slide-content a:hover {
