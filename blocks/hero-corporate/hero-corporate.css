@@ -47,9 +47,11 @@ main .section.hero-corporate-container > .default-content-wrapper > p {
 
 main .section.dark .hero-corporate h2 {
   font-size: var(--body-font-size-m);
-  font-weight: 400;
-  color: var(--brand-color);
-  letter-spacing: normal;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  line-height: 18px;
   margin-top: 0;
   margin-bottom: 8px;
 }
