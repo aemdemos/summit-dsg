@@ -130,7 +130,7 @@
 .feedback-tab {
   position: fixed;
   right: 0;
-  top: 50%;
+  top: calc(50% + 50px);
   transform: rotate(90deg) translateX(-50%);
   transform-origin: top right;
   z-index: 998;
@@ -160,6 +160,7 @@
   align-items: center;
   line-height: 0;
   order: 1;
+  transform: rotate(-90deg);
 }
 
 .feedback-tab-text {

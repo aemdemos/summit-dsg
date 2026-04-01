@@ -169,31 +169,49 @@ function buildFeedbackTab() {
   btn.className = 'feedback-tab';
   btn.setAttribute('aria-label', 'Feedback - Show survey');
 
-  // Smiley face SVG (speech-bubble with smile)
+  // Smiley face SVG (speech-bubble with smile — two eyes and a curved mouth)
   const svgNs = ['http', '://www.w3.org/2000/svg'].join('');
   const svg = document.createElementNS(svgNs, 'svg');
   svg.setAttribute('width', '20');
-  svg.setAttribute('height', '18');
-  svg.setAttribute('viewBox', '0 0 24 22');
+  svg.setAttribute('height', '20');
+  svg.setAttribute('viewBox', '0 0 24 24');
   svg.setAttribute('fill', 'none');
 
-  const path = document.createElementNS(svgNs, 'path');
-  path.setAttribute('fill', '#fdfdfd');
-  path.setAttribute('fill-rule', 'evenodd');
-  path.setAttribute('d', [
-    'M22.362.827C21.72.5 20.88.5 19.2.5H3.3C1.755.5.983.5.575.819A1.5',
-    '1.5 0 000 1.969c-.01.517.453 1.135 1.38 2.371l1.14 1.52c.178.237.267.356.33.487a1.5',
-    '1.5 0 01.122.365C3 6.855 3 7.003 3 7.3v9.4c0 1.68 0 2.52.327 3.162a3 3 0',
-    '001.311 1.311c.642.327 1.482.327 3.162.327h11.4c1.68 0 2.52 0',
-    '3.162-.327a3 3 0 001.311-1.311C24 19.22 24 18.38 24 16.7V3.8c0-1.68',
-    '0-2.52-.327-3.162a3 3 0 00-1.311-1.311zM7.5 8a1.5 1.5 0 110 3 1.5',
-    '1.5 0 010-3zm4.5 1.5a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zm7.5-1.5a1.5',
-    '1.5 0 110 3 1.5 1.5 0 010-3zM8.129 15.209a.75.75 0 01 1.042-.18A5.25',
-    '5.25 0 0012 16.25a5.25 5.25 0 002.829-1.221.75.75 0 01.862 1.222A6.75',
-    '6.75 0 0112 17.75a6.75 6.75 0 01-3.691-1.499.75.75 0 01-.18-1.042z',
+  // Speech bubble outline
+  const bubble = document.createElementNS(svgNs, 'path');
+  bubble.setAttribute('d', [
+    'M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7',
+    '8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0',
+    '01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48',
+    '8.48 0 018 8v.5z',
   ].join(' '));
-  path.setAttribute('clip-rule', 'evenodd');
-  svg.append(path);
+  bubble.setAttribute('fill', '#fdfdfd');
+  svg.append(bubble);
+
+  // Left eye
+  const eyeL = document.createElementNS(svgNs, 'circle');
+  eyeL.setAttribute('cx', '9');
+  eyeL.setAttribute('cy', '10');
+  eyeL.setAttribute('r', '1.2');
+  eyeL.setAttribute('fill', '#555');
+  svg.append(eyeL);
+
+  // Right eye
+  const eyeR = document.createElementNS(svgNs, 'circle');
+  eyeR.setAttribute('cx', '15');
+  eyeR.setAttribute('cy', '10');
+  eyeR.setAttribute('r', '1.2');
+  eyeR.setAttribute('fill', '#555');
+  svg.append(eyeR);
+
+  // Smile
+  const smile = document.createElementNS(svgNs, 'path');
+  smile.setAttribute('d', 'M9.5 14.5c.83 1 2.17 1.5 3 1.5s2.17-.5 3-1.5');
+  smile.setAttribute('stroke', '#555');
+  smile.setAttribute('stroke-width', '1.2');
+  smile.setAttribute('stroke-linecap', 'round');
+  smile.setAttribute('fill', 'none');
+  svg.append(smile);
 
   const iconWrap = document.createElement('span');
   iconWrap.className = 'feedback-tab-icon';
