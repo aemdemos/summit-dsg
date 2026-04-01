@@ -162,3 +162,52 @@ function buildScrollPrompt() {
 }
 
 buildScrollPrompt();
+
+// Feedback sidebar tab (visual replica of the source site's Qualtrics widget)
+function buildFeedbackTab() {
+  const btn = document.createElement('button');
+  btn.className = 'feedback-tab';
+  btn.setAttribute('aria-label', 'Feedback - Show survey');
+
+  // Smiley face SVG — exact icon from the source (square-ish speech bubble with eyes + smile)
+  const svgNs = ['http', '://www.w3.org/2000/svg'].join('');
+  const svg = document.createElementNS(svgNs, 'svg');
+  svg.setAttribute('width', '24');
+  svg.setAttribute('height', '22');
+  svg.setAttribute('viewBox', '0 0 24 22');
+  svg.setAttribute('fill', 'none');
+
+  const path = document.createElementNS(svgNs, 'path');
+  path.setAttribute('fill', '#fdfdfd');
+  path.setAttribute('fill-rule', 'evenodd');
+  path.setAttribute('clip-rule', 'evenodd');
+  path.setAttribute('d', [
+    'M22.362.827C21.72.5 20.88.5 19.2.5H3.3C1.755.5.983.5.575.819A1.5',
+    '1.5 0 000 1.969c-.01.517.453 1.135 1.38 2.371l1.14',
+    '1.52c.178.237.267.356.33.487a1.5 1.5 0 01.122.365C3',
+    '6.855 3 7.003 3 7.3v9.4c0 1.68 0 2.52.327 3.162a3 3 0',
+    '001.311 1.311c.642.327 1.482.327 3.162.327h11.4c1.68 0',
+    '2.52 0 3.162-.327a3 3 0 001.311-1.311C24 19.22 24 18.38',
+    '24 16.7V5.3c0-1.68 0-2.52-.327-3.162a3 3 0',
+    '00-1.31-1.311zM9.277 11.937a1.125 1.125 0',
+    '00-1.948 1.126 7.123 7.123 0 006.171 3.562 7.123 7.123',
+    '0 006.171-3.562 1.125 1.125 0 10-1.947-1.126 4.872 4.872',
+    '0 01-4.224 2.438 4.873 4.873 0 01-4.223-2.438zM10.5',
+    '8a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM18 9.5a1.5 1.5 0',
+    '100-3 1.5 1.5 0 000 3z',
+  ].join(' '));
+  svg.append(path);
+
+  const iconWrap = document.createElement('span');
+  iconWrap.className = 'feedback-tab-icon';
+  iconWrap.append(svg);
+
+  const text = document.createElement('span');
+  text.className = 'feedback-tab-text';
+  text.textContent = 'Feedback';
+
+  btn.append(iconWrap, text);
+  document.body.append(btn);
+}
+
+buildFeedbackTab();

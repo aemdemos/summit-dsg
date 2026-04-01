@@ -126,6 +126,51 @@
   display: block;
 }
 
+/* Feedback sidebar tab */
+.feedback-tab {
+  position: fixed;
+  right: 0;
+  top: 50%;
+  transform: rotate(-90deg) translateX(50%) translateY(-100%);
+  transform-origin: top right;
+  z-index: 998;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #555;
+  color: #fdfdfd;
+  border: none;
+  border-radius: 6px 6px 0 0;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: 400;
+  font-family: Arial, sans-serif;
+  cursor: pointer;
+  white-space: nowrap;
+  line-height: 1;
+  transition: background-color 0.2s;
+}
+
+.feedback-tab:hover {
+  background-color: #444;
+}
+
+.feedback-tab-icon {
+  display: flex;
+  align-items: center;
+  line-height: 0;
+  transform: rotate(90deg);
+}
+
+.feedback-tab-icon svg {
+  width: 18px;
+  height: 16px;
+}
+
+.feedback-tab-text {
+  order: 0;
+}
+
 @keyframes scroll-down {
   0% {
     opacity: 0;

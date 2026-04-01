@@ -2,9 +2,10 @@
 :root {
   --carousel-spotlight-gap: 40px;
   --carousel-spotlight-content-padding: 0;
-  --carousel-spotlight-separator-color: var(--brand-color, #e35205);
-  --carousel-spotlight-nav-button-size: 36px;
-  --carousel-spotlight-nav-button-border: 1px solid #767676;
+  --carousel-spotlight-separator-color: #737373;
+  --carousel-spotlight-separator-height: 1px;
+  --carousel-spotlight-nav-button-size: 32px;
+  --carousel-spotlight-nav-button-border: 1px solid #1f1f1f;
   --carousel-spotlight-nav-button-hover-border: 1px solid var(--text-color);
   --carousel-spotlight-nav-gap: 8px;
   --carousel-spotlight-transition-duration: 0.2s;
