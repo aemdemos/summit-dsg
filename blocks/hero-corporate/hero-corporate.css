@@ -17,6 +17,9 @@ main .section.hero-corporate-container > .default-content-wrapper > h2 {
 main .section.hero-corporate-container > .default-content-wrapper > p {
   color: #fff;
   margin: 0 0 8px;
+  max-width: none;
+  font-size: 19px;
+  line-height: 24px;
 }
 
 .hero-corporate-container .hero-corporate-wrapper {
