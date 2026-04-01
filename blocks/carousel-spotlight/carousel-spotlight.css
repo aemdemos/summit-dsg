@@ -5,6 +5,11 @@
   position: relative;
 }
 
+/* Wrapper keeps slides + nav in a stacked layout */
+.carousel-spotlight {
+  position: relative;
+}
+
 .carousel-spotlight .carousel-spotlight-slides,
 .carousel-spotlight .carousel-spotlight-slide-indicators {
   list-style: none;
@@ -55,7 +60,7 @@
   content: '';
   display: block;
   width: 100%;
-  height: 2px;
+  height: var(--carousel-spotlight-separator-height, 1px);
   background-color: var(--carousel-spotlight-separator-color);
   margin-bottom: 24px;
 }
@@ -105,7 +110,7 @@
   margin: 0;
   border-radius: 50%;
   padding: 0;
-  background-color: transparent;
+  background-color: #fafafa;
   border: var(--carousel-spotlight-nav-button-border);
   transition: border-color var(--carousel-spotlight-transition-duration);
   cursor: pointer;
@@ -122,8 +127,8 @@
   border: 2px solid var(--text-color);
   border-bottom: 0;
   border-left: 0;
-  height: 8px;
-  width: 8px;
+  height: 6px;
+  width: 6px;
   position: absolute;
   top: 50%;
   left: calc(50% + 1px);
@@ -200,6 +205,12 @@
     max-height: 450px;
     width: auto;
     object-fit: contain;
+  }
+
+  /* Position navigation buttons at a fixed spot below content */
+  .carousel-spotlight .carousel-spotlight-navigation-buttons {
+    padding-top: 0;
+    margin-top: 16px;
   }
 
   /* Hide dot indicators on desktop (counter replaces them) */
