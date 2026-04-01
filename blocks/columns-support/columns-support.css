@@ -94,7 +94,7 @@ main .section.columns-support-container > .default-content-wrapper > h2 {
 .columns-support a {
   color: var(--link-color);
   font-weight: 600;
-  text-decoration: underline;
+  text-decoration: none;
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -104,16 +104,10 @@ main .section.columns-support-container > .default-content-wrapper > h2 {
   content: '\2192';
   color: var(--brand-color);
   font-size: 1.3em;
-  text-decoration: none;
-  transition: transform 0.2s;
 }
 
 .columns-support a:hover {
   color: var(--link-hover-color);
-}
-
-.columns-support a:hover::after {
-  transform: translateX(3px);
 }
 
 /* Hide broken icons gracefully */
