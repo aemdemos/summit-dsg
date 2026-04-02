@@ -71,10 +71,10 @@ main .section.columns-support-container > .default-content-wrapper > h2 {
 /* Column headings */
 .columns-support h3 {
   font-size: var(--heading-font-size-m);
-  font-weight: 700;
+  font-weight: 600;
   color: var(--heading-text-color);
   line-height: 1.4;
-  margin: 0 0 16px;
+  margin: 8px 0 16px;
 }
 
 .columns-support h3 u {
