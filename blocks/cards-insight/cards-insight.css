@@ -1,10 +1,18 @@
 @import url('./cards-insight-tokens.css');
 
+main .cards-insight-container > .default-content-wrapper {
+  padding-bottom: 0;
+}
+
+main .cards-insight-container .cards-insight-wrapper {
+  padding-top: 0;
+}
+
 main .cards-insight-container > .default-content-wrapper > h2 {
   font-size: var(--heading-font-size-xl);
   font-weight: 500;
-  color: var(--text-color);
-  margin-bottom: 0;
+  color: var(--brand-color);
+  margin-bottom: 16px;
 }
 
 main .cards-insight-container > .default-content-wrapper > h2 strong {
