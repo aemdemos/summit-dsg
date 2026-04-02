@@ -57,6 +57,39 @@ export default function decorate(block) {
 
   resolveImageUrls(block);
 
+  // Scene7 image URLs for Featured insights cards (keyed by heading text)
+  const SCENE7_IMAGES = {
+    '2026 AI in Professional Services Report': 'https://thomsonreuters.scene7.com/is/image/thomsonreuterscloudprod/201276_109755785-1?wid=376',
+    'Introducing Our First CoCounsel Guided Workflows': 'https://thomsonreuters.scene7.com/is/image/thomsonreuterscloudprod/243582-644540343?wid=376',
+    'Future of Professionals Report 2025': 'https://thomsonreuters.scene7.com/is/image/thomsonreuterscloudprod/251216-922168087?wid=376',
+  };
+
+  // Inject Scene7 images into cards that are missing them.
+  // AEM's pipeline converts external image URLs to about:error and the core
+  // decoration strips them before the block's decorate() runs.  We recreate
+  // the image column from scratch using a heading-text lookup.
+  [...block.children].forEach((row) => {
+    const h3 = row.querySelector('h3');
+    const title = h3?.textContent?.trim();
+    const url = title && SCENE7_IMAGES[title];
+    if (!url) return;
+    // Only add if the row doesn't already have a working image
+    const existingImg = row.querySelector('picture img, img');
+    if (existingImg && !existingImg.src.includes('about:error')) return;
+    // Remove any broken-image div (about:error remnants)
+    row.querySelectorAll('div').forEach((div) => {
+      if (div.children.length <= 1 && div.querySelector('img')) div.remove();
+    });
+    // Create new image column as first child
+    const imgDiv = document.createElement('div');
+    const img = document.createElement('img');
+    img.src = url;
+    img.alt = title;
+    img.loading = 'lazy';
+    imgDiv.append(img);
+    row.prepend(imgDiv);
+  });
+
   /* change to ul, li */
   const ul = document.createElement('ul');
   [...block.children].forEach((row) => {
