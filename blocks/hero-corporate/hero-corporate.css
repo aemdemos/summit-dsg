@@ -12,11 +12,12 @@ main .section.hero-corporate-container {
 main .section.hero-corporate-container > .default-content-wrapper > h2 {
   font-weight: 500;
   margin-top: 16px;
+  margin-bottom: 16px;
 }
 
 main .section.hero-corporate-container > .default-content-wrapper > p {
   color: #fff;
-  margin: 0 0 8px;
+  margin: 0 0 28px;
   max-width: none;
   font-size: 19px;
   line-height: 24px;
