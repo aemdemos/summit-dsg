@@ -102,11 +102,13 @@ main .section.columns-support-container > .default-content-wrapper > h2 {
 }
 
 .columns-support a::after {
-  content: ' \2192';
+  content: '\2192';
   color: var(--brand-color);
-  font-size: 1.3em;
+  font-size: 1.1em;
   text-decoration: none;
   display: inline-block;
+  margin-left: 6px;
+  vertical-align: middle;
 }
 
 .columns-support a:hover {
