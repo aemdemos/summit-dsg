@@ -98,7 +98,7 @@ main .section.columns-support-container > .default-content-wrapper > h2 {
 .columns-support a {
   color: var(--link-color);
   font-weight: 600;
-  text-decoration: none;
+  text-decoration: underline;
   display: inline-flex;
   align-items: center;
   gap: 8px;
