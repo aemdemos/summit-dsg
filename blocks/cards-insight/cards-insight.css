@@ -2,7 +2,9 @@
 
 main .cards-insight-container > .default-content-wrapper > h2 {
   font-size: var(--heading-font-size-xl);
-  font-weight: 300;
+  font-weight: 500;
+  color: var(--text-color);
+  margin-bottom: 0;
 }
 
 main .cards-insight-container > .default-content-wrapper > h2 strong {
@@ -63,6 +65,7 @@ main .cards-insight-container > .default-content-wrapper > h2 strong {
   font-weight: 500;
   font-size: var(--heading-font-size-m);
   line-height: 1.4;
+  color: #1f1f1f;
   margin: 12px 0 16px;
   padding-bottom: 16px;
   border-bottom: 1px solid #e6e6e6;
@@ -74,12 +77,16 @@ main .cards-insight-container > .default-content-wrapper > h2 strong {
   line-height: 20px;
   color: var(--text-color);
   margin: 24px 0 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 7;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .cards-insight .cards-card-body a {
   color: var(--link-color);
   font-size: var(--body-font-size-m);
-  font-weight: 600;
+  font-weight: 500;
   line-height: 20px;
   text-decoration: none;
 }
