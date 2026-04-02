@@ -146,7 +146,7 @@ footer .footer .footer-legal-upper {
   padding: var(--footer-legal-padding);
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
+  align-items: flex-start;
   gap: 32px;
 }
 
