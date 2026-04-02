@@ -68,10 +68,11 @@ main .cards-insight-container > .default-content-wrapper > h2 strong {
 
 .cards-insight .cards-card-body p:last-child {
   margin-top: auto;
+  padding-top: 16px;
 }
 
 .cards-insight .cards-card-body h3 {
-  font-weight: 700;
+  font-weight: 500;
   font-size: var(--heading-font-size-m);
   line-height: 1.4;
   color: #1f1f1f;
