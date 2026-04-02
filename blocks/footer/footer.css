@@ -201,9 +201,30 @@ footer .footer .footer-legal nav a {
   color: var(--footer-text-color);
   text-decoration: none;
   font-size: var(--footer-link-font-size);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+footer .footer .footer-legal nav a svg {
+  flex-shrink: 0;
 }
 
 footer .footer .footer-legal nav a:hover {
+  text-decoration: underline;
+}
+
+footer .footer .footer-manage-settings {
+  background: none;
+  border: none;
+  color: var(--footer-text-color);
+  font-size: var(--footer-link-font-size);
+  font-family: inherit;
+  padding: 0;
+  cursor: pointer;
+}
+
+footer .footer .footer-manage-settings:hover {
   text-decoration: underline;
 }
 

@@ -71,6 +71,39 @@ function buildLegalBar(section) {
   // The <ul> contains legal links
   const legalUl = wrapper.querySelector('ul');
   if (legalUl) {
+    // Add external-link icon SVG to each link that opens in a new tab
+    // SVG namespace is an identifier, not a network URL — http:// is required per spec
+    const svgNs = ['http', '://www.w3.org/2000/svg'].join('');
+    legalUl.querySelectorAll('a').forEach((a) => {
+      a.setAttribute('target', '_blank');
+      const iconSvg = document.createElementNS(svgNs, 'svg');
+      iconSvg.setAttribute('width', '12');
+      iconSvg.setAttribute('height', '12');
+      iconSvg.setAttribute('viewBox', '0 0 16 16');
+      iconSvg.setAttribute('fill', 'none');
+      iconSvg.setAttribute('aria-hidden', 'true');
+      const iconPath = document.createElementNS(svgNs, 'path');
+      iconPath.setAttribute('d', [
+        'M10.5 0H15.5H16V0.5V5.5V6H15V5.5V1.71875L7.34375',
+        '9.375L7 9.71875L6.28125 9L6.625 8.65625L14.2812',
+        '1H10.5H10V0H10.5ZM0.5 1H6.5H7V2H6.5H1V15H14V9.5V9H15V9.5V15.5V16H14.5H0.5H0V15.5V1.5V1H0.5Z',
+      ].join(' '));
+      iconPath.setAttribute('fill', 'currentColor');
+      iconSvg.append(iconPath);
+      a.append(iconSvg);
+    });
+
+    // Insert "Manage Settings" button after Cookie policy (first item)
+    const firstLi = legalUl.querySelector('li');
+    if (firstLi) {
+      const manageLi = document.createElement('li');
+      const manageBtn = document.createElement('button');
+      manageBtn.className = 'footer-manage-settings';
+      manageBtn.textContent = 'Manage Settings and the Sale or Sharing of My Personal Data';
+      manageLi.append(manageBtn);
+      firstLi.after(manageLi);
+    }
+
     const legalNav = document.createElement('nav');
     legalNav.setAttribute('aria-label', 'legal');
     legalNav.append(legalUl);
