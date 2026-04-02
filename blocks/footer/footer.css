@@ -145,9 +145,13 @@ footer .footer .footer-legal-upper {
   margin: 0 auto;
   padding: var(--footer-legal-padding);
   display: flex;
-  flex-wrap: wrap;
   align-items: flex-start;
   gap: 32px;
+}
+
+footer .footer .footer-legal nav[aria-label="legal"] {
+  flex: 1 1 0;
+  min-width: 0;
 }
 
 /* Brand link — full logo image */
