@@ -57,22 +57,37 @@ export default function decorate(block) {
 
   resolveImageUrls(block);
 
-  // Fix about:error images — restore original Scene7 URLs that AEM's pipeline can't reach
-  const SCENE7_URLS = [
-    'https://thomsonreuters.scene7.com/is/image/thomsonreuterscloudprod/201276_109755785-1?wid=376',
-    'https://thomsonreuters.scene7.com/is/image/thomsonreuterscloudprod/243582-644540343?wid=376',
-    'https://thomsonreuters.scene7.com/is/image/thomsonreuterscloudprod/251216-922168087?wid=376',
-  ];
-  let sceneIdx = 0;
-  block.querySelectorAll('img').forEach((img) => {
-    const src = img.getAttribute('src') || '';
-    if (src === 'about:error' || src.includes('about:error')) {
-      if (sceneIdx < SCENE7_URLS.length) {
-        img.src = SCENE7_URLS[sceneIdx];
-        img.loading = 'lazy';
-        sceneIdx += 1;
-      }
-    }
+  // Scene7 image URLs for Featured insights cards (keyed by heading text)
+  const SCENE7_IMAGES = {
+    '2026 AI in Professional Services Report': 'https://thomsonreuters.scene7.com/is/image/thomsonreuterscloudprod/201276_109755785-1?wid=376',
+    'Introducing Our First CoCounsel Guided Workflows': 'https://thomsonreuters.scene7.com/is/image/thomsonreuterscloudprod/243582-644540343?wid=376',
+    'Future of Professionals Report 2025': 'https://thomsonreuters.scene7.com/is/image/thomsonreuterscloudprod/251216-922168087?wid=376',
+  };
+
+  // Inject Scene7 images into cards that are missing them.
+  // AEM's pipeline converts external image URLs to about:error and the core
+  // decoration strips them before the block's decorate() runs.  We recreate
+  // the image column from scratch using a heading-text lookup.
+  [...block.children].forEach((row) => {
+    const h3 = row.querySelector('h3');
+    const title = h3?.textContent?.trim();
+    const url = title && SCENE7_IMAGES[title];
+    if (!url) return;
+    // Only add if the row doesn't already have a working image
+    const existingImg = row.querySelector('picture img, img');
+    if (existingImg && !existingImg.src.includes('about:error')) return;
+    // Remove any broken-image div (about:error remnants)
+    row.querySelectorAll('div').forEach((div) => {
+      if (div.children.length <= 1 && div.querySelector('img')) div.remove();
+    });
+    // Create new image column as first child
+    const imgDiv = document.createElement('div');
+    const img = document.createElement('img');
+    img.src = url;
+    img.alt = title;
+    img.loading = 'lazy';
+    imgDiv.append(img);
+    row.prepend(imgDiv);
   });
 
   /* change to ul, li */
