@@ -63,11 +63,15 @@ export default function decorate(block) {
     'https://thomsonreuters.scene7.com/is/image/thomsonreuterscloudprod/243582-644540343?wid=376',
     'https://thomsonreuters.scene7.com/is/image/thomsonreuterscloudprod/251216-922168087?wid=376',
   ];
-  const brokenImgs = block.querySelectorAll('img[src="about:error"]');
-  brokenImgs.forEach((img, idx) => {
-    if (idx < SCENE7_URLS.length) {
-      img.src = SCENE7_URLS[idx];
-      img.loading = 'lazy';
+  let sceneIdx = 0;
+  block.querySelectorAll('img').forEach((img) => {
+    const src = img.getAttribute('src') || '';
+    if (src === 'about:error' || src.includes('about:error')) {
+      if (sceneIdx < SCENE7_URLS.length) {
+        img.src = SCENE7_URLS[sceneIdx];
+        img.loading = 'lazy';
+        sceneIdx += 1;
+      }
     }
   });
 
