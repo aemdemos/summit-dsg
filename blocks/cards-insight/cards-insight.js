@@ -58,20 +58,16 @@ export default function decorate(block) {
   resolveImageUrls(block);
 
   // Fix about:error images — restore original Scene7 URLs that AEM's pipeline can't reach
-  const SCENE7_IMAGE_MAP = {
-    '2026 AI in Professional Services Report': 'https://thomsonreuters.scene7.com/is/image/thomsonreuterscloudprod/201276_109755785-1?wid=376',
-    'Introducing Our First CoCounsel Guided Workflows': 'https://thomsonreuters.scene7.com/is/image/thomsonreuterscloudprod/243582-644540343?wid=376',
-    'Future of Professionals Report 2025': 'https://thomsonreuters.scene7.com/is/image/thomsonreuterscloudprod/251216-922168087?wid=376',
-  };
-  block.querySelectorAll('img[src="about:error"]').forEach((img) => {
-    const alt = img.getAttribute('alt') || '';
-    const mappedUrl = SCENE7_IMAGE_MAP[alt];
-    if (mappedUrl) {
-      img.src = mappedUrl;
+  const SCENE7_URLS = [
+    'https://thomsonreuters.scene7.com/is/image/thomsonreuterscloudprod/201276_109755785-1?wid=376',
+    'https://thomsonreuters.scene7.com/is/image/thomsonreuterscloudprod/243582-644540343?wid=376',
+    'https://thomsonreuters.scene7.com/is/image/thomsonreuterscloudprod/251216-922168087?wid=376',
+  ];
+  const brokenImgs = block.querySelectorAll('img[src="about:error"]');
+  brokenImgs.forEach((img, idx) => {
+    if (idx < SCENE7_URLS.length) {
+      img.src = SCENE7_URLS[idx];
       img.loading = 'lazy';
-    } else {
-      // No mapping — remove the broken image div
-      img.closest('div')?.remove();
     }
   });
 
