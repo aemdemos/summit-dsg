@@ -38,7 +38,7 @@ main .columns-support-container > .columns-support-wrapper {
 /* Section heading: left-aligned, weight 500 — extra class for specificity over .section.grey rule */
 main .section.columns-support-container > .default-content-wrapper > h2 {
   text-align: left;
-  font-weight: 300;
+  font-weight: 500;
   margin-bottom: 0;
 }
 
