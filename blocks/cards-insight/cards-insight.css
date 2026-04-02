@@ -71,9 +71,9 @@ main .cards-insight-container > .default-content-wrapper > h2 strong {
 }
 
 .cards-insight .cards-card-body h3 {
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 25.2px;
+  font-weight: 700;
+  font-size: var(--heading-font-size-m);
+  line-height: 1.4;
   color: #1f1f1f;
   margin: 12px 0 16px;
   padding-bottom: 16px;
@@ -82,8 +82,8 @@ main .cards-insight-container > .default-content-wrapper > h2 strong {
 }
 
 .cards-insight .cards-card-body p {
-  font-size: 14px;
-  line-height: 18px;
+  font-size: var(--body-font-size-m);
+  line-height: 20px;
   color: var(--text-color);
   margin: 24px 0 0;
   display: -webkit-box;
@@ -94,10 +94,10 @@ main .cards-insight-container > .default-content-wrapper > h2 strong {
 
 .cards-insight .cards-card-body a {
   color: var(--link-color);
-  font-size: 14px;
+  font-size: var(--body-font-size-m);
   font-weight: 500;
-  line-height: 18px;
-  text-decoration: none;
+  line-height: 20px;
+  text-decoration: underline;
 }
 
 .cards-insight .cards-card-body a:hover {
@@ -105,42 +105,7 @@ main .cards-insight-container > .default-content-wrapper > h2 strong {
   text-decoration: none;
 }
 
-/* Press variant — stacked vertical layout without images + trailing CTA button */
-
-/* Cards without images (Press releases) — stacked, larger text */
-.cards-insight:not(:has(.cards-card-image)) > ul {
-  grid-template-columns: 1fr;
-}
-
-.cards-insight:not(:has(.cards-card-image)) .cards-card-body {
-  margin: 0;
-  padding: 48px 60px;
-}
-
-.cards-insight:not(:has(.cards-card-image)) .cards-card-body h3 {
-  font-size: 28px;
-  font-weight: 700;
-  line-height: 1.3;
-  color: #1f1f1f;
-  margin: 0 0 24px;
-  padding-bottom: 0;
-  border-bottom: none;
-  min-height: unset;
-}
-
-.cards-insight:not(:has(.cards-card-image)) .cards-card-body p {
-  font-size: 18px;
-  line-height: 26px;
-  margin: 0 0 16px;
-  -webkit-line-clamp: unset;
-}
-
-.cards-insight:not(:has(.cards-card-image)) .cards-card-body a {
-  font-size: 18px;
-  font-weight: 500;
-  line-height: 26px;
-  text-decoration: underline;
-}
+/* Press variant — cards without images */
 
 .cards-insight-wrapper + .default-content-wrapper {
   text-align: center;
