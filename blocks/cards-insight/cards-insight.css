@@ -105,9 +105,13 @@ main .cards-insight-container > .default-content-wrapper > h2 strong {
   text-decoration: none;
 }
 
-/* Press variant — cards without images + trailing CTA button */
+/* Press variant — stacked vertical layout without images + trailing CTA button */
 .cards-insight.press .cards-card-image {
   display: none;
+}
+
+.cards-insight.press > ul {
+  grid-template-columns: 1fr;
 }
 
 .cards-insight-wrapper + .default-content-wrapper {
