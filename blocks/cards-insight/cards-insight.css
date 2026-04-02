@@ -111,14 +111,21 @@ main .cards-insight-container > .default-content-wrapper > h2 strong {
 .cards-insight-wrapper + .default-content-wrapper {
   text-align: center;
   padding-top: 24px;
+  padding-bottom: 24px;
+}
+
+main .cards-insight-container:has(.cards-insight-wrapper + .default-content-wrapper) {
+  padding-bottom: 0;
 }
 
 .cards-insight-wrapper + .default-content-wrapper p a {
   display: inline-block;
-  padding: 10px 32px;
+  padding: 8px 16px;
   background-color: var(--brand-color);
   color: #fff;
-  border-radius: 24px;
+  border: 1px solid var(--brand-color);
+  border-radius: 4px;
+  font-size: 16px;
   font-weight: 600;
   text-decoration: none;
 }
