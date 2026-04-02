@@ -108,6 +108,7 @@ main .section.columns-support-container > .default-content-wrapper > h2 {
   content: '\2192';
   color: var(--brand-color);
   font-size: 1.3em;
+  text-decoration: none;
 }
 
 .columns-support a:hover {
