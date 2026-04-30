@@ -99,20 +99,21 @@ main .section.columns-support-container > .default-content-wrapper > h2 {
   margin-top: 24px;
 }
 
-/* Links — blue, underlined, with orange arrow */
+/* Links — blue, underlined text with orange arrow */
 .columns-support a {
   color: var(--link-color);
   font-weight: 600;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
+  text-decoration: underline;
 }
 
 .columns-support a::after {
   content: '\2192';
   color: var(--brand-color);
-  font-size: 1.3em;
+  font-size: 1.1em;
+  text-decoration: none;
+  display: inline-block;
+  margin-left: 6px;
+  vertical-align: middle;
 }
 
 .columns-support a:hover {
