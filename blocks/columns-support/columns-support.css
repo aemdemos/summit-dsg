@@ -1,5 +1,10 @@
 @import url('./columns-support-tokens.css');
 
+/* Extra space between Featured insights and Customer support (homepage order) */
+main .section.cards-insight-container + .section.columns-support-container {
+  margin-top: 49px;
+}
+
 /* Remove grey section background — constrain section width to align with cards grid */
 main .section.grey.columns-support-container {
   background-color: transparent;
